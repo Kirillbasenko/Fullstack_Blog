@@ -1,0 +1,44 @@
+.modal{
+   position: absolute;
+   top: 15%;
+   left: 28%;
+   transform: 'translate(-50%, -50%)';
+   min-width: 510px;
+   background: #4d77e0;
+   border: '2px solid #000';
+   box-shadow: 24px;
+   border-radius: 10px;
+   padding: 16px;
+   display: flex;
+   flex-direction: column;
+}
+
+.image{
+   width: 450px;
+   height: 230px;
+   margin: 0 auto;
+}
+
+.flex{
+   display: flex;
+   justify-content: space-between;
+}
+
+.buttonSubmit{
+   margin-right: 10px;
+}
+
+.buttonCenter{
+   text-align: center;
+   margin-top: 20px;
+}
+
+.input{
+   margin-bottom: 15px;
+   font-size: 13px;
+}
+
+.select{
+   margin: 15px 0px;
+   width: 200px;
+}

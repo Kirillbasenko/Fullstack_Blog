@@ -1,0 +1,37 @@
+.parent{
+   padding: 13px;
+   border-radius: 15px;
+   color: aliceblue;
+   background: #14204bad;
+}
+
+.showButton{
+   text-transform: capitalize;
+   font-size: 12px;
+}
+
+.title{
+   font-size: 14px;
+   margin-bottom: 20px;
+}
+
+.titleTweet{
+   font-size: 12px;
+}
+
+.currentTweet{
+   font-size: 10px;
+   margin-bottom: 5px;
+   color: rgba($color: #ffffff, $alpha: 0.3);
+}
+
+.content{
+   cursor: pointer;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   text-align: start;
+   justify-content: flex-start;
+   align-items: flex-start;
+   text-transform: capitalize;
+}

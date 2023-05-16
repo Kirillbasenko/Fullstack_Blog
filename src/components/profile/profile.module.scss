@@ -1,0 +1,45 @@
+.conteiner{
+   //padding-top: 120px;
+   display: flex;
+   flex-direction: column;
+}
+
+.contentCenter{
+   text-align: center;
+   margin-bottom: 40px;
+}
+
+.backGroung{
+   height: 150px;
+   border-radius: 10px 10px 0px 0px;
+   cursor: pointer;
+   z-index: -1;
+}
+
+.userImage{
+   object-fit: contain;
+   border-radius: 50%;
+   display: inline;
+   width: 130px;
+   height: 130px;
+   border: 2px solid rgb(180, 178, 178);
+   cursor: pointer;
+   margin-top: -30px;
+}
+
+.userName{
+   color: aliceblue;
+   margin: 5px 0px;
+}
+
+.followButton{
+   padding: 7px;
+   text-transform: capitalize;
+   border-radius: 10px;
+   margin-top: 10px;
+}
+
+.content{
+   display: block;
+   flex-direction: column;
+}

@@ -1,0 +1,70 @@
+.content{
+   display: flex;
+   margin-top: 15px;
+   //position: relative;
+}
+
+.userPhoto{
+   margin-right: 10px;
+}
+
+.textField{
+   border-radius: 20px;
+   position: relative;
+   z-index: 1;
+   font-size: 12px;
+   background-color: rgba(207, 208, 209, 1);
+}
+
+.textFieldContent{
+   position: relative;
+   z-index: 2;
+}
+
+
+.button{
+   text-transform: capitalize;
+   border-radius: 20px;
+   margin-top: 10px;
+}
+
+.image{
+   width: 250px; 
+   object-fit: fill;
+   //height: 250px;
+   border-radius: 5px;
+   border: 1px solid rgb(141, 140, 140);
+   margin-top: 30px;
+   margin-bottom: 15px;
+   z-index: 1;
+   
+}
+
+.removeImageButton{
+   position: absolute;
+   top: 30px;
+   right: 10px;
+   z-index: 3;
+   background: rgba($color: rgb(0, 0, 0), $alpha: 0.7);
+   &:hover{
+      background: rgba($color: rgb(0, 0, 0), $alpha: 0.8);
+   }
+}
+
+.imageContainer{
+   display: flex;
+   position: relative;
+   justify-content: center;
+   margin-top: -20px;
+   z-index: 1;
+   border-radius: 0px 0px 20px 20px;
+   background-color: rgba(207, 208, 209, 0.7);
+}
+
+.picker{
+   position: fixed;
+   //top: 30%;
+   right: 10px;
+   z-index: 10;
+}
+

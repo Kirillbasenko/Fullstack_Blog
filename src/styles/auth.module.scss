@@ -1,0 +1,40 @@
+.background{
+   //height: 100%;
+   width: 100%;
+   position: absolute;
+   object-fit: contain;
+   //top: -80px;
+   left: 0;
+}
+
+.content{
+   display: flex;
+   flex-direction: column;
+   padding-top: 65%;
+   text-align: center;
+   justify-content: center;
+   align-items: center;
+}
+
+.title{
+   color: aliceblue;
+   margin-bottom: 30px;
+}
+
+.input{
+   background: rgba($color: #42569ead, $alpha: 0.8);
+   border-radius: 10px;
+   width: 70%;
+   margin-bottom: 20px;
+   label{
+      color: rgba($color: #ffff, $alpha: 0.4);
+   }
+}
+
+.button{
+   margin-top: 10px;
+   width: 50%;
+   border-radius: 20px;
+   color: aliceblue;
+   font-weight: 300;
+}

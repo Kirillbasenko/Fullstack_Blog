@@ -1,0 +1,46 @@
+.wrapper{
+   
+}
+
+.content{
+   position: relative;
+   z-index: 3;
+   text-align: center;
+   display: flex;
+   top: 550px;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.parent{
+   margin-top: 8%;
+   min-width: 500px;
+   position: "relative"; 
+   min-height: 700px;
+   background: #14204bad;
+   border-radius: 12px;
+}
+
+
+
+.title{
+   color: #386BE2;
+   margin-bottom: 15px;
+}
+
+.text{
+   color: #386BE2;
+}
+
+.button{
+   margin: 0 auto;
+   width: 170px;
+   padding: 5px;
+   font-size: 12px;
+   &:hover{
+      background-color: rgba($color: #386BE2, $alpha: 0.2);
+   }
+}
+
+
+
