@@ -110,8 +110,11 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
    }
 
    useEffect(() => {
-      checkComment(comment._id).then(data => setUserComments(data.likesUsers))
-      
+      checkComment(comment._id).then(data => {
+         if(data){
+            setUserComments(data.likesUsers)
+         }
+      })
    }, [userLike])
 
    const addComment = (com) => {

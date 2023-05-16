@@ -2,17 +2,13 @@ import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
 import Grid from '@mui/material/Grid';
-import Modal from '@mui/material/Modal';
-import IconButton from '@mui/material/IconButton';
 
 import EditIcon from '@mui/icons-material/Edit';
 
 import styles from "./profile.module.scss"
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { setUser } from "@/store/slices/userSlice"
 import { useSelector, useDispatch } from 'react-redux'
 import { checkUser } from '@/http/userApi';
@@ -36,6 +32,16 @@ const Profile = () => {
    useEffect(() => {
       checkUser(JSON.parse(localStorage.getItem("user"))).then(data => dispatch(setUser(data)))
    }, [openPhotoModal, openInfoModal, openBackgroundModal])
+
+   useEffect(() => {
+      checkUser(JSON.parse(localStorage.getItem("user"))).then(data => {
+         dispatch(setUser(data))
+         console.log(data);
+      } )
+      console.log(user);
+   }, [])
+
+   console.log(user.avatarImage, user.userImage);
 
    return(
       <Box component="div" className={styles.conteiner}>
@@ -68,8 +74,8 @@ const Profile = () => {
                <Info user={user}/>
             </Grid>
          </Grid>
-         <UpdatePhoto id={user._id} avatarImage={user.avatarImage} userImage={user.userImage} open={openPhotoModal} handleClose={() => setOpenPhotoModal(false)}/>
-         <UpdateBackground id={user._id} background={user.backgroundImage} open={openBackgroundModal} handleClose={() => setOpenBackgroundModal(false)}/>
+         <UpdatePhoto id={user._id} avatarImage={user.avatarImage ? user.avatarImage : ""} userImage={user.userImage ? user.userImage : ""} open={openPhotoModal} handleClose={() => setOpenPhotoModal(false)}/>
+         <UpdateBackground id={user._id} background={user.backgroundImage ? user.backgroundImage : ""} open={openBackgroundModal} handleClose={() => setOpenBackgroundModal(false)}/>
          <UpdateInfo id={user._id} userName={user.name} userExperience={user.experience} userAboutMe={user.aboutMe} userLocation={user.location} userAge={user.age} open={openInfoModal} handleClose={() => setOpenInfoModal(false)}/>
       </Box>
    )

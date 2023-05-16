@@ -11,7 +11,7 @@ export const fetchComments = async (postId, limit, page) => {
 }
 
 export const remuveComment = async (id) => {
-   const {data} = await $authHost.delete("api/comment", {params: {id}})
+   const {data} = await $authHost.delete("api/comment/delete", {params: {id}})
    return data
 }
 
@@ -26,6 +26,6 @@ export const updateLikeComment = async (id, like, likesUsers) => {
 }
 
 export const checkComment = async (id) => {
-   const {data} = await $host.get("api/comment/check", {params: {id}})
+   const {data} = await $authHost.get("api/comment/check", {params: {id}})
    return data
 }

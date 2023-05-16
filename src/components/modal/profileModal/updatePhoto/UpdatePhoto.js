@@ -19,12 +19,14 @@ import { useRef, useState, useEffect } from 'react';
 import { updatePhoto } from '@/http/userApi';
 import { upload } from '@/http/imageApi';
 
+import { useSelector } from 'react-redux'
+
 import styles from "./updatePhoto.module.scss"
 
 const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
    const [openEdit, setOpenEdit] = useState(false);
-   const [src, setSrc] = useState("")
-   const [avatar, setAvatar] = useState("")
+   const [src, setSrc] = useState(userImage)
+   const [avatar, setAvatar] = useState(avatarImage)
    const file = useRef(null)
 
    useEffect(() => {
@@ -80,7 +82,7 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
                alt="green iguana"/>
             <Box className={styles.buttonCenter}>
                <Button component="label"  variant="text" endIcon={src.length !== 0 && src !== "/upload/avatarUser.jpg" ?<FlipCameraIosIcon/> : <CameraAltIcon />}>
-                  {src && src !== "/upload/avatarUser.jpg" && src.length !== 0 ? "Сhange" : "Add"}
+                  {src !== "/upload/avatarUser.jpg" && src.length !== 0 ? "Сhange" : "Add"}
                   <input onChange={(e) => douwload(e)} 
                   ref={file} hidden accept="image/*" type="file" />
                </Button>
