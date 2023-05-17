@@ -17,7 +17,8 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
    const [srcEdit, setSrcEdit] = useState(src)
    const [preview, setPreview] = useState(null)
    const [AvatarEdit, setAvatarEdit] = useState(null);
-   const [fileImage, setFileImage] = useState(null)
+
+   console.log(avatar);
 
    const loadAvatarComponent = async () => {
       const { default: Avatar } = await import('react-avatar-edit');
@@ -60,7 +61,7 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
       const file = base64toFile(preview, `${randomNum.toFixed(0)}example.jpg`);
    }
 
-   console.log(AvatarEdit);
+   console.log(`https://zebra-gabardine.cyclic.app${avatar}`);
 
    return(
       <Modal
@@ -84,7 +85,7 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
                   onClose={onClose}
                   onCrop={onCrop}
                   exportSize={200}
-                  src={`http://localhost:5000${srcEdit}`}/>}
+                  src={`https://zebra-gabardine.cyclic.app${avatar}`}/>}
             </Box>
             <Box className={styles.buttonCenter}>
             </Box>

@@ -63,7 +63,7 @@ const Header = () => {
                width={22}
                sx={{objectFit: "contain", borderRadius: "50%", marginRight: 1, width: 25, height: 25 }}
                component="img"
-               image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
+               image={user.avatarImage ? `https://zebra-gabardine.cyclic.app${user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
                {user.name}
             </InputLabel>

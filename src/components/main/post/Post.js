@@ -50,16 +50,15 @@ const Post = ({post, deletePost}) => {
       await updateComment(id, comment, img).then(data => {
          newComments = comments.map(item => {
             if (item._id === id) {
-               console.log(item._id);
                return data;
-               
             } else {
                return item;
             }
          })
       })
-      setComments(newComments)
-      fetchComments(post._id, 3, 1).then(data => {
+      //setComments(newComments)
+      fetchComments(post._id, commentsLength, 1).then(data => {
+         setComments(data.comments)
          setCommentsLength(data.commentsLength.length)
       })
    }
@@ -69,8 +68,7 @@ const Post = ({post, deletePost}) => {
          setComments(data.comments)
          setCommentsLength(data.commentsLength.length)
       })
-      
-   }, [commentsLength, editComment])
+   }, [commentsLength])
 
    const deleteComment = (id) => {
       remuveComment(id)
@@ -121,6 +119,8 @@ const Post = ({post, deletePost}) => {
       })
    }
 
+   //console.log(`https://zebra-gabardine.cyclic.app${post.user.avatarImage}`);
+
    useEffect(() => {
       fetchPosts().then(data => {
          const likesTotal = data.posts.reduce((total, post) => {
@@ -142,7 +142,7 @@ const Post = ({post, deletePost}) => {
          <CardMedia
             sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
             component="img"
-            image={post.user.avatarImage ? `http://localhost:5000${post.user.avatarImage}` : "/avatarUser.jpg"}
+            image={post.user.avatarImage ? `https://zebra-gabardine.cyclic.app${post.user.avatarImage}` : "/avatarUser.jpg"}
             alt="green iguana"/>
          <Box className={styles.content}>
             <Box className={styles.flex}>
@@ -161,7 +161,7 @@ const Post = ({post, deletePost}) => {
             <CardMedia
                className={styles.image}
                component="img"
-               image={`http://localhost:5000${post.img}`}
+               image={`https://zebra-gabardine.cyclic.app${post.img}`}
                alt="green iguana"/> : null}
             <Box className={styles.flex}>
                {like !== 0 ?<Button onClick={() => setLikeModal(true)} className={styles.flexLike}>

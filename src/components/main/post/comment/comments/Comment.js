@@ -129,7 +129,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                sx={{objectFit: "contain", borderRadius: "50%", width: 27, height: 27, display: "inline"}}
                component="img"
                className={styles.userPhoto}
-               image={comment.user.avatarImage ? `http://localhost:5000${comment.user.avatarImage}` : "/avatarUser.jpg"}
+               image={comment.user.avatarImage ? `https://zebra-gabardine.cyclic.app${comment.user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
             <Box className={styles.content}>
                <Box className={styles.comment}>
@@ -178,7 +178,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                      onClick={() => setImageModal(true)}
                      className={styles.image}
                      component="img"
-                     image={`http://localhost:5000${comment.img}`}
+                     image={`https://zebra-gabardine.cyclic.app${comment.img}`}
                      alt="green iguana"/> : null}
                   {image.length !== 0 && edit ?
                   <Box className={styles.imageContainer}>
@@ -186,7 +186,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         className={styles.imageEdit}
                         sx={{maxWidth: 180, height: 180}}
                         component="img"
-                        image={`http://localhost:5000${image}`}
+                        image={`https://zebra-gabardine.cyclic.app${image}`}
                         alt="green iguana"/>
                      <IconButton className={styles.removeImageButton} onClick={() => setImage("")} color="primary" aria-label="upload picture" component="label">
                         <CloseIcon />

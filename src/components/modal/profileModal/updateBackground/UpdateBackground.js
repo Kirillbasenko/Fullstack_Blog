@@ -58,7 +58,7 @@ const UpdateBackground = ({open, handleClose, background, id}) => {
             <CardMedia
                className={styles.image}
                component="img"
-               image={src.length !== 0 ? `http://localhost:5000${src}` : "/backGround.jpg"}
+               image={src.length !== 0 ? `https://zebra-gabardine.cyclic.app${src}` : "/backGround.jpg"}
                alt="green iguana"/>
             <Box className={styles.buttonCenter}>
                <Button component="label"  variant="text" endIcon={src && src.length === 0 ? <CameraAltIcon /> : <FlipCameraIosIcon/>}>

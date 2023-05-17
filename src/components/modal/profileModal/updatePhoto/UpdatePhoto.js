@@ -78,7 +78,7 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
             <CardMedia
                className={styles.image}
                component="img"
-               image={avatar.length !== 0 ? `http://localhost:5000${avatar}` : src.length !== 0 ? `http://localhost:5000${src}` : "/avatarUser.jpg"}
+               image={avatar.length !== 0 ? `https://zebra-gabardine.cyclic.app${avatar}` : src.length !== 0 ? `https://zebra-gabardine.cyclic.app${src}` : "/avatarUser.jpg"}
                alt="green iguana"/>
             <Box className={styles.buttonCenter}>
                <Button component="label"  variant="text" endIcon={src.length !== 0 && src !== "/upload/avatarUser.jpg" ?<FlipCameraIosIcon/> : <CameraAltIcon />}>

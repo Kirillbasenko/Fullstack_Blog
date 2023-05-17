@@ -25,7 +25,7 @@ const ImageModal = ({image, open, handleClose}) => {
             <CardMedia
                className={styles.image}
                component="img"
-               image={`http://localhost:5000${image}`}
+               image={`https://zebra-gabardine.cyclic.app${image}`}
                alt="green iguana"/>
          </Box>
       </Modal>

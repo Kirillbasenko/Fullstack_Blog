@@ -50,13 +50,13 @@ const Profile = () => {
                onClick={() => setOpenBackgroundModal(true)}
                className={styles.backGroung}
                component="img"
-               image={user.backgroundImage ? `http://localhost:5000${user.backgroundImage}` : "/backGround.jpg"}
+               image={user.backgroundImage ? `https://zebra-gabardine.cyclic.app${user.backgroundImage}` : "/backGround.jpg"}
                alt="green iguana"/>
             <CardMedia
                onClick={() => setOpenPhotoModal(true)}
                component="img"
                className={styles.userImage}
-               image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
+               image={user.avatarImage ? `https://zebra-gabardine.cyclic.app${user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
             <Typography className={styles.userName}>{user.name}</Typography>
             <Button onClick={() => setOpenInfoModal(true)} variant="outlined" color='info' className={styles.followButton} endIcon={<EditIcon sx={{width: 20, height: 20}}/>}>

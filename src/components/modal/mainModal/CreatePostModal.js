@@ -132,7 +132,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                <CardMedia
                   sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
                   component="img"
-                  image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
+                  image={user.avatarImage ? `https://zebra-gabardine.cyclic.app${user.avatarImage}` : "/avatarUser.jpg"}
                   alt="green iguana"/>
                <Box className={styles.flex}>
                   <Typography variant='body4'>{user.name}</Typography>
@@ -185,7 +185,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                      <CardMedia
                      className={styles.image}
                      component="img"
-                     image={`http://localhost:5000${src}`}
+                     image={`https://zebra-gabardine.cyclic.app${src}`}
                      alt="green iguana"/>
                      <IconButton className={styles.removeImageButton} onClick={() => setSrc("")} color="primary" aria-label="upload picture" component="label">
                         <CloseIcon />

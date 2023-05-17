@@ -70,7 +70,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                sx={{objectFit: "contain", borderRadius: "50%", width: !commentParent ? 34 : 27, height: !commentParent ? 34 : 27, display: "inline"}}
                component="img"
                className={styles.userPhoto}
-               image={userPhoto ? `http://localhost:5000${userPhoto}` : "/avatarUser.jpg"}
+               image={userPhoto ? `https://zebra-gabardine.cyclic.app${userPhoto}` : "/avatarUser.jpg"}
                alt="green iguana"/>
             <Box className={styles.relative}>
                   <Box component="div" className={styles.textFieldContent}>
@@ -116,7 +116,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                      className={styles.image}
                      sx={{maxWidth: !commentParent ? 250 : 180, height: !commentParent ? 250 : 180}}
                      component="img"
-                     image={`http://localhost:5000${src}`}
+                     image={`https://zebra-gabardine.cyclic.app${src}`}
                      alt="green iguana"/>
                      <IconButton className={styles.removeImageButton} onClick={() => setSrc("")} color="primary" aria-label="upload picture" component="label">
                         <CloseIcon />
