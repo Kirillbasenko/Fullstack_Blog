@@ -139,7 +139,7 @@ const Post = ({post, deletePost}) => {
 
    return(
       <Card 
-         sx={{display: "flex", borderRadius: "15px", color: "aliceblue", backgroundColor: "14204bad", padding: "13px", marginBottom: "15px"}} className={styles.parent}>
+         sx={{display: "flex", borderRadius: "15px", color: "aliceblue", backgroundColor: "rgba(20, 32, 75, 0.6784313725)", padding: "13px", marginBottom: "15px"}} className={styles.parent}>
          <CardMedia
             sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
             component="img"
