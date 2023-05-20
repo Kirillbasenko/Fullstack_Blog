@@ -29,7 +29,7 @@ const CreatePost = ({user}) => {
          <CardMedia
             sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
             component="img"
-            image={user.avatarImage ? `https://zebra-gabardine.cyclic.app${user.avatarImage}` : "/avatarUser.jpg"}
+            image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
             alt="green iguana"/>
          <Box className={styles.content}>
             <Button onClick={() => setOpen(true)} className={styles.modalButton} variant="outlined">What's happening?</Button>

@@ -28,11 +28,18 @@ const UpdateInfo = ({open, handleClose, id, userName, userExperience, userAboutM
    const [location, setLocation] = useState(userLocation)
    const [age, setAge] = useState(userAge)
 
-
    const submitUserBackground = () => {
       updateInfo(id, name, experience, aboutMe, location, age)
       handleClose()
    }
+
+   useEffect(() => {
+      setName(userName)
+      setExperience(userExperience)
+      setAboutMe(userAboutMe)
+      setLocation(userLocation)
+      setAge(userAge)
+   }, [userName])
 
    return(
       <Modal

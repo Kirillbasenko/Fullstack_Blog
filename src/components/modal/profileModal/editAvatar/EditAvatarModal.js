@@ -41,6 +41,8 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
       setPreview(view);
    }
 
+   console.log(avatar);
+
    function base64toFile(base64Data, fileName) {
       const [contentType, content] = base64Data.split(';base64,');
       
@@ -61,7 +63,7 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
       const file = base64toFile(preview, `${randomNum.toFixed(0)}example.jpg`);
    }
 
-   console.log(`https://zebra-gabardine.cyclic.app${avatar}`);
+   console.log(`http://localhost:5000${avatar}`);
 
    return(
       <Modal
@@ -85,7 +87,7 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
                   onClose={onClose}
                   onCrop={onCrop}
                   exportSize={200}
-                  src={`https://zebra-gabardine.cyclic.app${avatar}`}/>}
+                  src={`http://localhost:5000${avatar}`}/>}
             </Box>
             <Box className={styles.buttonCenter}>
             </Box>

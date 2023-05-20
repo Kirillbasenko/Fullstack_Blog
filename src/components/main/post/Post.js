@@ -17,7 +17,7 @@ import { updateLike } from '@/http/postApi';
 import PlaygroundSpeedDial from '../../other/PlaygroundSpeedDial';
 import { checkPost } from '@/http/postApi';
 import CommentField from './comment/commentField/CommentField';
-import CommemtsList from './comment/CommentsList';
+import CommentsList from './comment/CommentsList';
 import LikeModal from '@/components/modal/likeModal/LikeModal';
 
 import { fetchPosts } from '@/http/postApi';
@@ -34,12 +34,12 @@ const Post = ({post, deletePost}) => {
    const [userLike, setUserLike] = useState(post.likesUsers)
    const [openComment, setOpenComment] = useState(false)
    const [commentsLength, setCommentsLength] = useState(null)
-   const [fetching, setFetching] = useState(false)
+   const [fetching, setFetching] = useState(true)
    const [userComments, setUserComments] = useState([])
    const [openLikeModal, setLikeModal] = useState(false)
    const [comments, setComments] = useState([])
    const [focus, setFocus] = useState(false)
-   const [current, setCurrent] = useState(2)
+   const [current, setCurrent] = useState(0)
    const {user} = useSelector(state => state.user)
 
    const checkUserLike = userLike.filter(item => item._id === user._id)
@@ -56,7 +56,7 @@ const Post = ({post, deletePost}) => {
             }
          })
       })
-      //setComments(newComments)
+      setComments(newComments)
       fetchComments(post._id, commentsLength, 1).then(data => {
          setComments(data.comments)
          setCommentsLength(data.commentsLength.length)
@@ -64,10 +64,12 @@ const Post = ({post, deletePost}) => {
    }
 
    useEffect(() => {
-      fetchComments(post._id, 3, 1).then(data => {
-         setComments(data.comments)
-         setCommentsLength(data.commentsLength.length)
-      })
+      if(openComment){
+         fetchComments(post._id, 3, 1).then(data => {
+            setComments(data.comments)
+            setCommentsLength(data.commentsLength.length)
+         })
+      }
    }, [commentsLength])
 
    const deleteComment = (id) => {
@@ -79,62 +81,60 @@ const Post = ({post, deletePost}) => {
       })
    }
 
-   const hashtagRegex = /#[a-zA-Z0-9]+/g;
-
    const words = post.title.split(/(\s+)/);
 
    const highlightedWords = words.map((word, index) => {
+      const hashtagRegex = /#[a-zA-Z0-9]+/g;
       if (word.match(hashtagRegex)) {
          return <span key={index} style={{ color: "#366CC5" }}>{word}</span>;
       } else {
          return word;
       }
    });
+   //console.log(fetching);
+   //console.log(current);
 
    useEffect(() => {
       if(fetching){
-      fetchComments(post._id, 3, current || 1).then(data => {
-         setComments([...comments, ...data.comments])
-         setCommentsLength(data.commentsLength.length)
-      }).finally(() => {
-            setFetching(false)
-            setCurrent(current => current + 1)
-         })}
-         
+         fetchComments(post._id, 3, current || 1).then(data => {
+               setComments([...comments, ...data.comments])
+               setCommentsLength(data.commentsLength.length)
+            })
+         .finally(() => {
+               setFetching(false)
+               setCurrent(current => current + 1)
+            })}
    }, [fetching])
 
    const addComment = (com) => {
       setComments(comments => [com, ...comments])
       setCommentsLength(commentsLength => commentsLength + 1)
       setCurrent(2)
+      
    }
 
    const submitLike = () => {
       const checkUserLike = userLike.filter(item => item._id === user._id)
       const likes = checkUserLike.length === 0 ? like + 1 : like - 1 
       let newLikesUsers = checkUserLike.length !== 0 ? post.likesUsers.filter(item => item._id !== user._id) : [...userLike, user]
-      updateLike(post._id, likes, newLikesUsers).then(data => {
-         setUserLike(data.likesUsers)
-         setLike(data.likes)
-      })
-   }
-
-   //console.log(`https://zebra-gabardine.cyclic.app${post.user.avatarImage}`);
-
-   useEffect(() => {
-      fetchPosts().then(data => {
+      updateLike(post._id, likes, newLikesUsers, user._id).then(data => {
+         setUserLike(data.doc.likesUsers)
+         setLike(data.doc.likes)
          const likesTotal = data.posts.reduce((total, post) => {
             if(post.user._id === user._id){
                return total + post.likes; 
             }
          }, 0);
-         //dispatch(setUserLikes(likesTotal));
+         dispatch(setUserLikes(likesTotal));
       })
-   }, [like])
+   }
 
    useEffect(() => {
-      checkPost(post._id).then(data => setUserComments(data.likesUsers))
-      
+      checkPost(post._id).then(data => {
+         setUserComments(data.likesUsers)
+         //console.log(data.likesUsers);
+      } )
+      //console.log(1);
    }, [userLike])
 
    return(
@@ -142,7 +142,7 @@ const Post = ({post, deletePost}) => {
          <CardMedia
             sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
             component="img"
-            image={post.user.avatarImage ? `https://zebra-gabardine.cyclic.app${post.user.avatarImage}` : "/avatarUser.jpg"}
+            image={post.user.avatarImage ? `http://localhost:5000${post.user.avatarImage}` : "/avatarUser.jpg"}
             alt="green iguana"/>
          <Box className={styles.content}>
             <Box className={styles.flex}>
@@ -161,7 +161,7 @@ const Post = ({post, deletePost}) => {
             <CardMedia
                className={styles.image}
                component="img"
-               image={`https://zebra-gabardine.cyclic.app${post.img}`}
+               image={`http://localhost:5000${post.img}`}
                alt="green iguana"/> : null}
             <Box className={styles.flex}>
                {like !== 0 ?<Button onClick={() => setLikeModal(true)} className={styles.flexLike}>
@@ -184,7 +184,7 @@ const Post = ({post, deletePost}) => {
             {openComment ?
             <Box className={styles.comment}>
                <CommentField setArr={addComment} focus={focus} id={post._id} userPhoto={user.avatarImage}/>
-               <CommemtsList editComment={editComment} deleteCommentFirst={deleteComment} comments={comments} id={post._id} userPhoto={user.avatarImage}/>
+               <CommentsList editComment={editComment} deleteCommentFirst={deleteComment} comments={comments} id={post._id} userPhoto={user.avatarImage}/>
                {comments.length < commentsLength && !fetching ?
                <Button variant="text" className={styles.buttonAdd} onClick={() => setFetching(true)}>Load more comments</Button> : null}
                {fetching ? <Box className={styles.spinner}><CircularProgress  /></Box>  : null}

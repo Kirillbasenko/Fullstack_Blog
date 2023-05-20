@@ -34,7 +34,7 @@ const LikeModal = ({likeList, open, handleClose}) => {
                            <CardMedia
                               component="img"
                               className={styles.userImage}
-                              image={item.avatarImage ? `https://zebra-gabardine.cyclic.app${item.avatarImage}` : "/avatarUser.jpg"}
+                              image={item.avatarImage ? `http://localhost:5000${item.avatarImage}` : "/avatarUser.jpg"}
                               alt="green iguana"/>
                            <Typography>{item.name}</Typography>
                         </ListItemButton>

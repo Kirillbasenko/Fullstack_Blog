@@ -25,13 +25,13 @@ const Profile = ({user}) => {
             <CardMedia
                   sx={{ height: 75 }}
                   component="img"
-                  image={user.backgroundImage ? `https://zebra-gabardine.cyclic.app${user.backgroundImage}` : "/backGround.jpg"}
+                  image={user.backgroundImage ? `http://localhost:5000${user.backgroundImage}` : "/backGround.jpg"}
                   alt="green iguana"/>
             <CardMedia
                sx={{objectFit: "contain", borderRadius: "50%", width: 60, height: 60, display: "inline", marginTop: -4}}
                component="img"
                className={styles.userImage}
-               image={user.avatarImage ? `https://zebra-gabardine.cyclic.app${user.avatarImage}` : "/avatarUser.jpg"}
+               image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
             <CardContent sx={{padding: 1}}>
                <Typography gutterBottom variant="h6" component="div">

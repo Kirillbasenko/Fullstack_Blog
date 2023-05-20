@@ -59,7 +59,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
       setText("")
       setType("Public")
       setSrc("")
-      if(!titlePost){
+      if(!titlePost && !srcImage){
          removeImage()
       }
    }
@@ -93,7 +93,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
             "type": type,
             "img": src,
          }
-         if(!titlePost){
+         if(!titlePost && !srcImage){
             createPost(data)
          }else{
             updatePost(id, data).then(data => dispatch(setAllPostsAndUpdatePost(data)))
@@ -105,8 +105,6 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
          handleClose()
       }
    }
-
-   
 
    return(
       <Modal
@@ -132,7 +130,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                <CardMedia
                   sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
                   component="img"
-                  image={user.avatarImage ? `https://zebra-gabardine.cyclic.app${user.avatarImage}` : "/avatarUser.jpg"}
+                  image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
                   alt="green iguana"/>
                <Box className={styles.flex}>
                   <Typography variant='body4'>{user.name}</Typography>
@@ -185,7 +183,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                      <CardMedia
                      className={styles.image}
                      component="img"
-                     image={`https://zebra-gabardine.cyclic.app${src}`}
+                     image={`http://localhost:5000${src}`}
                      alt="green iguana"/>
                      <IconButton className={styles.removeImageButton} onClick={() => setSrc("")} color="primary" aria-label="upload picture" component="label">
                         <CloseIcon />

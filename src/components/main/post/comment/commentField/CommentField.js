@@ -31,7 +31,18 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
    const [src, setSrc] = useState("")
    const [cursorPosition, setCursorPosition] = useState(null)
 
-   //console.log(cursorPosition);
+   useEffect(() => {
+      function handleClickOutside(event) {
+         if (modalRef.current && !modalRef.current.contains(event.target)) {
+         setShowEmoji(false);
+         }
+      }
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+         document.removeEventListener('mousedown', handleClickOutside);
+      };
+   }, [modalRef]);
+
 
    const pickEmoji = (e) => {
       const ref = inputRef.current;
@@ -40,11 +51,9 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
       const end = comment.substring(ref.selectionStart);
       const msg = start + e.native  + end;
       setComment(msg);
-      
       setCursorPosition(start.length + e.native.length);
-      //inputRef.current.selectionEnd = cursorPosition
-      console.log(cursorPosition);
    };
+
 
    const addComment = () => {
       createComment(id, comment, src).then(data => setArr(data))
@@ -70,7 +79,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                sx={{objectFit: "contain", borderRadius: "50%", width: !commentParent ? 34 : 27, height: !commentParent ? 34 : 27, display: "inline"}}
                component="img"
                className={styles.userPhoto}
-               image={userPhoto ? `https://zebra-gabardine.cyclic.app${userPhoto}` : "/avatarUser.jpg"}
+               image={userPhoto ? `http://localhost:5000${userPhoto}` : "/avatarUser.jpg"}
                alt="green iguana"/>
             <Box className={styles.relative}>
                   <Box component="div" className={styles.textFieldContent}>
@@ -80,6 +89,8 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                         id="outlined-adornment-password"
                         type='text'
                         size='small'
+                        multiline
+                        maxRows={4}
                         sx={{width: !commentParent ? 410 : 340}}
                         value={comment}
                         placeholder='Add comment'
@@ -116,7 +127,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                      className={styles.image}
                      sx={{maxWidth: !commentParent ? 250 : 180, height: !commentParent ? 250 : 180}}
                      component="img"
-                     image={`https://zebra-gabardine.cyclic.app${src}`}
+                     image={`http://localhost:5000${src}`}
                      alt="green iguana"/>
                      <IconButton className={styles.removeImageButton} onClick={() => setSrc("")} color="primary" aria-label="upload picture" component="label">
                         <CloseIcon />
@@ -134,7 +145,6 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                            />
                      </Box> : null}
          </Box>
-         
       </Box>
    )
 }

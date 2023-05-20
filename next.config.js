@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    API_URL: "https://zebra-gabardine.cyclic.app/"
+    API_URL: "http://localhost:5000/"
   }
 }
 

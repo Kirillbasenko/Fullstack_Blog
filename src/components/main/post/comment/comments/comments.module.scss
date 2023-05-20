@@ -40,6 +40,7 @@
 .flex{
    display: flex;
    align-items: center;
+   max-height: 20px;
    //position: relative;
 }
 
@@ -63,7 +64,11 @@
 
 .current{
    font-size: 14px;
-   margin: 0px 15px 0px 5px;
+}
+
+.currentComment{
+   font-size: 14px;
+   padding: 8px;
 }
 
 .select{
@@ -118,6 +123,10 @@
 
 .flexLike{
    font-size: 10px;
+   display: flex;
+   align-items: center;
+   text-align: center;
+   justify-content: center;
    min-width: 20px;
    color: rgba($color: #ffffff, $alpha: 0.4);
 }

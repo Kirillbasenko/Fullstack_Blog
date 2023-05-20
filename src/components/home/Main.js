@@ -42,6 +42,7 @@ const Main = ({posts}) => {
       })
    }
 
+
    return (
       <>
          <Grid container spacing={2}>

@@ -22,7 +22,7 @@ import LikeModal from '@/components/modal/likeModal/LikeModal';
 
 import { updateLikeComment } from '@/http/commentApi';
 
-import { remuveComment } from '@/http/commentApi';
+import { remuveComment, updateComment } from '@/http/commentApi';
 import CommemtsList from '../CommentsList';
 
 import { formatDistance, subDays } from 'date-fns'
@@ -55,6 +55,8 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
 
    const file = useRef(null)
 
+   console.log(editComment);
+
    const {user} = useSelector(state => state.user)
 
    const checkUserLike = userLike.filter(item => item._id === user._id)
@@ -63,8 +65,8 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
       fetchComments(comment._id, 3, 1).then(data => {
          setComments(data.comments)
          setCommentsLength(data.commentsLength.length)
+         //console.log(data);
       })
-      
    }, [commentsLength])
 
    const deleteCommentSecond = (id) => {
@@ -72,6 +74,24 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
       let newCommentsList = comments.filter(item => item._id !== id)
       setComments(newCommentsList)
       fetchComments(comment._id, 3, 1).then(data => {
+         setCommentsLength(data.commentsLength.length)
+      })
+   }
+
+   const editCommentSecond = async (id, comment, img) => {
+      let newComments
+      await updateComment(id, comment, img).then(data => {
+         newComments = comments.map(item => {
+            if (item._id === id) {
+               return data;
+            } else {
+               return item;
+            }
+         })
+      })
+      setComments(newComments)
+      fetchComments(comment._id, commentsLength, 1).then(data => {
+         setComments(data.comments)
          setCommentsLength(data.commentsLength.length)
       })
    }
@@ -129,7 +149,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                sx={{objectFit: "contain", borderRadius: "50%", width: 27, height: 27, display: "inline"}}
                component="img"
                className={styles.userPhoto}
-               image={comment.user.avatarImage ? `https://zebra-gabardine.cyclic.app${comment.user.avatarImage}` : "/avatarUser.jpg"}
+               image={comment.user.avatarImage ? `http://localhost:5000${comment.user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
             <Box className={styles.content}>
                <Box className={styles.comment}>
@@ -178,7 +198,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                      onClick={() => setImageModal(true)}
                      className={styles.image}
                      component="img"
-                     image={`https://zebra-gabardine.cyclic.app${comment.img}`}
+                     image={`http://localhost:5000${comment.img}`}
                      alt="green iguana"/> : null}
                   {image.length !== 0 && edit ?
                   <Box className={styles.imageContainer}>
@@ -186,7 +206,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         className={styles.imageEdit}
                         sx={{maxWidth: 180, height: 180}}
                         component="img"
-                        image={`https://zebra-gabardine.cyclic.app${image}`}
+                        image={`http://localhost:5000${image}`}
                         alt="green iguana"/>
                      <IconButton className={styles.removeImageButton} onClick={() => setImage("")} color="primary" aria-label="upload picture" component="label">
                         <CloseIcon />
@@ -212,21 +232,23 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                      <IconButton className={styles.button} onClick={submitLike}>
                         <FavoriteIcon style={{color: checkUserLike.length === 0 ? "#ECEAEA" : "red"}} className={styles.icon}/>
                      </IconButton>
-                     <Button className={styles.flexLike} onClick={() => setLikeModal(true)}>
+                     {like !== 0 ? <Button className={styles.flexLike} onClick={() => setLikeModal(true)}>
                         <Typography className={styles.current}>{like}</Typography>
-                     </Button>
+                     </Button> : null}
+                     
                   </Box>
                   { !checkParent ? <Box className={styles.flex}>
                      <IconButton className={styles.button} onClick={() => setOpenComment(!openComment)}>
                         <ChatBubbleIcon className={styles.icon}/>
                      </IconButton>
-                     <Typography className={styles.current}>{commentsLength}</Typography>
+                     {commentsLength !== 0 ? <Typography className={styles.currentComment}>{commentsLength}</Typography> : null}
+                     
                   </Box> : null}
                </Box>
                {openComment ? 
                <Box>
                   <CommentField userPhoto={user.avatarImage} setArr={addComment} id={comment._id} commentParent={true}/>
-                  <CommemtsList checkParent={true}  deleteCommentFirst={deleteCommentSecond} comments={comments} id={comment._id} userPhoto={user.avatarImage}/>
+                  <CommemtsList editComment={editCommentSecond} checkParent={true}  deleteCommentFirst={deleteCommentSecond} comments={comments} id={comment._id} userPhoto={user.avatarImage}/>
                   {comments.length < commentsLength && !fetching ?
                      <Button variant="text" className={styles.buttonAdd} onClick={() => setFetching(true)}>load more answers</Button> : null}
                </Box> : null}

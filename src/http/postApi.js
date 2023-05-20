@@ -30,7 +30,7 @@ export const updatePost = async (id, post) => {
    return data
 }
 
-export const updateLike = async (id, likes, likesUsers) => {
-   const {data} = await $authHost.patch("api/post", {id, likes, likesUsers})
+export const updateLike = async (id, likes, likesUsers, userId) => {
+   const {data} = await $authHost.patch("api/post", {id, likes, likesUsers, userId})
    return data
 }
