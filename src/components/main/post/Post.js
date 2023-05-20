@@ -138,8 +138,7 @@ const Post = ({post, deletePost}) => {
    }, [userLike])
 
    return(
-      <Card 
-         sx={{display: "flex", borderRadius: "15px", color: "aliceblue", background: "14204bad", padding: "13px", marginBottom: "15px"}} className={styles.parent}>
+      <Card className={styles.parent}>
          <CardMedia
             sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
             component="img"
