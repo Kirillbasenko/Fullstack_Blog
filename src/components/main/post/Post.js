@@ -26,7 +26,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formatDistance, subDays } from 'date-fns'
 import { useEffect, useState } from 'react';
 
-import styles from "../../../styles/main/post.module.scss"
+import styles from "./post.module.scss"
 
 const Post = ({post, deletePost}) => {
    const dispatch = useDispatch()
