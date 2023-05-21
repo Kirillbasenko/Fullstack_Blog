@@ -266,7 +266,6 @@ const Post = ({post, deletePost}) => {
                onClick={submitLike}
                className={styles.button}
                variant="outlined"
-               color='rgba($color: rgb(175, 170, 170), $alpha: 0.2)'
                sx={{ 
                   paddingX: 3,
                   backgroundColor: "rgba($color: rgb(175, 170, 170), $alpha: 0.2)",
@@ -299,7 +298,6 @@ const Post = ({post, deletePost}) => {
             </Button>
             <Button
                className={styles.button}
-               color='rgba($color: rgb(175, 170, 170), $alpha: 0.2)'
                sx={{ 
                   paddingX: 3,
                   backgroundColor: "rgba($color: rgb(175, 170, 170), $alpha: 0.2)",
