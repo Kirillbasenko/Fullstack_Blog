@@ -190,7 +190,7 @@ const Post = ({post, deletePost}) => {
             </Box>
             <Typography
             sx={{
-               fontSize: "10px",
+               fontSize: "12px",
                color: "rgba($color: #ffffff, $alpha: 0.3)",
                marginBottom: "10px",
             }}
@@ -266,6 +266,7 @@ const Post = ({post, deletePost}) => {
             <Button
                onClick={submitLike}
                className={styles.button}
+               color='inherit'
                variant="outlined"
                sx={{ 
                   paddingX: 3,
@@ -299,6 +300,7 @@ const Post = ({post, deletePost}) => {
             </Button>
             <Button
                className={styles.button}
+               color='inherit'
                sx={{ 
                   paddingX: 3,
                   backgroundColor: "none",
