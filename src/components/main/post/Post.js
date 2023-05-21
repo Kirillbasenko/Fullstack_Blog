@@ -266,11 +266,11 @@ const Post = ({post, deletePost}) => {
             <Button
                onClick={submitLike}
                className={styles.button}
-               color='grey'
+               //color='info'
                variant="outlined"
                sx={{ 
                   paddingX: 3,
-                  backgroundColor: "none",
+                  //backgroundColor: "none",
                   border: 0,
                   marginRight: "5px",
                   borderRadius: "10px",
@@ -303,7 +303,7 @@ const Post = ({post, deletePost}) => {
                color='inherit'
                sx={{ 
                   paddingX: 3,
-                  backgroundColor: "none",
+                  backgroundColor: "rgba($color: rgb(175, 170, 170), $alpha: 0.2)",
                   border: 0,
                   marginRight: "5px",
                   borderRadius: "10px",
