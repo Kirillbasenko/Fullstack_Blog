@@ -152,8 +152,8 @@ const Post = ({post, deletePost}) => {
             sx={{
             objectFit: "contain",
             borderRadius: "50%",
-            width: 40,
-            height: 40,
+            width: 50,
+            height: 50,
             display: "inline",
             }}
             component="img"
@@ -176,7 +176,8 @@ const Post = ({post, deletePost}) => {
             }}
             className={styles.flex}
             >
-            <Typography>{post.user.name}</Typography>
+            <Typography
+               sx={{fontSize: "18px"}}>{post.user.name}</Typography>
             {post.user._id === user._id ? (
                <PlaygroundSpeedDial
                   id={post._id}
@@ -201,7 +202,7 @@ const Post = ({post, deletePost}) => {
             </Typography>
             <Typography
             sx={{
-               marginBottom: "10px",
+               marginBottom: "12px",
                wordWrap: "break-word",
                maxWidth: "400px",
             }}
@@ -216,7 +217,7 @@ const Post = ({post, deletePost}) => {
                   display: "inline",
                   marginBottom: "15px",
                   borderRadius: "7px",
-                  maxHeight: "480px",
+                  maxHeight: "530px",
                }}
                className={styles.image}
                component="img"
@@ -268,7 +269,7 @@ const Post = ({post, deletePost}) => {
                variant="outlined"
                sx={{ 
                   paddingX: 3,
-                  backgroundColor: "rgba($color: rgb(175, 170, 170), $alpha: 0.2)",
+                  backgroundColor: "none",
                   border: 0,
                   marginRight: "5px",
                   borderRadius: "10px",
@@ -300,7 +301,7 @@ const Post = ({post, deletePost}) => {
                className={styles.button}
                sx={{ 
                   paddingX: 3,
-                  backgroundColor: "rgba($color: rgb(175, 170, 170), $alpha: 0.2)",
+                  backgroundColor: "none",
                   border: 0,
                   marginRight: "5px",
                   borderRadius: "10px",
