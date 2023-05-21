@@ -216,7 +216,7 @@ const Post = ({post, deletePost}) => {
                   display: "inline",
                   marginBottom: "15px",
                   borderRadius: "7px",
-                  maxHeight: "400px",
+                  maxHeight: "480px",
                }}
                className={styles.image}
                component="img"
@@ -266,6 +266,7 @@ const Post = ({post, deletePost}) => {
                onClick={submitLike}
                className={styles.button}
                variant="outlined"
+               color='rgba($color: rgb(175, 170, 170), $alpha: 0.2)'
                sx={{ 
                   paddingX: 3,
                   backgroundColor: "rgba($color: rgb(175, 170, 170), $alpha: 0.2)",
@@ -298,6 +299,7 @@ const Post = ({post, deletePost}) => {
             </Button>
             <Button
                className={styles.button}
+               color='rgba($color: rgb(175, 170, 170), $alpha: 0.2)'
                sx={{ 
                   paddingX: 3,
                   backgroundColor: "rgba($color: rgb(175, 170, 170), $alpha: 0.2)",
