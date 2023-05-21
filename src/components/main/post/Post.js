@@ -230,8 +230,7 @@ const Post = ({post, deletePost}) => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  borderTop: "1px solid #414243",
-                  paddingTop: "3px",
+                  marginBottom: "3px"
                }}
                className={styles.flex}
             >
@@ -289,7 +288,9 @@ const Post = ({post, deletePost}) => {
                </Button>
             ) : null}
             </Box>
-            <Box>
+            <Box 
+               sx={{borderTop: "1px solid #414243",
+                  paddingTop: "3px",}}>
             <Button
                onClick={submitLike}
                className={styles.button}
