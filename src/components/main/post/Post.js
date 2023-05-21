@@ -215,7 +215,7 @@ const Post = ({post, deletePost}) => {
                sx={{
                   objectFit: "fill",
                   display: "inline",
-                  marginBottom: "15px",
+                  marginBottom: "5px",
                   borderRadius: "7px",
                   maxHeight: "550px",
                }}
@@ -266,18 +266,16 @@ const Post = ({post, deletePost}) => {
             <Button
                onClick={submitLike}
                className={styles.button}
-               //color='info'
                variant="outlined"
                sx={{ 
                   paddingX: 3,
-                  //backgroundColor: "none",
                   border: 0,
                   marginRight: "5px",
                   borderRadius: "10px",
                   textTransform: "none",
                   fontSize: "12px",
                   color: "rgb(236, 234, 234)",
-                  marginTop: "20px",
+                  marginTop: "10px",
                   minWidth: "135px",
                   height: "30px"
                   }}
@@ -300,17 +298,15 @@ const Post = ({post, deletePost}) => {
             </Button>
             <Button
                className={styles.button}
-               color='inherit'
                sx={{ 
                   paddingX: 3,
-                  backgroundColor: "rgba($color: rgb(175, 170, 170), $alpha: 0.2)",
                   border: 0,
                   marginRight: "5px",
                   borderRadius: "10px",
                   textTransform: "none",
                   fontSize: "12px",
                   color: "rgb(236, 234, 234)",
-                  marginTop: "20px",
+                  marginTop: "10px",
                   minWidth: "135px",
                   height: "30px"
                   }}
