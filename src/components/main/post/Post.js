@@ -217,7 +217,7 @@ const Post = ({post, deletePost}) => {
                   display: "inline",
                   marginBottom: "15px",
                   borderRadius: "7px",
-                  maxHeight: "530px",
+                  maxHeight: "550px",
                }}
                className={styles.image}
                component="img"
@@ -266,7 +266,7 @@ const Post = ({post, deletePost}) => {
             <Button
                onClick={submitLike}
                className={styles.button}
-               color='inherit'
+               color='grey'
                variant="outlined"
                sx={{ 
                   paddingX: 3,
