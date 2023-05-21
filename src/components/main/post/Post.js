@@ -277,7 +277,13 @@ const Post = ({post, deletePost}) => {
                   }}
                   className={styles.comments}
                >
-                  {commentsLength} Comments
+                  <Typography 
+                     sx={{
+                        fontSize: "12px",
+                        color: "rgba($color: #ffffff, $alpha: 0.4)",
+                        textTransform: "capitalize"
+                     }}
+                     className={styles.comments}>{commentsLength} Comments</Typography>
                </Button>
             ) : null}
             </Box>
