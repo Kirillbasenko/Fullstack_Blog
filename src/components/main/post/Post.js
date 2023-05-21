@@ -134,67 +134,264 @@ const Post = ({post, deletePost}) => {
          setUserComments(data.likesUsers)
          //console.log(data.likesUsers);
       } )
-      //console.log(1);
+      console.log(1);
    }, [userLike])
 
-   return(
-      <Card 
-         sx={{display: "flex", borderRadius: "15px", color: "aliceblue", backgroundColor: "rgba(20, 32, 75, 0.6784313725)", padding: "13px", marginBottom: "15px"}} className={styles.parent}>
+   return (
+      <Card
+         sx={{
+            display: "flex",
+            borderRadius: "15px",
+            color: "aliceblue",
+            backgroundColor: "rgba(20, 32, 75, 0.6784313725)",
+            padding: "13px",
+            marginBottom: "15px",
+         }}
+      >
          <CardMedia
-            sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
+            sx={{
+            objectFit: "contain",
+            borderRadius: "50%",
+            width: 40,
+            height: 40,
+            display: "inline",
+            }}
             component="img"
-            image={post.user.avatarImage ? `http://localhost:5000${post.user.avatarImage}` : "/avatarUser.jpg"}
-            alt="green iguana"/>
-         <Box className={styles.content}>
-            <Box className={styles.flex}>
-               <Typography>{post.user.name}</Typography>
-               {post.user._id === user._id ? 
-                  <PlaygroundSpeedDial 
-                     id={post._id} 
-                     type={post.type} 
-                     image={post.img} 
-                     title={post.title} 
-                     deletePost={deletePost}/>: null}
+            image={
+            post.user.avatarImage
+               ? `http://localhost:5000${post.user.avatarImage}`
+               : "/avatarUser.jpg"
+            }
+            alt="green iguana"
+         />
+         <Box
+            sx={{ flex: "1 1 auto", marginLeft: "10px", flexDirection: "column" }}
+            className={styles.content}
+         >
+            <Box
+            sx={{
+               display: "flex",
+               justifyContent: "space-between",
+               alignItems: "center",
+            }}
+            className={styles.flex}
+            >
+            <Typography>{post.user.name}</Typography>
+            {post.user._id === user._id ? (
+               <PlaygroundSpeedDial
+                  id={post._id}
+                  type={post.type}
+                  image={post.img}
+                  title={post.title}
+                  deletePost={deletePost}
+               />
+            ) : null}
             </Box>
-            <Typography className={styles.date}>{formatDistance(subDays(new Date(post.createdAt), 0), new Date(), { addSuffix: true })}</Typography>
-            <Typography className={styles.text}><p>{highlightedWords}</p></Typography>
-            {post.img ? 
+            <Typography
+            sx={{
+               fontSize: "10px",
+               color: "rgba($color: #ffffff, $alpha: 0.3)",
+               marginBottom: "10px",
+            }}
+            className={styles.date}
+            >
+            {formatDistance(subDays(new Date(post.createdAt), 0), new Date(), {
+               addSuffix: true,
+            })}
+            </Typography>
+            <Typography
+            sx={{
+               marginBottom: "10px",
+               wordWrap: "break-word",
+               maxWidth: "400px",
+            }}
+            className={styles.text}
+            >
+            <p>{highlightedWords}</p>
+            </Typography>
+            {post.img ? (
             <CardMedia
+               sx={{
+                  objectFit: "fill",
+                  display: "inline",
+                  marginBottom: "15px",
+                  borderRadius: "7px",
+                  maxHeight: "400px",
+               }}
                className={styles.image}
                component="img"
                image={`http://localhost:5000${post.img}`}
-               alt="green iguana"/> : null}
-            <Box className={styles.flex}>
-               {like !== 0 ?<Button onClick={() => setLikeModal(true)} className={styles.flexLike}>
-                  <FavoriteIcon className={styles.likeIcon}/>
+               alt="green iguana"
+            />
+            ) : null}
+            <Box
+               sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+               }}
+               className={styles.flex}
+            >
+            {like !== 0 ? (
+               <Button
+                  onClick={() => setLikeModal(true)}
+                  className={styles.flexLike}
+                  sx={{
+                     display: "flex",
+                     fontSize: "10px",
+                     alignItems: "center",
+                     color: "rgba($color: #ffffff, $alpha: 0.4)"
+                  }}
+               >
+                  <FavoriteIcon className={styles.likeIcon} />
                   <Typography className={styles.comments}>{like}</Typography>
-               </Button> : null}
-               {commentsLength ?<Button onClick={() => setOpenComment(true)}  className={styles.comments}>{commentsLength} Comments</Button> : null}
+               </Button>
+            ) : null}
+            {commentsLength ? (
+               <Button
+                  onClick={() => setOpenComment(true)}
+                  sx={{
+                     fontSize: "12px",
+                     color: "rgba($color: #ffffff, $alpha: 0.4)",
+                     textTransform: "capitalize"
+                  }}
+                  className={styles.comments}
+               >
+                  {commentsLength} Comments
+               </Button>
+            ) : null}
             </Box>
             <Box>
-               <Button onClick={submitLike} className={styles.button} variant="outlined" sx={{paddingX: 3}} startIcon={<FavoriteIcon sx={{width: 20, height: 20, color: checkUserLike.length === 0 ? "#ECEAEA" : "red"}}/>}>
-                  <Typography variant='body3' sx={{color: checkUserLike.length === 0 ? "#ECEAEA" : "red"}}>Like</Typography>
-               </Button>
-               <Button className={styles.button} onClick={() => {
-                  setOpenComment(!openComment)
-                  setFocus(!focus)
-               }} variant="outlined" sx={{paddingX: 3}} startIcon={<ChatBubbleIcon sx={{width: 20, height: 20, color: checkUserComment.length === 0 ? "#ECEAEA" : "#4E6DE0"}}/>}>
-                  <Typography variant='body3' sx={{color: checkUserComment.length === 0 ? "#ECEAEA" : "#4E6DE0"}}>Comment</Typography>
-               </Button>
+            <Button
+               onClick={submitLike}
+               className={styles.button}
+               variant="outlined"
+               sx={{ 
+                  paddingX: 3,
+                  backgroundColor: "rgba($color: rgb(175, 170, 170), $alpha: 0.2)",
+                  border: 0,
+                  marginRight: "5px",
+                  borderRadius: "10px",
+                  textTransform: "none",
+                  fontSize: "12px",
+                  color: "rgb(236, 234, 234)",
+                  marginTop: "20px",
+                  minWidth: "135px",
+                  height: "30px"
+                  }}
+               startIcon={
+                  <FavoriteIcon
+                  sx={{
+                     width: 20,
+                     height: 20,
+                     color: checkUserLike.length === 0 ? "#ECEAEA" : "red",
+                  }}
+                  />
+               }
+            >
+               <Typography
+                  variant="body3"
+                  sx={{ color: checkUserLike.length === 0 ? "#ECEAEA" : "red" }}
+               >
+                  Like
+               </Typography>
+            </Button>
+            <Button
+               className={styles.button}
+               sx={{ 
+                  paddingX: 3,
+                  backgroundColor: "rgba($color: rgb(175, 170, 170), $alpha: 0.2)",
+                  border: 0,
+                  marginRight: "5px",
+                  borderRadius: "10px",
+                  textTransform: "none",
+                  fontSize: "12px",
+                  color: "rgb(236, 234, 234)",
+                  marginTop: "20px",
+                  minWidth: "135px",
+                  height: "30px"
+                  }}
+               onClick={() => {
+                  setOpenComment(!openComment);
+                  setFocus(!focus);
+               }}
+               variant="outlined"
+               startIcon={
+                  <ChatBubbleIcon
+                  sx={{
+                     width: 20,
+                     height: 20,
+                     color: checkUserComment.length === 0 ? "#ECEAEA" : "#4E6DE0",
+                  }}
+                  />
+               }
+            >
+               <Typography
+                  variant="body3"
+                  sx={{
+                  color: checkUserComment.length === 0 ? "#ECEAEA" : "#4E6DE0",
+                  }}
+               >
+                  Comment
+               </Typography>
+            </Button>
             </Box>
-            {openComment ?
-            <Box className={styles.comment}>
-               <CommentField setArr={addComment} focus={focus} id={post._id} userPhoto={user.avatarImage}/>
-               <CommentsList editComment={editComment} deleteCommentFirst={deleteComment} comments={comments} id={post._id} userPhoto={user.avatarImage}/>
-               {comments.length < commentsLength && !fetching ?
-               <Button variant="text" className={styles.buttonAdd} onClick={() => setFetching(true)}>Load more comments</Button> : null}
-               {fetching ? <Box className={styles.spinner}><CircularProgress  /></Box>  : null}
-            </Box> : null}
-            
+            {openComment ? (
+            <Box 
+               sx={{
+                  flex: "1 1 auto",
+                  marginLeft: "10px",
+                  flexDirection: "column"
+               }}
+               className={styles.comment}>
+               <CommentField
+                  setArr={addComment}
+                  focus={focus}
+                  id={post._id}
+                  userPhoto={user.avatarImage}
+               />
+               <CommentsList
+                  editComment={editComment}
+                  deleteCommentFirst={deleteComment}
+                  comments={comments}
+                  id={post._id}
+                  userPhoto={user.avatarImage}
+               />
+               {comments.length < commentsLength && !fetching ? (
+                  <Button
+                  variant="text"
+                  sx={{
+                     display: "flex",
+                     textTransform: "capitalize",
+                     margin: "0 auto"
+                  }}
+                  className={styles.buttonAdd}
+                  onClick={() => setFetching(true)}
+                  >
+                  Load more comments
+                  </Button>
+               ) : null}
+               {fetching ? (
+                  <Box 
+                     className={styles.spinner}
+                     sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
+                        }}>
+                  <CircularProgress />
+                  </Box>
+               ) : null}
+            </Box>
+            ) : null}
          </Box>
-         <LikeModal likeList={userComments} open={openLikeModal} handleClose={() => setLikeModal(false)}/>
+         <LikeModal
+            likeList={userComments}
+            open={openLikeModal}
+            handleClose={() => setLikeModal(false)}
+         />
       </Card>
-   )
+   );
 }
 
 export default Post
