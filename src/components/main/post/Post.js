@@ -292,7 +292,7 @@ const Post = ({post, deletePost}) => {
                   marginRight: "5px",
                   borderRadius: "10px",
                   textTransform: "none",
-                  fontSize: "16px",
+                  fontSize: "14px",
                   color: "rgb(236, 234, 234)",
                   marginTop: "10px",
                   minWidth: "135px",
@@ -301,8 +301,8 @@ const Post = ({post, deletePost}) => {
                startIcon={
                   <FavoriteIcon
                   sx={{
-                     width: 25,
-                     height: 25,
+                     width: 22,
+                     height: 22,
                      color: checkUserLike.length === 0 ? "#ECEAEA" : "red",
                   }}
                   />
@@ -326,7 +326,7 @@ const Post = ({post, deletePost}) => {
                   marginRight: "5px",
                   borderRadius: "10px",
                   textTransform: "none",
-                  fontSize: "16px",
+                  fontSize: "14px",
                   color: "rgb(236, 234, 234)",
                   marginTop: "10px",
                   minWidth: "135px",
@@ -340,8 +340,8 @@ const Post = ({post, deletePost}) => {
                startIcon={
                   <ChatBubbleIcon
                   sx={{
-                     width: 25,
-                     height: 25,
+                     width: 22,
+                     height: 22,
                      color: checkUserComment.length === 0 ? "#ECEAEA" : "#4E6DE0",
                   }}
                   />
