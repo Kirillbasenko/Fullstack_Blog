@@ -140,25 +140,44 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
    }, [checkAllPosts])
 
    return(
-      <Box className={styles.container}>
-         <Button style={{opacity: a ? 1 : 0, zIndex: a ? 1 : -1}} startIcon={<ArrowUpwardIcon sx={{width: 15, height: 15}} />} className={styles.button} 
-         onClick={() => {
-            fetchPosts(6, 1)
-            .then(data => {
-               setArr(data.posts)
-               dispatch(setAllPosts(data.current))
-            })
-            .finally(() => {
-               setFetching(true)
-               setCurrent(2)
-               setA(false)
-            })
-         }} size='small' variant="contained">Show new posts</Button>
+      <Box 
+         sx={{position: "relative"}} className={styles.container}>
+         <Button 
+            style={{opacity: a ? 1 : 0, zIndex: a ? 1 : -1}} 
+            
+            startIcon={<ArrowUpwardIcon 
+               sx={{
+                  width: 15, 
+                  height: 15,
+               }} />} className={styles.button} 
+               sx={{
+                  position: "absolute",
+                  left: "37%",
+                  top: "10px",
+                  fontSize: "10px",
+                  opacity: 0,
+                  zIndex: -1,
+                  transition: "opacity 0.8s ease-in-out"
+               }}
+            onClick={() => {
+               fetchPosts(6, 1)
+               .then(data => {
+                  setArr(data.posts)
+                  dispatch(setAllPosts(data.current))
+               })
+               .finally(() => {
+                  setFetching(true)
+                  setCurrent(2)
+                  setA(false)
+               })
+            }} 
+            size='small' 
+            variant="contained">Show new posts</Button>
          <Box className={styles.content} component="div">
             {post.items.length !== 0 && post.items.map((post, index) => 
                <Post deletePost={removePost} key={post._id} post={post}/>) }
          </Box>
-         {fetching && post.items.length !== checkAllPosts ? <Box className={styles.spinner}><CircularProgress/></Box> : null}
+         {fetching && post.items.length !== checkAllPosts ? <Box sx={{display: "flex", justifyContent: "center", "alignItems": "center"}} className={styles.spinner}><CircularProgress/></Box> : null}
       </Box>
    )
 }

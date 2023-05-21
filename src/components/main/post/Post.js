@@ -230,7 +230,7 @@ const Post = ({post, deletePost}) => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  marginBottom: "3px"
+                  marginBottom: "5px"
                }}
                className={styles.flex}
             >
