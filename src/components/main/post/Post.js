@@ -239,13 +239,32 @@ const Post = ({post, deletePost}) => {
                   className={styles.flexLike}
                   sx={{
                      display: "flex",
-                     fontSize: "10px",
+                     fontSize: "12px",
                      alignItems: "center",
                      color: "rgba($color: #ffffff, $alpha: 0.4)"
                   }}
                >
-                  <FavoriteIcon className={styles.likeIcon} />
-                  <Typography className={styles.comments}>{like}</Typography>
+                  <FavoriteIcon 
+                     className={styles.likeIcon}
+                     sx={{
+                        color: "#ffffff",
+                        backgroundColor: "red",
+                        borderRadius: "50%",
+                        textAlign: "center",
+                        width: "20px",
+                        height: "20px",
+                        padding: "2px 0px",
+                        alignItems: "center",
+                        marginRight: "5px"
+                     }}
+                     />
+                  <Typography 
+                     sx={{
+                        fontSize: "12px",
+                        color: "rgba($color: #ffffff, $alpha: 0.4)",
+                        textTransform: "capitalize"
+                     }}
+                     className={styles.comments}>{like}</Typography>
                </Button>
             ) : null}
             {commentsLength ? (
@@ -273,7 +292,7 @@ const Post = ({post, deletePost}) => {
                   marginRight: "5px",
                   borderRadius: "10px",
                   textTransform: "none",
-                  fontSize: "12px",
+                  fontSize: "16px",
                   color: "rgb(236, 234, 234)",
                   marginTop: "10px",
                   minWidth: "135px",
@@ -282,8 +301,8 @@ const Post = ({post, deletePost}) => {
                startIcon={
                   <FavoriteIcon
                   sx={{
-                     width: 20,
-                     height: 20,
+                     width: 25,
+                     height: 25,
                      color: checkUserLike.length === 0 ? "#ECEAEA" : "red",
                   }}
                   />
@@ -291,7 +310,10 @@ const Post = ({post, deletePost}) => {
             >
                <Typography
                   variant="body3"
-                  sx={{ color: checkUserLike.length === 0 ? "#ECEAEA" : "red" }}
+                  sx={{ 
+                     color: checkUserLike.length === 0 ? "#ECEAEA" : "red",
+                     fontSize: "16px"
+                  }}
                >
                   Like
                </Typography>
@@ -304,7 +326,7 @@ const Post = ({post, deletePost}) => {
                   marginRight: "5px",
                   borderRadius: "10px",
                   textTransform: "none",
-                  fontSize: "12px",
+                  fontSize: "16px",
                   color: "rgb(236, 234, 234)",
                   marginTop: "10px",
                   minWidth: "135px",
@@ -318,8 +340,8 @@ const Post = ({post, deletePost}) => {
                startIcon={
                   <ChatBubbleIcon
                   sx={{
-                     width: 20,
-                     height: 20,
+                     width: 25,
+                     height: 25,
                      color: checkUserComment.length === 0 ? "#ECEAEA" : "#4E6DE0",
                   }}
                   />
@@ -328,7 +350,8 @@ const Post = ({post, deletePost}) => {
                <Typography
                   variant="body3"
                   sx={{
-                  color: checkUserComment.length === 0 ? "#ECEAEA" : "#4E6DE0",
+                     color: checkUserComment.length === 0 ? "#ECEAEA" : "#4E6DE0",
+                     fontSize: "16px"
                   }}
                >
                   Comment
