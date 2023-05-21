@@ -215,7 +215,7 @@ const Post = ({post, deletePost}) => {
                sx={{
                   objectFit: "fill",
                   display: "inline",
-                  marginBottom: "5px",
+                  marginBottom: "10px",
                   borderRadius: "7px",
                   maxHeight: "550px",
                }}
@@ -230,6 +230,8 @@ const Post = ({post, deletePost}) => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  borderTop: "1px solid #414243",
+                  paddingTop: "3px",
                }}
                className={styles.flex}
             >
