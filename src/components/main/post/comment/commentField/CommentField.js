@@ -83,8 +83,8 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                sx={{
                   objectFit: "contain", 
                   borderRadius: "50%", 
-                  width: !commentParent ? 34 : 27, 
-                  height: !commentParent ? 34 : 27, 
+                  width: !commentParent ? 38 : 31, 
+                  height: !commentParent ? 38 : 31, 
                   display: "inline",
                   marginRight: "10px"
                }}
@@ -114,7 +114,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                            position: "relative",
                            zIndex: 1,
                            fontSize: "14px",
-                           backgroundColor: "rgba(207, 208, 209, 1)"
+                           backgroundColor: "rgba(207, 208, 209, 1)",
                         }}
                         value={comment}
                         placeholder='Add comment'
@@ -178,12 +178,13 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                         color="primary" 
                         aria-label="upload picture" 
                         component="label"
+                        onHo
                         sx={{
                            position: "absolute",
                            top: "30px",
                            right: "10px",
                            zIndex: 3,
-                           backgroundColor: "#3D3F40"
+                           //backgroundColor: "#3D3F40",
                         }}>
                         <CloseIcon />
                      </IconButton>
