@@ -150,11 +150,12 @@ const Post = ({post, deletePost}) => {
       >
          <CardMedia
             sx={{
-            objectFit: "contain",
-            borderRadius: "50%",
-            width: 50,
-            height: 50,
-            display: "inline",
+               objectFit: "contain",
+               borderRadius: "50%",
+               width: 50,
+               height: 50,
+               display: "inline",
+               cursor: "pointer"
             }}
             component="img"
             image={
@@ -177,7 +178,11 @@ const Post = ({post, deletePost}) => {
             className={styles.flex}
             >
             <Typography
-               sx={{fontSize: "18px"}}>{post.user.name}</Typography>
+               className={styles.name}
+               sx={{
+                  fontSize: "18px",
+                  cursor: "pointer"
+                  }}>{post.user.name}</Typography>
             {post.user._id === user._id ? (
                <PlaygroundSpeedDial
                   id={post._id}

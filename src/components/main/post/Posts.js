@@ -177,7 +177,7 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
             {post.items.length !== 0 && post.items.map((post, index) => 
                <Post deletePost={removePost} key={post._id} post={post}/>) }
          </Box>
-         {fetching && post.items.length !== checkAllPosts ? <Box sx={{display: "flex", justifyContent: "center", "alignItems": "center"}} className={styles.spinner}><CircularProgress/></Box> : null}
+         {fetching && post.items.length !== checkAllPosts ? <Box sx={{display: "flex", justifyContent: "center", alignItems: "center"}} className={styles.spinner}><CircularProgress/></Box> : null}
       </Box>
    )
 }

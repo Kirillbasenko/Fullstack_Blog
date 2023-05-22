@@ -74,15 +74,32 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
 
    return(
       <Box>
-         <Box className={styles.content}>
+         <Box 
+            sx={{
+               display: "flex",
+               marginTop: "15px"
+               }} className={styles.content}>
             <CardMedia
-               sx={{objectFit: "contain", borderRadius: "50%", width: !commentParent ? 34 : 27, height: !commentParent ? 34 : 27, display: "inline"}}
+               sx={{
+                  objectFit: "contain", 
+                  borderRadius: "50%", 
+                  width: !commentParent ? 34 : 27, 
+                  height: !commentParent ? 34 : 27, 
+                  display: "inline",
+                  marginRight: "10px"
+               }}
                component="img"
                className={styles.userPhoto}
                image={userPhoto ? `http://localhost:5000${userPhoto}` : "/avatarUser.jpg"}
                alt="green iguana"/>
-            <Box className={styles.relative}>
-                  <Box component="div" className={styles.textFieldContent}>
+            <Box>
+                  <Box 
+                     component="div" 
+                     className={styles.textFieldContent}
+                     sx={{
+                        position: "relative",
+                        zIndex: 2
+                     }}>
                      <OutlinedInput
                         inputRef={inputRef}
                         className={styles.textField}
@@ -91,7 +108,14 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                         size='small'
                         multiline
                         maxRows={4}
-                        sx={{width: !commentParent ? 410 : 340}}
+                        sx={{
+                           width: !commentParent ? 410 : 340,
+                           borderRadius: "20px",
+                           position: "relative",
+                           zIndex: 1,
+                           fontSize: "12px",
+                           backgroundColor: "rgba(207, 208, 209, 1)"
+                        }}
                         value={comment}
                         placeholder='Add comment'
                         onChange={(e) => setComment(e.target.value)}
@@ -114,7 +138,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                                  setСlientY(e.clientY - 400)
                               }
                            }}>
-                              <SentimentSatisfiedAltIcon className={styles.smile}/>
+                              <SentimentSatisfiedAltIcon/>
                            </IconButton>
                         </InputAdornment>}
                      />
@@ -122,20 +146,51 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                   </Box>
                   
                {src && src.length !== 0 ? 
-                  <Box className={styles.imageContainer}>
+                  <Box 
+                     className={styles.imageContainer}
+                     sx={{
+                        display: "flex",
+                        position: "relative",
+                        justifyContent: "center",
+                        marginTop: "-20px",
+                        zIndex: 1,
+                        borderRadius: " 0px 0px 20px 20px",
+                        backgroundColor: "rgba(207, 208, 209, 0.7)"
+                     }}>
                      <CardMedia
-                     className={styles.image}
-                     sx={{maxWidth: !commentParent ? 250 : 180, height: !commentParent ? 250 : 180}}
-                     component="img"
-                     image={`http://localhost:5000${src}`}
-                     alt="green iguana"/>
-                     <IconButton className={styles.removeImageButton} onClick={() => setSrc("")} color="primary" aria-label="upload picture" component="label">
+                        className={styles.image}
+                        sx={{
+                           maxWidth: !commentParent ? 250 : 180, 
+                           height: !commentParent ? 250 : 180,
+                           objectFit: "fill",
+                           borderRadius: "5px",
+                           border: "1px solid rgb(141, 140, 140)",
+                           marginTop: "30px",
+                           marginBottom: "15px",
+                           zIndex: 1
+                        }}
+                        component="img"
+                        image={`http://localhost:5000${src}`}
+                        alt="green iguana"/>
+                     <IconButton 
+                        className={styles.removeImageButton} 
+                        onClick={() => setSrc("")} 
+                        color="primary" 
+                        aria-label="upload picture" 
+                        component="label"
+                        sx={{
+                           position: "absolute",
+                           top: "30px",
+                           right: "10px",
+                           zIndex: 3,
+                           backgroundColor: "rgba($color: rgb(0, 0, 0), $alpha: 0.7)"
+                        }}>
                         <CloseIcon />
                      </IconButton>
                   </Box> : null}
-               {comment.length !== 0 || src.length !== 0 ? <Button onClick={addComment} className={styles.button} size='small' variant="contained">comment</Button> : null}
+               {comment.length !== 0 || src.length !== 0 ? <Button sx={{textTransform: "capitalize", borderRadius: "20px", marginTop: "20px"}} onClick={addComment} className={styles.button} size='small' variant="contained">comment</Button> : null}
             </Box>
-            {showEmoji ? <Box ref={modalRef} sx={{top: `${clientY}px`}} className={styles.picker}>
+            {showEmoji ? <Box ref={modalRef} sx={{top: `${clientY}px`, position: "fixed", right: "7%", zIndex: 10}} className={styles.picker}>
                         <Picker 
                            data={data} 
                            previewPosition="none" 

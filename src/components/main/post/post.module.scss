@@ -19,6 +19,12 @@
    align-items: center;
 }
 
+.name{
+   &:hover{
+      text-decoration: underline;
+   }
+}
+
 .date{
    font-size: 10px;
    color: rgba($color: #ffffff, $alpha: 0.3);
