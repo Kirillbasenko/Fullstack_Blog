@@ -189,7 +189,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                         <CloseIcon />
                      </IconButton>
                   </Box> : null}
-               {comment.length !== 0 || src.length !== 0 ? <Button sx={{textTransform: "capitalize", borderRadius: "20px", marginTop: "20px"}} onClick={addComment} className={styles.button} size='small' variant="contained">comment</Button> : null}
+               {comment.trim().length !== 0 || src.length !== 0 ? <Button sx={{textTransform: "capitalize", borderRadius: "20px", marginTop: "20px"}} onClick={addComment} className={styles.button} size='small' variant="contained">comment</Button> : null}
             </Box>
             {showEmoji ? <Box ref={modalRef} sx={{top: `${clientY}px`, position: "fixed", right: "7%", zIndex: 10}} className={styles.picker}>
                         <Picker 

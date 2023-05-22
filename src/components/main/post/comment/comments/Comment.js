@@ -55,7 +55,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
 
    const file = useRef(null)
 
-   console.log(editComment);
+   
 
    const {user} = useSelector(state => state.user)
 
@@ -144,23 +144,85 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
    }
 
    return(
-      <Box className={styles.container}>
+      <Box 
+         className={styles.container}
+         sx={{
+            display: "flex",
+            marginTop: "15px",
+            flex: "1 1 auto",
+            maxWidth: "90%",
+            marginLeft: "35px"
+            }}>
             <CardMedia
-               sx={{objectFit: "contain", borderRadius: "50%", width: 27, height: 27, display: "inline"}}
+               sx={{
+                  objectFit: "contain", 
+                  borderRadius: "50%", 
+                  width: 30, 
+                  height: 30, 
+                  display: "inline",
+                  marginRight: "10px"
+               }}
                component="img"
                className={styles.userPhoto}
                image={comment.user.avatarImage ? `http://localhost:5000${comment.user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
-            <Box className={styles.content}>
-               <Box className={styles.comment}>
-                  <Box className={styles.flexBetween}>
-                     <Typography className={styles.userName}>{comment.user.name}</Typography>
-                     <Box className={styles.absolute}>
-                        <Typography className={styles.date}>{formatDistance(subDays(new Date(comment.createdAt), 0), new Date(), { addSuffix: true })}</Typography>
+            <Box 
+               className={styles.content}
+               sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  flex: "1 1 auto"
+                  }}>
+               <Box 
+                  className={styles.comment}
+                  sx={{
+                     backgroundColor: "#11266E",
+                     padding: "5px 10px 10px 10px",
+                     borderRadius: "5px",
+                     marginBottom: "5px",
+                     position: "relative"
+                  }}>
+                  <Box 
+                     className={styles.flexBetween}
+                     sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        height: "35px"
+                     }}>
+                     <Typography 
+                        className={styles.userName}
+                        sx={{
+                           fontSize: "18px",
+                           fontWeight: "500"
+                        }}>
+                        {comment.user.name}
+                     </Typography>
+                     <Box 
+                        className={styles.absolute}
+                        sx={{
+                           display: "flex"
+                        }}>
+                        <Typography 
+                           className={styles.date}
+                           sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              fontSize: "10px",
+                              opacity: "0.5",
+                              color: "#C1C1C2"
+                           }}>
+                           {formatDistance(subDays(new Date(comment.createdAt), 0), new Date(), { addSuffix: true })}
+                        </Typography>
                         {user._id === comment.user._id ? 
                         <>
                            <IconButton onClick={() => setOpen(true)} aria-label="delete" size="large">
-                              <MoreHorizIcon className={styles.editButton}/>
+                              <MoreHorizIcon 
+                                 className={styles.editButton}
+                                 sx={{
+                                    cursor: "pointer",
+                                    marginRight: "-10px"
+                                 }}/>
                            </IconButton>
                            <Select
                               labelId="demo-controlled-open-select-label"
@@ -169,16 +231,47 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                               onClose={() => setOpen(false)}
                               onOpen={() => setOpen(true)}
                               label="Age"
-                              className={styles.select}>
-                              <MenuItem className={styles.menuItem} onClick={() => setEdit(true)}>Edit</MenuItem>
-                              <MenuItem className={styles.menuItem} onClick={() => deleteCommentFirst(comment._id)}>Delete</MenuItem>
+                              className={styles.select}
+                              sx={{
+                                 zIndex: -1,
+                                 position: 'absolute',
+                                 top: 0,
+                                 right: 0,
+                                 fontSize: "12px"
+                              }} >
+                              <MenuItem 
+                                 className={styles.menuItem} 
+                                 onClick={() => setEdit(true)}
+                                 sx={{
+                                    fontSize: '12px'
+                                 }}>
+                                    Edit
+                              </MenuItem>
+                              <MenuItem 
+                                 className={styles.menuItem} 
+                                 onClick={() => deleteCommentFirst(comment._id)}
+                                 sx={{
+                                    fontSize: '12px'
+                                 }}>
+                                    Delete
+                              </MenuItem>
                            </Select>
                         </> : null}
                      </Box>
                   </Box>
-                  <Box className={styles.textConteiner}>
+                  <Box
+                     sx={{
+                        maxWidth: "220px",
+                        display: "flex",
+                        flex: "0 0 auto"
+                     }}>
                      {!edit ? <Typography 
-                        sx={{maxWidth: !checkParent ? "160%" : "125%"}} 
+                        sx={{
+                           maxWidth: !checkParent ? "160%" : "125%",
+                           marginTop: "10px",
+                           fontSize: "14px",
+                           wordWrap: "break-word"
+                        }} 
                         className={styles.text} 
                         variant='body2'>
                            {comment.comment}
@@ -187,7 +280,9 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         className={styles.textField}
                         variant="standard"
                         multiline
-                        sx={{color: "rgba(0, 0, 0, 0.87)"}}
+                        sx={{
+                           minWidth: "125%"
+                        }}
                         onChange={(e) => setText(e.target.value)} 
                         value={text} 
                         name="title"
@@ -197,18 +292,57 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                   <CardMedia
                      onClick={() => setImageModal(true)}
                      className={styles.image}
+                     sx={{
+                        cursor: "pointer",
+                        width: "180%",
+                        objectFit: "contain",
+                        height: "200px",
+                        borderRadius: "5px",
+                        marginTop: "5px",
+                        zIndex: 1
+                     }}
                      component="img"
                      image={`http://localhost:5000${comment.img}`}
                      alt="green iguana"/> : null}
                   {image.length !== 0 && edit ?
-                  <Box className={styles.imageContainer}>
+                  <Box 
+                     className={styles.imageContainer}
+                     sx={{
+                        display: "flex",
+                        position: "relative",
+                        justifyContent: "center",
+                        marginTop: "10px",
+                        zIndex: 1,
+                        borderRadius: "0px 0px 20px 20px"
+                     }}>
                      <CardMedia
                         className={styles.imageEdit}
-                        sx={{maxWidth: 180, height: 180}}
+                        sx={{
+                           maxWidth: 180, 
+                           height: 180,
+                           objectFit: "fill",
+                           borderRadius: "5px",
+                           border: "1px solid rgb(141, 140, 140)",
+                           marginTop: "30px",
+                           marginBottom: "15px",
+                           zIndex: 1
+                        }}
                         component="img"
                         image={`http://localhost:5000${image}`}
                         alt="green iguana"/>
-                     <IconButton className={styles.removeImageButton} onClick={() => setImage("")} color="primary" aria-label="upload picture" component="label">
+                     <IconButton 
+                        className={styles.removeImageButton} 
+                        onClick={() => setImage("")} 
+                        color="primary" 
+                        aria-label="upload picture" 
+                        component="label"
+                        sx={{
+                           position: "absolute",
+                           top: "35px",
+                           right: "95px",
+                           zIndex: 3,
+                           backgroundColor: "grey"
+                        }}>
                         <CloseIcon />
                      </IconButton>
                   </Box> : edit ?
@@ -218,31 +352,99 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                      <PhotoCamera />
                   </IconButton> : null}
                   {edit ? 
-                     <Box className={styles.buttons}>
-                        <Button onClick={() => setEdit(false)} size='small' className={styles.buttonEdit} color='error' variant="outlined">Cancel</Button>
-                        <Button onClick={() => {
+                     <Box>
+                        <Button 
+                           onClick={() => setEdit(false)} 
+                           size='small' 
+                           className={styles.buttonEdit} 
+                           color='error'
+                           variant="outlined"
+                           sx={{
+                              marginRight: "10px",
+                              marginTop: "10px"
+                           }}>
+                              Cancel
+                        </Button>
+                        <Button 
+                        onClick={() => {
                            editComment(comment._id, text, image)
                            setEdit(false)
-                        }} size='small' className={styles.buttonEdit} color='success' variant="outlined">Save</Button>
+                           }} 
+                           size='small' 
+                           className={styles.buttonEdit} 
+                           color='success' 
+                           variant="outlined"
+                           sx={{
+                              marginRight: "10px",
+                              marginTop: "10px"
+                           }}>
+                              Save
+                        </Button>
                      </Box> : null}
                </Box>
-               
-               <Box className={styles.flex}>
-                  <Box className={styles.flex}>
-                     <IconButton className={styles.button} onClick={submitLike}>
-                        <FavoriteIcon style={{color: checkUserLike.length === 0 ? "#ECEAEA" : "red"}} className={styles.icon}/>
+               <Box 
+                  className={styles.flex}
+                  sx={{
+                     display: "flex",
+                     alignItems: "center",
+                     maxHeight: "20px"
+                  }}>
+                  <Box 
+                     className={styles.flex}
+                     sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        maxHeight: "20px"
+                     }}>
+                     <IconButton 
+                        className={styles.button} 
+                        onClick={submitLike}
+                        //color="error"
+                        color={checkUserLike.length === 0 ? "inherit" : "error"}
+                        sx={{
+                           height: "20px",
+                           minWidth: "25px"
+                        }}>
+                        <FavoriteIcon 
+                           //color="error"
+                           //color={checkUserLike.length !== 0 ? "none" : "error"}
+                           //sx={{color: checkUserLike.length === 0 ? "#ECEAEA" : "red"}} 
+                           className={styles.icon}/>
                      </IconButton>
-                     {like !== 0 ? <Button className={styles.flexLike} onClick={() => setLikeModal(true)}>
+                     {like !== 0 ? 
+                     <Button 
+                        className={styles.flexLike} 
+                        onClick={() => setLikeModal(true)}
+                        sx={{
+                           fontSize: "12px",
+                           display: "flex",
+                           alignItems: "center",
+                           textAlign: "center",
+                           justifyContent: "center",
+                           minWidth: "20px",
+                        }}>
                         <Typography className={styles.current}>{like}</Typography>
                      </Button> : null}
                      
                   </Box>
-                  { !checkParent ? <Box className={styles.flex}>
-                     <IconButton className={styles.button} onClick={() => setOpenComment(!openComment)}>
+                  { !checkParent ? 
+                  <Box 
+                     className={styles.flex}
+                     sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        maxHeight: "20px"
+                     }}>
+                     <IconButton 
+                        className={styles.button} 
+                        onClick={() => setOpenComment(!openComment)}
+                        sx={{
+                           height: "20px",
+                           minWidth: "25px"
+                        }}>
                         <ChatBubbleIcon className={styles.icon}/>
                      </IconButton>
-                     {commentsLength !== 0 ? <Typography className={styles.currentComment}>{commentsLength}</Typography> : null}
-                     
+                     {commentsLength !== 0 ? <Typography sx={{padding: "8px"}} className={styles.currentComment}>{commentsLength}</Typography> : null}
                   </Box> : null}
                </Box>
                {openComment ? 
@@ -250,7 +452,16 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                   <CommentField userPhoto={user.avatarImage} setArr={addComment} id={comment._id} commentParent={true}/>
                   <CommemtsList editComment={editCommentSecond} checkParent={true}  deleteCommentFirst={deleteCommentSecond} comments={comments} id={comment._id} userPhoto={user.avatarImage}/>
                   {comments.length < commentsLength && !fetching ?
-                     <Button variant="text" className={styles.buttonAdd} onClick={() => setFetching(true)}>load more answers</Button> : null}
+                     <Button 
+                        variant="text" 
+                        className={styles.buttonAdd} 
+                        onClick={() => setFetching(true)}
+                        sx={{
+                           marginTop: "10px",
+                           marginRight: "10px"
+                        }}>
+                        load more answers
+                     </Button> : null}
                </Box> : null}
             </Box>
             <LikeModal likeList={userComments} open={openLikeModal} handleClose={() => setLikeModal(false)}/>
