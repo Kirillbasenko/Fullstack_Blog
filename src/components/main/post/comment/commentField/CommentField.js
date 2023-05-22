@@ -109,7 +109,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                         multiline
                         maxRows={4}
                         sx={{
-                           width: !commentParent ? 410 : 340,
+                           width: !commentParent ? 510 : 440,
                            borderRadius: "20px",
                            position: "relative",
                            zIndex: 1,
@@ -183,7 +183,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                            top: "30px",
                            right: "10px",
                            zIndex: 3,
-                           backgroundColor: "rgba($color: rgb(0, 0, 0), $alpha: 0.7)"
+                           backgroundColor: "black"
                         }}>
                         <CloseIcon />
                      </IconButton>
