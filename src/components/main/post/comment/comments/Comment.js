@@ -145,10 +145,11 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
 
    return(
       <Box 
-         className={styles.container}
+         //className={styles.container}
          sx={{
             display: "flex",
-            marginTop: "15px",
+            marginTop: "20px",
+            //marginBottom: "20px",
             flex: "1 1 auto",
             maxWidth: "90%",
             marginLeft: "35px"
