@@ -208,7 +208,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                            sx={{
                               display: "flex",
                               alignItems: "center",
-                              fontSize: "10px",
+                              fontSize: "12px",
                               opacity: "0.5",
                               color: "#C1C1C2"
                            }}>
@@ -291,10 +291,10 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                   {comment.img.length !== 0 && !edit ?
                   <CardMedia
                      onClick={() => setImageModal(true)}
-                     className={styles.image}
+                     //className={styles.image}
                      sx={{
                         cursor: "pointer",
-                        width: "180%",
+                        width: "180px",
                         objectFit: "contain",
                         height: "200px",
                         borderRadius: "5px",
@@ -394,7 +394,8 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                      sx={{
                         display: "flex",
                         alignItems: "center",
-                        maxHeight: "20px"
+                        maxHeight: "20px",
+                        marginTop: "5px"
                      }}>
                      <IconButton 
                         className={styles.button} 
@@ -433,7 +434,8 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                      sx={{
                         display: "flex",
                         alignItems: "center",
-                        maxHeight: "20px"
+                        maxHeight: "20px",
+                        marginTop: "5px"
                      }}>
                      <IconButton 
                         className={styles.button} 
