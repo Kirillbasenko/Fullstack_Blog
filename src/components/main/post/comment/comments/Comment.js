@@ -294,9 +294,9 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                      //className={styles.image}
                      sx={{
                         cursor: "pointer",
-                        width: "180px",
+                        maxWidth: "180px",
                         objectFit: "contain",
-                        height: "200px",
+                        maxHeight: "200px",
                         borderRadius: "5px",
                         marginTop: "5px",
                         zIndex: 1
