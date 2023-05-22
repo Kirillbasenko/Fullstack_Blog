@@ -113,7 +113,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                            borderRadius: "20px",
                            position: "relative",
                            zIndex: 1,
-                           fontSize: "12px",
+                           fontSize: "14px",
                            backgroundColor: "rgba(207, 208, 209, 1)"
                         }}
                         value={comment}
@@ -160,8 +160,8 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                      <CardMedia
                         className={styles.image}
                         sx={{
-                           maxWidth: !commentParent ? 250 : 180, 
-                           height: !commentParent ? 250 : 180,
+                           maxWidth: !commentParent ? 280 : 210, 
+                           height: !commentParent ? 280 : 210,
                            objectFit: "fill",
                            borderRadius: "5px",
                            border: "1px solid rgb(141, 140, 140)",
@@ -183,7 +183,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                            top: "30px",
                            right: "10px",
                            zIndex: 3,
-                           backgroundColor: "black"
+                           backgroundColor: "#3D3F40"
                         }}>
                         <CloseIcon />
                      </IconButton>
