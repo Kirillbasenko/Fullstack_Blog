@@ -404,8 +404,8 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         //color="error"
                         color={checkUserLike.length === 0 ? "inherit" : "error"}
                         sx={{
-                           height: "20px",
-                           minWidth: "25px"
+                           height: "18px",
+                           minWidth: "23px"
                         }}>
                         <FavoriteIcon 
                            //color="error"
@@ -442,8 +442,8 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         className={styles.button} 
                         onClick={() => setOpenComment(!openComment)}
                         sx={{
-                           height: "20px",
-                           minWidth: "25px"
+                           height: "18px",
+                           minWidth: "23px"
                         }}>
                         <ChatBubbleIcon className={styles.icon}/>
                      </IconButton>
