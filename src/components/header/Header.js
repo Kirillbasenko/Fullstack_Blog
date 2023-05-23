@@ -1,4 +1,4 @@
-import { IconButton, Box, FormControl, InputLabel, OutlinedInput, InputAdornment, CardMedia } from '@mui/material';
+import { IconButton, Box, FormControl, InputLabel, OutlinedInput, InputAdornment, CardMedia, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
@@ -54,7 +54,7 @@ const Header = () => {
                   color: "white",
                   borderRadius: "10px",
                   width: "170px",
-                  backgroundColor: "#29292A",
+                  backgroundColor: "rgba(20, 32, 75, 0.6784313725)",
                   height: "30px"
                }}
                placeholder='Explore'
@@ -111,18 +111,18 @@ const Header = () => {
                <CardMedia
                height={22}
                width={22}
-               sx={{objectFit: "contain", borderRadius: "50%", marginRight: 1, width: 25, height: 25 }}
+               sx={{objectFit: "contain", borderRadius: "50%", marginRight: 1, width: 25, height: 25,  }}
                component="img"
                image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
-               {user.name}
+               <Typography sx={{fontSize: "14px"}}>{user.name.length < 12 ? user.name : `${user.name.substring(0, 12)}...`}</Typography>
             </InputLabel>
             <Select
             className={styles.selected}
             sx={{
                borderRadius: "16px",
                color: "aliceblue",
-               backgroundColor: "#29292A",
+               backgroundColor: "rgba(20, 32, 75, 0.6784313725)",
             }}
             >
             <MenuItem onClick={() => {
