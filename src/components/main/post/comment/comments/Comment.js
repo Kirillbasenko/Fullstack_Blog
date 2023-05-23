@@ -151,7 +151,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
             marginTop: "20px",
             //marginBottom: "20px",
             flex: "1 1 auto",
-            maxWidth: "90%",
+            //maxWidth: "90%",
             marginLeft: "35px"
             }}>
             <CardMedia
