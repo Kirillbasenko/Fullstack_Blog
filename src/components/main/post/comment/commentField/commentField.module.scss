@@ -17,17 +17,6 @@
    background-color: rgba(207, 208, 209, 1);
 }
 
-@media(max-width: 800px){
-   .textField{
-      border-radius: 20px;
-      //width: 200px;
-      position: relative;
-      z-index: 1;
-      //font-size: 12px;
-      background-color: rgba(207, 208, 209, 1);
-   }
-}
-
 .textFieldContent{
    position: relative;
    z-index: 2;

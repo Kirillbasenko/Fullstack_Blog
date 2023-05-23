@@ -77,8 +77,8 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
          <Box 
             sx={{
                display: "flex",
-               marginTop: "15px"
-               }} className={styles.content}>
+               marginTop: "15px",
+               }}>
             <CardMedia
                sx={{
                   objectFit: "contain", 
@@ -92,24 +92,29 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                className={styles.userPhoto}
                image={userPhoto ? `http://localhost:5000${userPhoto}` : "/avatarUser.jpg"}
                alt="green iguana"/>
-            <Box>
+            <Box sx={{
+                        width: "100%"
+                     }}>
                   <Box 
                      component="div" 
-                     className={styles.textFieldContent}
+                     //className={styles.textFieldContent}
                      sx={{
                         position: "relative",
-                        zIndex: 2
+                        zIndex: 2,
+                        width: "100%"
                      }}>
                      <OutlinedInput
                         inputRef={inputRef}
-                        className={styles.textField}
+                        //className={styles.textField}
                         id="outlined-adornment-password"
                         type='text'
                         size='small'
                         multiline
                         maxRows={4}
                         sx={{
-                           width: !commentParent ? 583 : 513,
+                           //width: !commentParent ? 583 : 513,
+                           width: "100%",
+                           boxSizing: "border-box",
                            borderRadius: "20px",
                            position: "relative",
                            zIndex: 1,
