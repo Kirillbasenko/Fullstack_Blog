@@ -55,10 +55,10 @@ const Tags = ({fetchPostsStart}) => {
             backgroundColor: "#14204bad"
             }}>
          <Typography 
-            className={styles.title}
+            //className={styles.title}
             sx={{
                fontSize: "16px",
-               marginBottom: "20px"
+               marginBottom: "10px"
             }}>
             Trend for you
          </Typography>
