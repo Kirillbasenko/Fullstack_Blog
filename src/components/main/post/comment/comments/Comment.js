@@ -409,8 +409,10 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         }}>
                         <FavoriteIcon 
                            //color="error"
-                           //color={checkUserLike.length !== 0 ? "none" : "error"}
-                           //sx={{color: checkUserLike.length === 0 ? "#ECEAEA" : "red"}} 
+                           sx={{
+                              width: "17px",
+                              height: "17px"
+                           }} 
                            className={styles.icon}/>
                      </IconButton>
                      {like !== 0 ? 
@@ -446,7 +448,12 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                            height: "18px",
                            minWidth: "23px"
                         }}>
-                        <ChatBubbleIcon className={styles.icon}/>
+                        <ChatBubbleIcon
+                           sx={{
+                                 width: "17px",
+                                 height: "17px"
+                              }} 
+                           className={styles.icon}/>
                      </IconButton>
                      {commentsLength !== 0 ? <Typography sx={{padding: "8px"}} className={styles.currentComment}>{commentsLength}</Typography> : null}
                   </Box> : null}
