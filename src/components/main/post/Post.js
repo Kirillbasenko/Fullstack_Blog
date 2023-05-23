@@ -315,8 +315,8 @@ const Post = ({post, deletePost}) => {
                startIcon={
                   <FavoriteIcon
                   sx={{
-                     width: 22,
-                     height: 22,
+                     width: 20,
+                     height: 20,
                      color: checkUserLike.length === 0 ? "#ECEAEA" : "red",
                   }}
                   />
@@ -354,8 +354,8 @@ const Post = ({post, deletePost}) => {
                startIcon={
                   <ChatBubbleIcon
                   sx={{
-                     width: 22,
-                     height: 22,
+                     width: 20,
+                     height: 20,
                      color: checkUserComment.length === 0 ? "#ECEAEA" : "#4E6DE0",
                   }}
                   />
