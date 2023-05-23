@@ -282,7 +282,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         variant="standard"
                         multiline
                         sx={{
-                           minWidth: "125%"
+                           minWidth: "170%"
                         }}
                         onChange={(e) => setText(e.target.value)} 
                         value={text} 
@@ -307,19 +307,19 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                      alt="green iguana"/> : null}
                   {image.length !== 0 && edit ?
                   <Box 
-                     className={styles.imageContainer}
+                     //className={styles.imageContainer}
                      sx={{
                         display: "flex",
                         position: "relative",
-                        justifyContent: "center",
+                        //justifyContent: "center",
                         marginTop: "10px",
                         zIndex: 1,
                         borderRadius: "0px 0px 20px 20px"
                      }}>
                      <CardMedia
-                        className={styles.imageEdit}
+                        //className={styles.imageEdit}
                         sx={{
-                           maxWidth: 180, 
+                           width: 180, 
                            height: 180,
                            objectFit: "fill",
                            borderRadius: "5px",
@@ -340,8 +340,10 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         sx={{
                            position: "absolute",
                            top: "35px",
-                           right: "95px",
+                           left: "135px",
                            zIndex: 3,
+                           width: "35px",
+                           height: "35px",
                            backgroundColor: "grey"
                         }}>
                         <CloseIcon />
