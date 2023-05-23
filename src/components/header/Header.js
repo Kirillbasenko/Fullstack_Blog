@@ -29,13 +29,34 @@ const Header = () => {
    }
 
    return(
-      <Box component="header" className={styles.parent}>
+      <Box 
+         component="header" 
+         className={styles.parent}
+         sx={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "15px",
+            justifyContent: "space-between"
+         }}>
             <Link href="/">
-               <TwitterIcon className={styles.logo}/>
+               <TwitterIcon 
+                  className={styles.logo}
+                  sx={{
+                     width: "30px",
+                     height: "30px",
+                     marginRight: "12px"
+                  }}/>
             </Link>
             <FormControl fullWidth>
                <OutlinedInput
-               className={styles.input}
+               //className={styles.input}
+               sx={{
+                  color: "white",
+                  borderRadius: "10px",
+                  width: "150px",
+                  backgroundColor: "#29292A",
+                  height: "30px"
+               }}
                placeholder='Explore'
                id="outlined-adornment-amount"
                startAdornment={
@@ -46,18 +67,47 @@ const Header = () => {
                   </InputAdornment>}
                />
             </FormControl>
-            <Button variant="outlined" className={styles.homeButton} sx={{paddingX: 4}} startIcon={<HomeIcon sx={{width: 25, height: 25}} color='info' />}>
+            <Button 
+               variant="outlined" 
+               className={styles.homeButton} 
+               sx={{paddingX: 4}} startIcon={<HomeIcon sx={{width: 25, height: 25}} color='info' />}>
                Home
                </Button>
-            <Badge className={styles.icon} badgeContent={1} color="info">
+            <Badge 
+               className={styles.icon} 
+               sx={{
+                  marginLeft: "25px",
+                  width: "25px",
+                  height: "25px",
+                  cursor: "pointer"
+               }}
+               badgeContent={1} 
+               color="info">
                <EmailIcon/>
             </Badge>
-            <Badge className={styles.icon} badgeContent={1} color="info">
+            <Badge 
+               className={styles.icon} 
+               sx={{
+                  marginLeft: "25px",
+                  width: "25px",
+                  height: "25px",
+                  cursor: "pointer"
+               }}
+               badgeContent={1} 
+               color="info">
                <PeopleIcon/>
             </Badge>
          
          <FormControl fullWidth sx={{marginLeft: 4, width: 300}} size="small">
-            <InputLabel shrink={false} className={styles.selectedInput}>
+            <InputLabel 
+               shrink={false} 
+               className={styles.selectedInput}
+               sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "12px",
+                  color: "aliceblue"
+               }}>
                <CardMedia
                height={22}
                width={22}
@@ -69,7 +119,11 @@ const Header = () => {
             </InputLabel>
             <Select
             className={styles.selected}
-            sx={{borderRadius: "50%" }}
+            sx={{
+               borderRadius: "50%",
+               color: "aliceblue",
+               backgroundColor: "#29292A",
+            }}
             >
             <MenuItem onClick={() => {
                if(router.query.id !== user._id){

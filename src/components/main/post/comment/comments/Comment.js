@@ -55,8 +55,6 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
 
    const file = useRef(null)
 
-   
-
    const {user} = useSelector(state => state.user)
 
    const checkUserLike = userLike.filter(item => item._id === user._id)
@@ -142,6 +140,8 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
       setCommentsLength(commentsLength => commentsLength + 1)
       setCurrent(2)
    }
+
+   console.log(text, image);
 
    return(
       <Box 
@@ -376,6 +376,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                            size='small' 
                            className={styles.buttonEdit} 
                            color='success' 
+                           disabled={text.length === 0 && image.length === 0}
                            variant="outlined"
                            sx={{
                               marginRight: "10px",

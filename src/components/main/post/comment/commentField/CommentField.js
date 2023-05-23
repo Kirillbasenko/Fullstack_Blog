@@ -92,9 +92,10 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                className={styles.userPhoto}
                image={userPhoto ? `http://localhost:5000${userPhoto}` : "/avatarUser.jpg"}
                alt="green iguana"/>
-            <Box sx={{
-                        width: "100%"
-                     }}>
+            <Box 
+               sx={{
+                  width: "100%"
+               }}>
                   <Box 
                      component="div" 
                      //className={styles.textFieldContent}
