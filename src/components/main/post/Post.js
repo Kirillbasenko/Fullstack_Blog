@@ -375,9 +375,7 @@ const Post = ({post, deletePost}) => {
             {openComment ? (
             <Box 
                sx={{
-                  flex: "1 1 auto",
-                  marginLeft: "10px",
-                  flexDirection: "column"
+                  marginLeft: "-10px",
                }}
                className={styles.comment}>
                <CommentField
