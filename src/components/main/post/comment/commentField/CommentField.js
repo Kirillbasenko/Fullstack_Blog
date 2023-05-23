@@ -109,7 +109,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                         multiline
                         maxRows={4}
                         sx={{
-                           width: !commentParent ? 510 : 440,
+                           width: !commentParent ? 550 : 490,
                            borderRadius: "20px",
                            position: "relative",
                            zIndex: 1,
