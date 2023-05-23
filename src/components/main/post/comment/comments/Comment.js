@@ -396,7 +396,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         display: "flex",
                         alignItems: "center",
                         maxHeight: "20px",
-                        marginTop: "5px"
+                        marginTop: "8px"
                      }}>
                      <IconButton 
                         className={styles.button} 
@@ -425,7 +425,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                            justifyContent: "center",
                            minWidth: "20px",
                         }}>
-                        <Typography className={styles.current}>{like}</Typography>
+                        <Typography sx={{color: "white"}} className={styles.current}>{like}</Typography>
                      </Button> : null}
                      
                   </Box>
@@ -436,11 +436,12 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         display: "flex",
                         alignItems: "center",
                         maxHeight: "20px",
-                        marginTop: "5px"
+                        marginTop: "8px"
                      }}>
                      <IconButton 
                         className={styles.button} 
                         onClick={() => setOpenComment(!openComment)}
+                        color="inherit"
                         sx={{
                            height: "18px",
                            minWidth: "23px"
