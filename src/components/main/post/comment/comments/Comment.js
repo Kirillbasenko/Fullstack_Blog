@@ -410,8 +410,8 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         <FavoriteIcon 
                            //color="error"
                            sx={{
-                              width: "17px",
-                              height: "17px"
+                              width: "20px",
+                              height: "20px"
                            }} 
                            className={styles.icon}/>
                      </IconButton>
@@ -450,8 +450,8 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         }}>
                         <ChatBubbleIcon
                            sx={{
-                                 width: "17px",
-                                 height: "17px"
+                                 width: "20px",
+                                 height: "20px"
                               }} 
                            className={styles.icon}/>
                      </IconButton>
