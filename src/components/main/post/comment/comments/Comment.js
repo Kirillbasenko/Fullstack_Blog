@@ -334,7 +334,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                      <IconButton 
                         className={styles.removeImageButton} 
                         onClick={() => setImage("")} 
-                        color="primary" 
+                        color="error" 
                         aria-label="upload picture" 
                         component="label"
                         sx={{
@@ -344,7 +344,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                            zIndex: 3,
                            width: "35px",
                            height: "35px",
-                           backgroundColor: "grey"
+                           //backgroundColor: "grey"
                         }}>
                         <CloseIcon />
                      </IconButton>
