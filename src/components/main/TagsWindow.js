@@ -57,7 +57,7 @@ const Tags = ({fetchPostsStart}) => {
          <Typography 
             className={styles.title}
             sx={{
-               fontSize: "14px",
+               fontSize: "16px",
                marginBottom: "20px"
             }}>
             Trend for you
@@ -77,7 +77,7 @@ const Tags = ({fetchPostsStart}) => {
                <Typography 
                   className={styles.titleTweet}
                   sx={{
-                     fontSize: "12px"
+                     fontSize: "14px"
                   }}>
                      #{item.tag}
                </Typography>

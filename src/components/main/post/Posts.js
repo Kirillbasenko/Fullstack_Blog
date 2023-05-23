@@ -50,6 +50,7 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
       })
    }, [fetching])
 
+
    useEffect(() => {
       setArr(arrStart)
       setCurrent(currentStart)
@@ -64,9 +65,9 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
       fetchPosts().then(data => {
          setCheckAllPosts(data.posts.length)
       })
-      if(arr.length < 5 ){
+      /*if(arr.length < 5 ){
          setFetching(true)
-      }
+      }*/
    }, [arr])
 
    useEffect(() => {
