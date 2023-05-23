@@ -53,7 +53,7 @@ const Header = () => {
                sx={{
                   color: "white",
                   borderRadius: "10px",
-                  width: "150px",
+                  width: "170px",
                   backgroundColor: "#29292A",
                   height: "30px"
                }}
@@ -120,7 +120,7 @@ const Header = () => {
             <Select
             className={styles.selected}
             sx={{
-               borderRadius: "50%",
+               borderRadius: "16px",
                color: "aliceblue",
                backgroundColor: "#29292A",
             }}
