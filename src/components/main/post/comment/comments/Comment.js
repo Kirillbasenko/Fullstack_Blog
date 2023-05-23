@@ -340,7 +340,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         sx={{
                            position: "absolute",
                            top: "35px",
-                           left: "135px",
+                           left: "140px",
                            zIndex: 3,
                            width: "35px",
                            height: "35px",
