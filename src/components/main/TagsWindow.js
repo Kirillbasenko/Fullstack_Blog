@@ -46,19 +46,62 @@ const Tags = ({fetchPostsStart}) => {
    }
 
    return(
-      <Card className={styles.parent}>
-         <Typography className={styles.title}>
+      <Card 
+         className={styles.parent}
+         sx={{
+            padding: "13px",
+            borderRadius: "15px",
+            color: "aliceblue",
+            backgroundColor: "#14204bad"
+            }}>
+         <Typography 
+            className={styles.title}
+            sx={{
+               fontSize: "14px",
+               marginBottom: "20px"
+            }}>
             Trend for you
          </Typography>
          {tags.items.length !== 0 && tags.items.slice(0, 10).map((item) => 
             <Button onClick={() => changeActiveTag(item.tag)} 
                key={item.tag} 
-               className={styles.content}>
-               <Typography className={styles.titleTweet}>#{item.tag}</Typography>
-               <Typography className={styles.currentTweet}>{item.count} Tweets</Typography>
+               className={styles.content}
+               sx={{
+                  cursor: "pointer",
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                  alignItems: 'flex-start',
+                  textTransform: "capitalize"
+               }}>
+               <Typography 
+                  className={styles.titleTweet}
+                  sx={{
+                     fontSize: "12px"
+                  }}>
+                     #{item.tag}
+               </Typography>
+               <Typography 
+                  className={styles.currentTweet}
+                  sx={{
+                     fontSize: "10px",
+                     marginBottom: "5px",
+                     color: "rgba($color: #ffffff, $alpha: 0.3)"
+                  }}>
+                     {item.count} Tweets
+               </Typography>
             </Button>
          )}
-         <Button onClick={() => fetchPostsStart()} className={styles.showButton} variant="text">Show more</Button>
+         <Button 
+            onClick={() => fetchPostsStart()} 
+            className={styles.showButton} 
+            variant="text"
+            sx={{
+               textTransform: "capitalize",
+               fontSize: '12px'
+            }}>
+               Show more
+         </Button>
       </Card>
    )
 }

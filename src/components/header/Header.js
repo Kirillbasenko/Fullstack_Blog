@@ -115,7 +115,7 @@ const Header = () => {
                component="img"
                image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
-               <Typography sx={{fontSize: "14px"}}>{user.name.length < 12 ? user.name : `${user.name.substring(0, 12)}...`}</Typography>
+               <Typography sx={{fontSize: "14px"}}>{user.name && user.name.length > 15 ? `${user.name.slice(0, 15)}...` : user.name}</Typography>
             </InputLabel>
             <Select
             className={styles.selected}
