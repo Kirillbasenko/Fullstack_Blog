@@ -25,15 +25,57 @@ const CreatePost = ({user}) => {
    }
 
    return(
-      <Card className={styles.parent}>
+      <Card 
+         className={styles.parent}
+         sx={{
+            display: "flex",
+            borderRadius: '15px',
+            color: "aliceblue",
+            backgroundColor: "#14204bad",
+            padding: "13px",
+            marginBottom: "10px"
+         }}>
          <CardMedia
             sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
             component="img"
             image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
             alt="green iguana"/>
-         <Box className={styles.content}>
-            <Button onClick={() => setOpen(true)} className={styles.modalButton} variant="outlined">What's happening?</Button>
-            <Button component="label" className={styles.icon} variant="outlined" sx={{paddingX: 3}} startIcon={<InsertPhotoIcon sx={{width: 22, height: 22}} color='info' />}>
+         <Box 
+            className={styles.content}
+            sx={{
+               padding: 0,
+               display: "flex",
+               flexDirection: "column",
+               flex: "1 1 auto",
+               marginLeft: "10px"
+            }}>
+            <Button 
+               onClick={() => setOpen(true)} 
+               className={styles.modalButton} 
+               sx={{
+                  backgroundColor: "rgba($color: rgb(175, 170, 170), $alpha: 0.2)",
+                  borderRadius: "10px",
+                  color: "rgb(189, 191, 192)",
+                  textTransform: "none",
+                  border: 0,
+                  marginBottom: "15px",
+                  justifyContent: "left",
+                  height: "40px"
+               }}
+               variant="outlined">What's happening? </Button>
+            <Button 
+               component="label" 
+               className={styles.icon} 
+               variant="outlined" 
+               sx={{
+                  paddingX: 3,
+                  textTransform: "none",
+                  cursor: "pointer",
+                  width: "100px",
+                  borderRadius: "15px",
+                  transition: ".3s",
+                  fontSize: "12px"
+                  }} startIcon={<InsertPhotoIcon sx={{width: 22, height: 22}} color='info' />}>
                Photo
                <input onChange={(e) => {
                      douwload(e)
