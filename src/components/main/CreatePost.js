@@ -53,7 +53,7 @@ const CreatePost = ({user}) => {
                onClick={() => setOpen(true)} 
                className={styles.modalButton} 
                sx={{
-                  backgroundColor: "#5B5B5D",
+                  backgroundColor: "rgba(76, 76, 84 , 0.5)",
                   borderRadius: "10px",
                   color: "rgb(189, 191, 192)",
                   textTransform: "none",
