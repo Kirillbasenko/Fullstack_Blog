@@ -9,46 +9,153 @@ import styles from "../../styles/main/recommendations.module.scss"
 
 const Recommendations = () => {
    return(
-      <Card className={styles.parent}>
-         <Typography className={styles.title}>
+      <Card 
+         className={styles.parent}
+         sx={{
+            padding: "13px",
+            borderRadius: "15px",
+            color: "aliceblue",
+            backgroundColor: "#14204bad"
+         }}>
+         <Typography 
+            className={styles.title}
+            sx={{
+               fontWeight: 500,
+               fontSize: "15px",
+               marginBottom: "20px"
+            }}>
             Your recommended accounts
          </Typography>
-         <CardContent className={styles.content}>
-            <Box className={styles.box}>
+         <CardContent 
+            className={styles.content}
+            sx={{
+               display: "flex",
+               flexDirection: "column",
+               padding: 0
+            }}>
+            <Box 
+               className={styles.box}
+               sx={{
+                  display: "flex",
+                  marginBottom: "15px",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: 0,
+                  cursor: "pointer"
+               }}>
+               <CardMedia
+                  className={styles.image}
+                  sx={{
+                     objectFit: "contain",
+                     borderRadius: "50%",
+                     width: "42px",
+                     height: "42px",
+                     display: "inline"
+                  }}
+                  component="img"
+                  image="https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
+                  alt="green iguana"/>
+               <Typography 
+                  className={styles.name} 
+                  sx={{
+                     fontSize: "14px"
+                  }}
+                  variant="body1">
+                  Name
+               </Typography>
+               <Button 
+                  className={styles.followButton} 
+                  sx={{
+                     backgroundColor: "aliceblue",
+                     fontSize: "11px",
+                     color: "rgb(5, 5, 5)",
+                     textTransform: "capitalize",
+                     borderRadius: "15px",
+                  }}
+                  variant="outlined">
+                  Follow
+               </Button>
+            </Box>
+            <Box 
+               className={styles.box}
+               sx={{
+                  display: "flex",
+                  marginBottom: "15px",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: 0,
+                  cursor: "pointer"
+               }}>
                <CardMedia
                className={styles.image}
                component="img"
                image="https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
                alt="green iguana"/>
-               <Typography className={styles.name} variant="body1">
+               <Typography 
+                  className={styles.name} 
+                  variant="body1"
+                  sx={{
+                     fontSize: "14px"
+                  }}>
                   Name
                </Typography>
-               <Button className={styles.followButton} variant="outlined">Follow</Button>
+               <Button 
+                  className={styles.followButton} 
+                  variant="outlined"
+                  sx={{
+                     backgroundColor: "aliceblue",
+                     fontSize: "11px",
+                     color: "rgb(5, 5, 5)",
+                     textTransform: "capitalize",
+                     borderRadius: "15px",
+                  }}>
+                  Follow
+               </Button>
             </Box>
             <Box className={styles.box}>
                <CardMedia
-               className={styles.image}
-               component="img"
-               image="https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
-               alt="green iguana"/>
-               <Typography className={styles.name} variant="body1">
+                  className={styles.image}
+                  sx={{
+                     objectFit: "contain",
+                     borderRadius: "50%",
+                     width: "42px",
+                     height: "42px",
+                     display: "inline"
+                  }}
+                  component="img"
+                  image="https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
+                  alt="green iguana"/>
+               <Typography 
+                  className={styles.name} 
+                  sx={{
+                     fontSize: "14px"
+                  }}
+                  variant="body1">
                   Name
                </Typography>
-               <Button className={styles.followButton} variant="outlined">Follow</Button>
-            </Box>
-            <Box className={styles.box}>
-               <CardMedia
-               className={styles.image}
-               component="img"
-               image="https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
-               alt="green iguana"/>
-               <Typography className={styles.name} variant="body1">
-                  Name
-               </Typography>
-               <Button className={styles.followButton} variant="outlined">Follow</Button>
+               <Button 
+                  className={styles.followButton} 
+                  sx={{
+                     backgroundColor: "aliceblue",
+                     fontSize: "11px",
+                     color: "rgb(5, 5, 5)",
+                     textTransform: "capitalize",
+                     borderRadius: "15px",
+                  }}
+                  variant="outlined">
+                     Follow
+               </Button>
             </Box>
          </CardContent>
-         <Button className={styles.showButton} variant="text">Show more</Button>
+         <Button 
+            className={styles.showButton} 
+            variant="text"
+            sx={{
+               textTransform: "capitalize",
+               fontSize: "12px"
+            }}>
+            Show more
+         </Button>
       </Card>
    )
 }
