@@ -88,6 +88,13 @@ const Recommendations = () => {
                }}>
                <CardMedia
                className={styles.image}
+               sx={{
+                  objectFit: "contain",
+                  borderRadius: "50%",
+                  width: "42px",
+                  height: "42px",
+                  display: "inline"
+               }}
                component="img"
                image="https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
                alt="green iguana"/>
@@ -152,7 +159,7 @@ const Recommendations = () => {
             variant="text"
             sx={{
                textTransform: "capitalize",
-               fontSize: "12px"
+               fontSize: "14px"
             }}>
             Show more
          </Button>
