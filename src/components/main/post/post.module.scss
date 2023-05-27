@@ -1,0 +1,100 @@
+.parent{
+   display: flex;
+   border-radius: 15px;
+   color: aliceblue;
+   background: #14204bad;
+   padding: 13px;
+   margin-bottom: 15px;
+}
+
+.content{
+   flex: 1 1 auto;
+   margin-left: 10px;
+   flex-direction: column;
+}
+
+.flex{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.name{
+   &:hover{
+      text-decoration: underline;
+   }
+}
+
+.date{
+   font-size: 10px;
+   color: rgba($color: #ffffff, $alpha: 0.3);
+   margin-bottom: 5px;
+}
+
+.comments{
+   font-size: 12px;
+   color: rgba($color: #ffffff, $alpha: 0.4);
+   text-transform: capitalize;
+}
+
+.flexLike{
+   display: flex;
+   font-size: 10px;
+   align-items: center;
+   color: rgba($color: #ffffff, $alpha: 0.4);
+}
+
+.text{
+   margin-bottom: 10px;
+   word-wrap: break-word;
+   max-width: 400px;
+}
+
+.button{
+   //background-color: rgba($color: rgb(175, 170, 170), $alpha: 0.2);
+   border: 0;
+   margin-right: 5px;
+   border-radius: 10px;
+   text-transform: none;
+   font-size: 12px;
+   color: rgb(236, 234, 234);
+   margin-top: 10px;
+   min-width: 135px;
+   height: 30px;
+}
+
+.likeIcon{
+   color: #ffffff;
+   background-color: red;
+   border-radius: 50%;
+   text-align: center;
+   width: 20px;
+   height: 20px;
+   padding: 2px 0px;
+   align-items: center;
+   margin-right: 5px;
+}
+
+.image{
+   object-fit: fill;
+   display: "inline";
+   //margin-bottom: 15px;
+   border-radius: 7px;
+   max-height: 400px;
+}
+
+.comment{
+   margin-left: -50px;
+}
+
+.buttonAdd{
+   display: flex;
+   text-transform: capitalize;
+   margin: 0 auto;
+}
+
+.spinner{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}

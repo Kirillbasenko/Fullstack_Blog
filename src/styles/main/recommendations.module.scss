@@ -1,0 +1,65 @@
+.parent{
+   padding: 13px;
+   border-radius: 15px;
+   color: aliceblue;
+   background: #14204bad;
+}
+
+.title{
+   font-weight: 500;
+   font-size: 15px;
+   margin-bottom: 20px;
+}
+
+.content{
+   display: flex;
+   flex-direction: column;
+   padding: 0;
+}
+
+.box{
+   display: flex;
+   margin-bottom: 15px;
+   justify-content: space-between;
+   align-items: center;
+   padding: 3px;
+   cursor: pointer;
+   
+   &:hover{
+      .image{
+         transition: .4s;
+         box-shadow: 0 0 15px #4c7bda;
+         border-radius: 20px;
+      }
+      box-shadow: 0 0 1px #4c7bda;
+      border-radius: 20px;
+   }
+}
+
+.image{
+   object-fit: contain;
+   border-radius: 50%;
+   width: 42px;
+   height: 42px; 
+   display: "inline"
+}
+
+.name{
+   font-size: 14px;
+}
+
+.showButton{
+   text-transform: capitalize;
+   font-size: 12px;
+}
+
+.followButton{
+   background: aliceblue;
+   font-size: 11px;
+   color: rgb(5, 5, 5);
+   text-transform: capitalize;
+   border-radius: 15px;
+   &:hover{
+      color: aliceblue;
+   }
+}
