@@ -42,27 +42,79 @@ const Profile = () => {
    }, [])
 
    return(
-      <Box component="div" className={styles.conteiner}>
-         <Box className={styles.contentCenter}>
+      <Box 
+         component="div" 
+         //className={styles.conteiner}
+         sx={{
+            display: "flex",
+            flexDirection: "column"
+         }}>
+         <Box 
+            //className={styles.contentCenter}
+            sx={{
+               textAlign: "center",
+               marginBottom: "40px"
+            }}>
             <CardMedia
                onClick={() => setOpenBackgroundModal(true)}
-               className={styles.backGroung}
+               //className={styles.backGroung}
+               sx={{
+                  height: "150px",
+                  borderRadius: "10px 10px 0px 0px",
+                  cursor: "pointer",
+                  zIndex: -1
+               }}
                component="img"
                image={user.backgroundImage ? `http://localhost:5000${user.backgroundImage}` : "/backGround.jpg"}
                alt="green iguana"/>
             <CardMedia
                onClick={() => setOpenPhotoModal(true)}
                component="img"
-               className={styles.userImage}
+               //className={styles.userImage}
+               sx={{
+                  objectFit: "contain",
+                  borderRadius: "50%",
+                  display: "inline",
+                  width: "130px",
+                  height: "130px",
+                  border: "2px solid rgb(180, 178, 178)",
+                  cursor: "pointer",
+                  marginTop: "-30px"
+               }}
                image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
-            <Typography className={styles.userName}>{user.name}</Typography>
-            <Button onClick={() => setOpenInfoModal(true)} variant="outlined" color='info' className={styles.followButton} endIcon={<EditIcon sx={{width: 20, height: 20}}/>}>
+            <Typography 
+               //className={styles.userName}
+               sx={{
+                  color: "aliceblue",
+                  margin: "5px 0px"
+               }}>
+               {user.name}
+            </Typography>
+            <Button 
+               onClick={() => setOpenInfoModal(true)} 
+               variant="outlined" 
+               color='info' 
+               //className={styles.followButton} 
+               sx={{
+                  padding: "7px",
+                  textTransform: "capitalize",
+                  borderRadius: "10px",
+                  marginTop: "10px"
+               }}
+               endIcon={<EditIcon sx={{width: 20, height: 20}}/>}>
                Edit
             </Button>
          </Box>
          <Grid container spacing={3}>
-            <Grid className={styles.content} item xs={9}>
+            <Grid 
+               //className={styles.content} 
+               sx={{
+                  display: "block",
+                  flexDirection: "column"
+               }}
+               item 
+               xs={9}>
                <AboutMe title={"Experience"} description={user.experience}/>
                <AboutMe title={"About me"} description={user.aboutMe}/>
                <Analytics viewsCount={user.viewsCount}/>

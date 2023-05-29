@@ -59,7 +59,15 @@ const AuthForm = ({position}) => {
    })
 
    return(
-      <Box sx={{position: "absolute", width: "50%", top: 0, right: 0,transition: "transform 1s", transform: position ? "translateX(-100%)" : "translateX(0)"}}>
+      <Box 
+         sx={{
+            position: "absolute", 
+            width: "50%", 
+            top: 0, 
+            right: 0, 
+            transition: "transform 1s", 
+            transform: position ? "translateX(-100%)" : "translateX(0)"
+            }}>
          <form onSubmit={formik.handleSubmit}>
             <CardMedia
                //className={styles.background}
@@ -67,7 +75,8 @@ const AuthForm = ({position}) => {
                   width: "100%",
                   position: "absolute",
                   objectFit: "contain",
-                  left: 0
+                  left: 0,
+                  top: "-20px"
                }}
                component="img"
                image="/logo-no-background.jpg"
@@ -78,18 +87,44 @@ const AuthForm = ({position}) => {
                   display: "flex",
                   flexDirection: "column",
                   paddingTop: "65%",
-                  alignItems: "center"
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  //maxHeight: "50px"
                }}>
-               <Typography 
+               {/*<Typography 
                   className={styles.title} 
                   sx={{
                      color: "aliceblue",
                      marginBottom: "30px"
                   }}
                   variant='h4'>
-                  {position ? "Registerrr" :  "Login"}
-               </Typography>
-               {position ? 
+                  {position ? "Register" :  "Login"}
+               </Typography>*/}
+               <Box
+                  sx={{
+                     display: "flex",
+                     flexDirection: "column",
+                     alignItems: "center",
+                     width: "100%",
+                     minHeight: "230px"
+                  }}>
+                  {position ? 
+                     <TextField 
+                        className={styles.input} 
+                        sx={{
+                           backgroundColor: "rgba($color: #42569ead, $alpha: 0.8)",
+                           borderRadius: "10px",
+                           width: "70%",
+                           marginBottom: "20px"
+                        }}
+                        error={formik.errors.name && formik.touched.name}
+                        value={formik.values.name} 
+                        name="name"
+                        helperText={formik.errors.name && formik.touched.name ? formik.errors.name : null}
+                        onBlur={formik.handleBlur}
+                        onChange={formik.handleChange} 
+                        label="Name" 
+                        variant="filled" /> : null}
                   <TextField 
                      className={styles.input} 
                      sx={{
@@ -98,47 +133,32 @@ const AuthForm = ({position}) => {
                         width: "70%",
                         marginBottom: "20px"
                      }}
-                     error={formik.errors.name && formik.touched.name}
-                     value={formik.values.name} 
-                     name="name"
-                     helperText={formik.errors.name && formik.touched.name ? formik.errors.name : null}
+                     error={formik.errors.email && formik.touched.email}
+                     value={formik.values.email} 
+                     name="email"
+                     helperText={formik.errors.email && formik.touched.email ? formik.errors.email : null}
                      onBlur={formik.handleBlur}
                      onChange={formik.handleChange} 
-                     label="Name" 
-                     variant="filled" /> : null}
-               <TextField 
-                  className={styles.input} 
-                  sx={{
-                     backgroundColor: "rgba($color: #42569ead, $alpha: 0.8)",
-                     borderRadius: "10px",
-                     width: "70%",
-                     marginBottom: "20px"
-                  }}
-                  error={formik.errors.email && formik.touched.email}
-                  value={formik.values.email} 
-                  name="email"
-                  helperText={formik.errors.email && formik.touched.email ? formik.errors.email : null}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange} 
-                  label="Email" 
-                  variant="filled" />
-               <TextField 
-                  className={styles.input} 
-                  sx={{
-                     backgroundColor: "rgba($color: #42569ead, $alpha: 0.8)",
-                     borderRadius: "10px",
-                     width: "70%",
-                     marginBottom: "20px"
-                  }}
-                  error={formik.errors.password && formik.touched.password}
-                  label="Password" 
-                  onChange={formik.handleChange} 
-                  value={formik.values.password} 
-                  name="password" 
-                  type="password"
-                  helperText={formik.errors.password && formik.touched.password ? formik.errors.password : null}
-                  onBlur={formik.handleBlur}
-                  variant="filled" />
+                     label="Email" 
+                     variant="filled" />
+                  <TextField 
+                     className={styles.input} 
+                     sx={{
+                        backgroundColor: "rgba($color: #42569ead, $alpha: 0.8)",
+                        borderRadius: "10px",
+                        width: "70%",
+                        marginBottom: "20px"
+                     }}
+                     error={formik.errors.password && formik.touched.password}
+                     label="Password" 
+                     onChange={formik.handleChange} 
+                     value={formik.values.password} 
+                     name="password" 
+                     type="password"
+                     helperText={formik.errors.password && formik.touched.password ? formik.errors.password : null}
+                     onBlur={formik.handleBlur}
+                     variant="filled" />
+               </Box>
                <Button 
                   type='submit' 
                   className={styles.button} 

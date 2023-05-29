@@ -5,18 +5,66 @@ import styles from "./info.module.scss"
 
 const Info = ({user}) => {
    return(
-      <Box className={styles.container}>
+      <Box 
+         //className={styles.container}
+         sx={{
+            border: "1px solid rgba(222, 222, 222, 0.3)",
+            padding: "0px 10px 10px 10px",
+            borderRadius: "10px"
+         }}>
          <Box>
-            <Typography className={styles.title}>Location</Typography>
-            <Typography className={styles.description} variant='body2'>{user.location}</Typography>
+            <Typography 
+               //className={styles.title}
+               sx={{
+                  fontSize: "14px",
+                  margin: "10px 0px 5px 0px"
+               }}>
+               Location
+            </Typography>
+            <Typography 
+               //className={styles.description} 
+               variant='body2'
+               sx={{
+                  fontSize: "12px"
+               }}>
+               {user.location}
+            </Typography>
          </Box>
          <Box>
-            <Typography className={styles.title}>Age</Typography>
-            <Typography className={styles.description} variant='body2'>{user.age} years old</Typography>
+            <Typography 
+               //className={styles.title}
+               sx={{
+                  fontSize: "14px",
+                  margin: "10px 0px 5px 0px"
+               }}>
+               Age
+            </Typography>
+            <Typography 
+               //className={styles.description} 
+               variant='body2'
+               sx={{
+                  fontSize: "12px"
+               }}>
+               {user.age} years old
+            </Typography>
          </Box>
          <Box>
-            <Typography className={styles.title}>Email</Typography>
-            <Typography className={styles.description} variant='body2'>{user.email}</Typography>
+            <Typography 
+               //className={styles.title}
+               sx={{
+                  fontSize: "14px",
+                  margin: "10px 0px 5px 0px"
+               }}>
+               Email
+            </Typography>
+            <Typography 
+               //className={styles.description} 
+               variant='body2'
+               sx={{
+                  fontSize: "12px"
+               }}>
+               {user.email}
+            </Typography>
          </Box>
       </Box>
    )

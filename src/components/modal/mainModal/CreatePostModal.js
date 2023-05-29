@@ -114,8 +114,27 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
             setShowEmoji(false)
             clear()
          }}>
-         <Box className={styles.modal}>
-            <Box className={styles.flexBetween}>
+         <Box 
+            //className={styles.modal}
+            sx={{
+               position: "absolute",
+               top: "32%",
+               left: "50%",
+               transform: "translate(-50%, -50%)",
+               minWidth: "510px",
+               backgroundColor: "#143685",
+               border: "2px solid #000",
+               boxShadow: "24px",
+               borderRadius: "10px",
+               padding: "16px"
+            }}>
+            <Box 
+               className={styles.flexBetween}
+               sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center"
+               }}>
                <Typography id="modal-modal-title" variant="h6" component="h2">
                   {!titlePost ? "Create Post" : "Update Post"}
                </Typography>
@@ -126,27 +145,65 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                   <CloseIcon />
                </IconButton>
             </Box>
-            <Box className={styles.userInfo}>
+            <Box 
+               className={styles.userInfo}
+               sx={{
+                  display: "flex",
+                  marginTop: "15px"
+               }}>
                <CardMedia
-                  sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
+                  sx={{
+                     objectFit: "contain", 
+                     borderRadius: "50%", 
+                     width: 40, 
+                     height: 40, 
+                     display: "inline"
+                  }}
                   component="img"
                   image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
                   alt="green iguana"/>
-               <Box className={styles.flex}>
+               <Box 
+                  className={styles.flex}
+                  sx={{
+                     display: "flex",
+                     flexDirection: "column",
+                     margin: "0px 0px 10px 10px",
+                     fontSize: "12px",
+                     fontWeight: 500
+                  }}>
                   <Typography variant='body4'>{user.name}</Typography>
-                  <FormControl className={styles.selectedInput} fullWidth sx={{width: 150}} size="small">
+                  <FormControl 
+                     //className={styles.selectedInput} 
+                     fullWidth 
+                     sx={{width: 150}} 
+                     size="small">
                      <Select
-                     className={styles.selected}
-                     value={type}
-                     onChange={(e) => setType(e.target.value)}>
-                     <MenuItem value={"Public"}>Public</MenuItem>
-                     <MenuItem value={"Privat"}>Privat</MenuItem>
+                        sx={{
+                           color: "rgba(209, 206, 206, 0.7)",
+                           backgroundColor: "rgba(209, 206, 206, 0.7)",
+                           height: "25px",
+                           borderRadius: "10px",
+                           marginTop: "2px",
+                           fontSize: "12px"
+                        }}
+                        className={styles.selected}
+                        value={type}
+                        onChange={(e) => setType(e.target.value)}>
+                        <MenuItem value={"Public"}>Public</MenuItem>
+                        <MenuItem value={"Privat"}>Privat</MenuItem>
                      </Select>
                   </FormControl>
                </Box>
             </Box>
             <form>
-               <FormControl className={styles.textField} sx={{color: "white"}}>
+               <FormControl 
+                  //className={styles.textField} 
+                  sx={{
+                     color: "white",
+                     width: "100%",
+                     //paddingBottom: "-0px",
+                     marginBottom: "20px"
+                     }}>
                   <TextField
                      className={styles.textField}
                      label="What do you want to talk about?"
@@ -154,7 +211,11 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                      multiline
                      inputProps={{color: "rgb(122, 19, 19)"}}
                      maxRows={4}
-                     sx={{color: "rgba(0, 0, 0, 0.87)"}}
+                     sx={{
+                        color: "rgba(0, 0, 0, 0.87)",
+                        width: "100%",
+                        marginBottom: "20px"
+                     }}
                      onChange={(e) => setText(e.target.value)} 
                      value={text} 
                      name="title"
@@ -164,32 +225,80 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                            setShowEmoji(!showEmoji)
                            setСlientY(e.clientY)
                         } }>
-                           <SentimentSatisfiedAltIcon sx={{padding: 0}} className={styles.smile} color='info'/>
+                           <SentimentSatisfiedAltIcon 
+                              sx={{
+                                 padding: 0,
+                                 cursor: "pointer"
+                              }} 
+                              className={styles.smile} 
+                              color='info'/>
                         </IconButton>
                      }}
                   />
-                  {showEmoji ? <Box ref={modalRef} sx={{top: `${clientY}px`}} className={styles.picker}>
-                        <Picker 
-                           data={data} 
-                           previewPosition="none" 
-                           emojiSize={18} 
-                           emojiButtonSize={26}
-                           onEmojiSelect={addEmoji}/>
+                  {showEmoji ? 
+                  <Box 
+                     ref={modalRef} 
+                     sx={{
+                        top: `${clientY}px`,
+                        position: "absolute",
+                        right: "-210px",
+                        zIndex: 2
+                     }} 
+                     className={styles.picker}>
+                     <Picker 
+                        data={data} 
+                        previewPosition="none" 
+                        emojiSize={18} 
+                        emojiButtonSize={26}
+                        onEmojiSelect={addEmoji}/>
                   </Box>
                   : null}
                </FormControl>
                {src && src.length !== 0 ? 
-                  <Box className={styles.imageContainer}>
+                  <Box 
+                     className={styles.imageContainer}
+                     sx={{
+                        position: "relative",
+                        zIndex: 1
+                     }}>
                      <CardMedia
-                     className={styles.image}
-                     component="img"
-                     image={`http://localhost:5000${src}`}
-                     alt="green iguana"/>
-                     <IconButton className={styles.removeImageButton} onClick={() => setSrc("")} color="primary" aria-label="upload picture" component="label">
+                        className={styles.image}
+                        sx={{
+                           position: "relative",
+                           maxWidth: "480px",
+                           objectFit: "fill",
+                           height: "400px",
+                           borderRadius: "5px",
+                           border: "1px solid rgb(141, 140, 140)",
+                           marginBottom: "15px",
+                           zIndex: 1
+                        }}
+                        component="img"
+                        image={`http://localhost:5000${src}`}
+                        alt="green iguana"/>
+                     <IconButton 
+                        className={styles.removeImageButton} 
+                        sx={{
+                           position: "absolute",
+                           top: "10px",
+                           right: "10px",
+                           zIndex: 3,
+                           backgroundColor: "rgba(0, 0, 0, 0.5)"
+                        }}
+                        onClick={() => setSrc("")} 
+                        color="primary" 
+                        aria-label="upload picture" 
+                        component="label">
                         <CloseIcon />
                      </IconButton>
                   </Box> : null}
-               <Box className={styles.flexBetween}>
+               <Box 
+                  className={styles.flexBetween}
+                  sx={{
+                     display: "flex",
+                     justifyContent: "space-between",
+                     alignItems: "center"
+                  }}>
                   <IconButton color="primary" aria-label="upload picture" component="label">
                      <input onChange={douwload} 
                      ref={file} hidden accept="image/*" type="file" />

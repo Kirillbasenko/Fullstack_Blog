@@ -21,9 +21,23 @@ const ImageModal = ({image, open, handleClose}) => {
          aria-labelledby="modal-modal-title"
          aria-describedby="modal-modal-description"
          >
-         <Box className={styles.modal}>
+         <Box 
+            //className={styles.modal}
+            sx={{
+               position: "absolute",
+               top: "32%",
+               left: "50%",
+               transform: "translate(-50%, -50%)",
+               maxWidth: "400px",
+               maxHeight: "400px",
+               //border: "2px solid #000",
+               //boxShadow: "24px",
+            }}>
             <CardMedia
-               className={styles.image}
+               //className={styles.image}
+               sx={{
+                  objectFit: "contain"
+               }}
                component="img"
                image={`http://localhost:5000${image}`}
                alt="green iguana"/>

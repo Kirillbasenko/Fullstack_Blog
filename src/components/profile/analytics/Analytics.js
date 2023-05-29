@@ -8,17 +8,50 @@ import styles from "./analytics.module.scss"
 
 const Analytics = ({viewsCount}) => {
    return(
-      <Box className={styles.container}>
+      <Box 
+         //className={styles.container}
+         sx={{
+            border: "1px solid rgba(222, 222, 222, 0.3)",
+            padding: "20px 10px",
+            textAlign: "center",
+            borderRadius: "10px",
+            margin: "20px 0px"
+         }}>
          <Typography variant='h6'>Analytics</Typography>
-         <Box className={styles.flex}>
-            <Box className={styles.content}>
-               <PeopleIcon className={styles.icon}/>
+         <Box 
+            //className={styles.flex}
+            sx={{
+               display: "flex",
+               justifyContent: "space-around"
+            }}>
+            <Box 
+               //className={styles.content}
+               sx={{
+                  display: "flex",
+                  textAlign: "center",
+                  marginTop: "10px"
+               }}>
+               <PeopleIcon 
+                  //className={styles.icon}
+                  sx={{
+                     marginRight: "8px"
+                  }}/>
                <Typography >
                   {viewsCount} profile view
                </Typography>
             </Box>
-            <Box className={styles.content}>
-               <BarChartIcon className={styles.icon}/>
+            <Box 
+               //className={styles.content}
+               sx={{
+                  display: "flex",
+                  textAlign: "center",
+                  marginTop: "10px"
+               }}>
+               <BarChartIcon 
+                  //className={styles.icon}
+                  sx={{
+                     marginRight: "8px"
+                  }}/>
                <Typography >
                   11 likes posts
                </Typography>

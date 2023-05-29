@@ -10,7 +10,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import CardMedia from '@mui/material/CardMedia';
 
-
 import styles from "./likeModal.module.scss"
 
 const LikeModal = ({likeList, open, handleClose}) => {
@@ -21,19 +20,46 @@ const LikeModal = ({likeList, open, handleClose}) => {
          aria-labelledby="modal-modal-title"
          aria-describedby="modal-modal-description"
          >
-         <Box className={styles.modal}>
+         <Box 
+            //className={styles.modal}
+            sx={{
+               position: "absolute",
+               top: "32%",
+               left: "50%",
+               transform: "translate(-50%, -50%)",
+               minWidth: "510px",
+               maxHeight: "510px",
+               backgroundColor: "#143685",
+               border: "2px solid #000",
+               boxShadow: "24px",
+               borderRadius: "10px",
+               padding: "16px 16px 0px 16px",
+               overflowY: "auto"
+            }}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
                Likes
             </Typography>
             <Box sx={{ width: '100%', }}>
                <List>
                {likeList.length !== 0 && likeList.map(item => 
-                  <Box key={item._id} className={styles.listItem}>
+                  <Box 
+                     key={item._id} 
+                     //className={styles.listItem}
+                     sx={{
+                        marginBottom: "10px"
+                     }}>
                      <ListItem disablePadding>
                         <ListItemButton>
                            <CardMedia
                               component="img"
-                              className={styles.userImage}
+                              //className={styles.userImage}
+                              sx={{
+                                 objectFit: "contain",
+                                 borderRadius: "50%",
+                                 width: "40px",
+                                 height: "40px",
+                                 marginRight: "10px"
+                              }}
                               image={item.avatarImage ? `http://localhost:5000${item.avatarImage}` : "/avatarUser.jpg"}
                               alt="green iguana"/>
                            <Typography>{item.name}</Typography>

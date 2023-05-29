@@ -17,10 +17,10 @@ const AuthPage = () => {
 
    return(
       <Card 
-         className={styles.parent} 
+         //className={styles.parent} 
          sx={{
             position: "relative",
-            marginTop: "8%",
+            marginTop: "2%",
             minWidth: "500px",
             minHeight: "700px",
             backgroundColor: "#14204bad",
