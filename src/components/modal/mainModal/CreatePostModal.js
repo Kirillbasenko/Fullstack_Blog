@@ -118,7 +118,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
             //className={styles.modal}
             sx={{
                position: "absolute",
-               top: "32%",
+               top: "50%",
                left: "50%",
                transform: "translate(-50%, -50%)",
                minWidth: "510px",

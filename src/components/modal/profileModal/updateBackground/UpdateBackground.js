@@ -46,8 +46,28 @@ const UpdateBackground = ({open, handleClose, background, id}) => {
       <Modal
          open={open}
          onClose={handleClose}>
-         <Box className={styles.modal}>
-            <Box className={styles.flex}>
+         <Box 
+         //className={styles.modal}
+            sx={{
+               position: "absolute",
+               top: "50%",
+               left: "50%",
+               transform: "translate(-50%, -50%)",
+               minWidth: "510px",
+               background: "#143685",
+               border: "2px solid #000",
+               boxShadow: "24px",
+               borderRadius: "10px",
+               padding: "16px",
+               display: "flex",
+               flexDirection: "column"
+            }}>
+            <Box 
+               //className={styles.flex}
+               sx={{
+                  display: "flex",
+                  justifyContent: "space-between"
+               }}>
                <Typography id="modal-modal-title" variant="h6" component="h2">
                   Update background
                </Typography>
@@ -56,22 +76,47 @@ const UpdateBackground = ({open, handleClose, background, id}) => {
                </IconButton>
             </Box>
             <CardMedia
-               className={styles.image}
+               //className={styles.image}
+               sx={{
+                  width: "450px",
+                  height: "230px",
+                  margin: "0 auto"
+               }}
                component="img"
                image={src.length !== 0 ? `http://localhost:5000${src}` : "/backGround.jpg"}
                alt="green iguana"/>
-            <Box className={styles.buttonCenter}>
+            <Box 
+               //className={styles.buttonCenter}
+               sx={{
+                  textAlign: "center",
+                  marginTop: "20px"
+               }}>
                <Button component="label"  variant="text" endIcon={src && src.length === 0 ? <CameraAltIcon /> : <FlipCameraIosIcon/>}>
                   {src && src.length !== 0 ? "Сhange" : "Add"}
                   <input onChange={(e) => douwload(e)} 
                   ref={file} hidden accept="image/*" type="file" />
                </Button>
             </Box>
-            <Box className={styles.buttonCenter}>
-               <Button onClick={() => submitUserBackground()} className={styles.buttonSubmit}  color='success' variant="contained" endIcon={<SendIcon />}>
+            <Box 
+               //className={styles.buttonCenter}
+               sx={{
+                  marginRight: "10px",
+                  justifyContent: "center",
+                  display: "flex"
+               }}>
+               <Button 
+                  onClick={() => submitUserBackground()} 
+                  className={styles.buttonSubmit}  
+                  sx={{
+                     marginRight: "10px"
+                  }}
+                  color='success' 
+                  variant="contained" 
+                  endIcon={<SendIcon />}>
                   upload
                </Button>
-               {src && src.length !== 0 ? <Button onClick={() => setSrc("")} color='error' variant="contained" endIcon={<DeleteIcon />}>
+               {src && src.length !== 0 ? 
+               <Button onClick={() => setSrc("")} color='error' variant="contained" endIcon={<DeleteIcon />}>
                   Delete
                </Button> : null}
             </Box>

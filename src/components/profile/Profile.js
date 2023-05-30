@@ -41,6 +41,8 @@ const Profile = () => {
       })
    }, [])
 
+   console.log(user);
+
    return(
       <Box 
          component="div" 

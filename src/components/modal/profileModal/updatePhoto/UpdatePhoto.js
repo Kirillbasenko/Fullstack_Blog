@@ -29,6 +29,9 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
    const [avatar, setAvatar] = useState(avatarImage)
    const file = useRef(null)
 
+   console.log(avatarImage, userImage);
+   console.log(src, avatar);
+
    useEffect(() => {
       setSrc(userImage)
       setAvatar(avatarImage)
@@ -39,14 +42,15 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
          const formData = new FormData()
          const file =  e.target.files[0]
          formData.append("image", file)
-         upload(formData).then(data => setSrc(data.url))
+         upload(formData).then(data => {
+            setSrc(data.url)
+            setAvatar(data.url)
+         } )
          setAvatar('')
       }catch(e){
          console.log(e);
       }
    }
-
-   console.log(avatar);
 
    const deleteSrc = () => {
       setSrc("")
@@ -60,7 +64,7 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
    }
 
    const submitUserPhoto = () => {
-      updatePhoto(id, src.length !== 0 ? src : "/upload/avatarUser.jpg", avatar !== 0 ? avatar : "/upload/avatarUser.jpg")
+      updatePhoto(id, src.length !== 0 ? src : "/upload/avatarUser.jpg", avatar.length !== 0 ? avatar : "/upload/avatarUser.jpg")
       handleClose()
    }
 
@@ -68,8 +72,28 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
       <Modal
          open={open}
          onClose={handleClose}>
-         <Box className={styles.modal}>
-            <Box className={styles.flex}>
+         <Box 
+            //className={styles.modal}
+            sx={{
+               position: "absolute",
+               top: "50%",
+               left: "50%",
+               transform: "translate(-50%, -50%)",
+               minWidth: "510px",
+               background: "#143685",
+               border: "2px solid #000",
+               boxShadow: "24px",
+               borderRadius: "10px",
+               padding: "16px",
+               display: "flex",
+               flexDirection: "column"
+            }}>
+            <Box 
+               className={styles.flex}
+               sx={{
+                  display: "flex",
+                  justifyContent: "space-between"
+               }}>
                <Typography id="modal-modal-title" variant="h6" component="h2">
                   Update photo
                </Typography>
@@ -79,21 +103,39 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
             </Box>
             <CardMedia
                className={styles.image}
+               sx={{
+                  objectFit: "fill",
+                  borderRadius: "50%",
+                  width: "300px",
+                  height: "300px",
+                  margin: "0 auto",
+                  border: "1px solid rgb(180, 178, 178)"
+               }}
                component="img"
                image={avatar.length !== 0 ? `http://localhost:5000${avatar}` : src.length !== 0 ? `http://localhost:5000${src}` : "/avatarUser.jpg"}
                alt="green iguana"/>
-            <Box className={styles.buttonCenter}>
+            <Box 
+               className={styles.buttonCenter}
+               sx={{
+                  textAlign: "center",
+                  marginTop: "20px"
+               }}>
                <Button component="label"  variant="text" endIcon={src.length !== 0 && src !== "/upload/avatarUser.jpg" ?<FlipCameraIosIcon/> : <CameraAltIcon />}>
                   {src !== "/upload/avatarUser.jpg" && src.length !== 0 ? "Сhange" : "Add"}
                   <input onChange={(e) => douwload(e)} 
                   ref={file} hidden accept="image/*" type="file" />
                </Button>
             </Box>
-            <Box className={styles.buttonCenter}>
-               {src && src !== "/upload/avatarUser.jpg" && src.length !== 0 ? <Button onClick={() => setOpenEdit(true)} className={styles.buttonSubmit}  color='secondary' variant="contained" endIcon={<EditIcon />}>
+            <Box 
+               className={styles.buttonCenter}
+               sx={{
+                  textAlign: "center",
+                  marginTop: "20px"
+               }}>
+               {src && src !== "/upload/avatarUser.jpg" && src.length !== 0 ? <Button onClick={() => setOpenEdit(true)} sx={{marginRight: "10px"}} className={styles.buttonSubmit}  color='secondary' variant="contained" endIcon={<EditIcon />}>
                   edit
                </Button> : null}
-               <Button onClick={() => submitUserPhoto()} className={styles.buttonSubmit}  color='success' variant="contained" endIcon={<SendIcon />}>
+               <Button onClick={() => submitUserPhoto()} sx={{marginRight: "10px"}} className={styles.buttonSubmit}  color='success' variant="contained" endIcon={<SendIcon />}>
                   upload
                </Button>
                {src && src !== "/upload/avatarUser.jpg" && src.length !== 0 ? <Button onClick={deleteSrc} color='error' variant="contained" endIcon={<DeleteIcon />}>

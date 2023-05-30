@@ -63,16 +63,34 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
       const file = base64toFile(preview, `${randomNum.toFixed(0)}example.jpg`);
    }
 
-   console.log(`http://localhost:5000${avatar}`);
-
    return(
       <Modal
          open={open}
          onClose={handleClose}
          aria-labelledby="modal-modal-title"
          aria-describedby="modal-modal-description">
-         <Box className={styles.modal}>
-            <Box className={styles.flex}>
+         <Box 
+            //className={styles.modal}
+            sx={{
+               position: "absolute",
+               top: "50%",
+               left: "50%",
+               transform: "translate(-50%, -50%)",
+               minWidth: "510px",
+               background: "#051f5c",
+               border: "2px solid #000",
+               boxShadow: "24px",
+               borderRadius: "10px",
+               padding: "16px",
+               display: "flex",
+               flexDirection: "column"
+            }}>
+            <Box 
+               //className={styles.flex}
+               sx={{
+                  display: "flex",
+                  justifyContent: "space-between"
+               }}>
                <Typography id="modal-modal-title" variant="h6" component="h2">
                   Edit photo
                </Typography>
@@ -80,7 +98,11 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
                   <CloseIcon />
                </IconButton>
             </Box>
-            <Box className={styles.avatar}>
+            <Box 
+               //className={styles.avatar}
+               sx={{
+                  margin: "0 auto"
+               }}>
                {AvatarEdit && <AvatarEdit
                   width={400}
                   height={300}
@@ -89,17 +111,28 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
                   exportSize={200}
                   src={`http://localhost:5000${avatar}`}/>}
             </Box>
-            <Box className={styles.buttonCenter}>
-            </Box>
-            <Box className={styles.buttonCenter}>
-               <Button onClick={() => {
-                  if(preview){
-                     let randomNum = Math.random() * 1000000
-                     const file = base64toFile(preview, `${randomNum.toFixed(0)}example.jpg`);
-                     changeSrc(file)
-                  }
-                  handleClose()
-               }}  className={styles.buttonSubmit}  color='success' variant="contained"  endIcon={<SaveAsIcon />}>
+            <Box 
+               //className={styles.buttonCenter}
+               sx={{
+                  textAlign: "center",
+                  marginTop: "20px"
+               }}>
+               <Button 
+                  onClick={() => {
+                     if(preview){
+                        let randomNum = Math.random() * 1000000
+                        const file = base64toFile(preview, `${randomNum.toFixed(0)}example.jpg`);
+                        changeSrc(file)
+                     }
+                     handleClose()
+                  }}  
+                  //className={styles.buttonSubmit}  
+                  sx={{
+                     marginRight: "10px"
+                  }}
+                  color='success' 
+                  variant="contained"  
+                  endIcon={<SaveAsIcon />}>
                   save
                </Button>
             </Box>
