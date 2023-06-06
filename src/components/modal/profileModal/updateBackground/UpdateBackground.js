@@ -13,6 +13,8 @@ import SendIcon from '@mui/icons-material/Send';
 
 import { useRef, useState, useEffect } from 'react';
 
+import { useSelector } from 'react-redux';
+
 import { updateBackground } from '@/http/userApi';
 import { upload } from '@/http/imageApi';
 
@@ -21,6 +23,8 @@ import styles from "./updateBackground.module.scss"
 const UpdateBackground = ({open, handleClose, background, id}) => {
    const [src, setSrc] = useState("")
    const file = useRef(null)
+
+   const {width} = useSelector(state => state.width)
 
    useEffect(() => {
       setSrc(background)
@@ -53,7 +57,7 @@ const UpdateBackground = ({open, handleClose, background, id}) => {
                top: "50%",
                left: "50%",
                transform: "translate(-50%, -50%)",
-               minWidth: "510px",
+               width: width > 576 ? "510px" : "90%",
                background: "#143685",
                border: "2px solid #000",
                boxShadow: "24px",
@@ -78,7 +82,7 @@ const UpdateBackground = ({open, handleClose, background, id}) => {
             <CardMedia
                //className={styles.image}
                sx={{
-                  width: "450px",
+                  width: width > 576 ? "450px" : "90%",
                   height: "230px",
                   margin: "0 auto"
                }}
@@ -91,7 +95,7 @@ const UpdateBackground = ({open, handleClose, background, id}) => {
                   textAlign: "center",
                   marginTop: "20px"
                }}>
-               <Button component="label"  variant="text" endIcon={src && src.length === 0 ? <CameraAltIcon /> : <FlipCameraIosIcon/>}>
+               <Button component="label" variant="text" endIcon={src && src.length === 0 ? <CameraAltIcon /> : <FlipCameraIosIcon/>}>
                   {src && src.length !== 0 ? "Сhange" : "Add"}
                   <input onChange={(e) => douwload(e)} 
                   ref={file} hidden accept="image/*" type="file" />
@@ -110,13 +114,14 @@ const UpdateBackground = ({open, handleClose, background, id}) => {
                   sx={{
                      marginRight: "10px"
                   }}
+                  size='small'
                   color='success' 
                   variant="contained" 
                   endIcon={<SendIcon />}>
                   upload
                </Button>
                {src && src.length !== 0 ? 
-               <Button onClick={() => setSrc("")} color='error' variant="contained" endIcon={<DeleteIcon />}>
+               <Button onClick={() => setSrc("")} size='small' color='error' variant="contained" endIcon={<DeleteIcon />}>
                   Delete
                </Button> : null}
             </Box>

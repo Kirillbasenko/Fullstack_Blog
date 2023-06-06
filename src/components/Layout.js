@@ -7,7 +7,7 @@ const Layout = ({children}) => {
    const router = useRouter()
 
    return(
-      <Container fixed>
+      <Container>
          {router.asPath !== "/AuthPage" ? <Header/> : null}
          {children}
       </Container>

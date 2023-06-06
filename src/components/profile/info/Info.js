@@ -10,7 +10,8 @@ const Info = ({user}) => {
          sx={{
             border: "1px solid rgba(222, 222, 222, 0.3)",
             padding: "0px 10px 10px 10px",
-            borderRadius: "10px"
+            borderRadius: "10px",
+            //textAlign: "center"
          }}>
          <Box>
             <Typography 

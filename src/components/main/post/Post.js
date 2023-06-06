@@ -134,7 +134,6 @@ const Post = ({post, deletePost}) => {
          setUserComments(data.likesUsers)
          //console.log(data.likesUsers);
       } )
-      console.log(1);
    }, [userLike])
 
    return (
@@ -279,9 +278,10 @@ const Post = ({post, deletePost}) => {
                   sx={{
                      fontSize: "12px",
                      color: "rgba($color: #ffffff, $alpha: 0.4)",
-                     textTransform: "capitalize"
+                     textTransform: "capitalize",
+                     //width: "135px"
                   }}
-                  className={styles.comments}
+                  //className={styles.comments}
                >
                   <Typography 
                      sx={{
@@ -301,7 +301,7 @@ const Post = ({post, deletePost}) => {
                className={styles.button}
                variant="outlined"
                sx={{ 
-                  paddingX: 3,
+                  paddingX: 2,
                   border: 0,
                   marginRight: "5px",
                   borderRadius: "10px",
@@ -309,7 +309,7 @@ const Post = ({post, deletePost}) => {
                   fontSize: "14px",
                   color: "rgb(236, 234, 234)",
                   marginTop: "10px",
-                  minWidth: "135px",
+                  minWidth: "90px",
                   height: "30px"
                   }}
                startIcon={
@@ -343,7 +343,7 @@ const Post = ({post, deletePost}) => {
                   fontSize: "14px",
                   color: "rgb(236, 234, 234)",
                   marginTop: "10px",
-                  minWidth: "135px",
+                  maxWidth: "135px",
                   height: "30px"
                   }}
                onClick={() => {

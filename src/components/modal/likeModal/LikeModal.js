@@ -10,9 +10,14 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import CardMedia from '@mui/material/CardMedia';
 
+import { useSelector } from 'react-redux';
+
 import styles from "./likeModal.module.scss"
 
 const LikeModal = ({likeList, open, handleClose}) => {
+
+   const {width} = useSelector(state => state.width)
+
    return(
       <Modal
          open={open}
@@ -27,7 +32,7 @@ const LikeModal = ({likeList, open, handleClose}) => {
                top: "32%",
                left: "50%",
                transform: "translate(-50%, -50%)",
-               minWidth: "510px",
+               minWidth: width > 576 ? "510px" : "90%",
                maxHeight: "510px",
                backgroundColor: "#143685",
                border: "2px solid #000",

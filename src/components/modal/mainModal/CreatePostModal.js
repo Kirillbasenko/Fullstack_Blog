@@ -14,9 +14,8 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import SendIcon from '@mui/icons-material/Send';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import data from "@emoji-mart/data"
 import Picker from '@emoji-mart/react';
 
@@ -38,6 +37,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
    const [src, setSrc] = useState("")
 
    const {user} = useSelector(state => state.user)
+   const {width} = useSelector(state => state.width)
 
    useEffect(() => {
       setSrc(srcImage)
@@ -121,7 +121,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                top: "50%",
                left: "50%",
                transform: "translate(-50%, -50%)",
-               minWidth: "510px",
+               minWidth: width > 600 ? "510px" : "90%",
                backgroundColor: "#143685",
                border: "2px solid #000",
                boxShadow: "24px",
@@ -262,12 +262,12 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                         zIndex: 1
                      }}>
                      <CardMedia
-                        className={styles.image}
+                        //className={styles.image}
                         sx={{
                            position: "relative",
-                           maxWidth: "480px",
+                           maxWidth: width > 600 ? "480px" : "100%",
                            objectFit: "fill",
-                           height: "400px",
+                           height: width > 600 ? "400px" : "300px",
                            borderRadius: "5px",
                            border: "1px solid rgb(141, 140, 140)",
                            marginBottom: "15px",

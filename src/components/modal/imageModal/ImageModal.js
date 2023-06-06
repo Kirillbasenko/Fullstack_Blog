@@ -10,10 +10,14 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import CardMedia from '@mui/material/CardMedia';
 
+import { useSelector } from 'react-redux';
 
 import styles from "./imageModal.module.scss"
 
 const ImageModal = ({image, open, handleClose}) => {
+
+   const {width} = useSelector(state => state.width)
+
    return(
       <Modal
          open={open}
@@ -25,11 +29,11 @@ const ImageModal = ({image, open, handleClose}) => {
             //className={styles.modal}
             sx={{
                position: "absolute",
-               top: "32%",
+               top: "45%",
                left: "50%",
                transform: "translate(-50%, -50%)",
-               maxWidth: "400px",
-               maxHeight: "400px",
+               width: width > 576 ? "400px" : "70%",
+               height: "400px",
                //border: "2px solid #000",
                //boxShadow: "24px",
             }}>

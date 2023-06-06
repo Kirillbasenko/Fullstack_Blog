@@ -59,6 +59,7 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
 
    useEffect(() => {
       dispatch(setActiveTag(null))
+      
    }, [arr])
 
    useEffect(() => {
@@ -93,6 +94,7 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
             setCurrent(current => current + 1)
          })
       }
+      console.log(1);
    }, [fetching])
 
    useEffect(() => {

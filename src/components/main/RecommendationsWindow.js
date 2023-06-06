@@ -5,9 +5,16 @@ import Typography from '@mui/material/Typography';
 import { Box, CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 
+import { useSelector } from 'react-redux';
+
+import { useState, useEffect } from 'react';
+
 import styles from "../../styles/main/recommendations.module.scss"
 
 const Recommendations = () => {
+   
+   const {width} = useSelector(state => state.width)
+
    return(
       <Card 
          className={styles.parent}
@@ -56,9 +63,9 @@ const Recommendations = () => {
                   image="https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
                   alt="green iguana"/>
                <Typography 
-                  className={styles.name} 
+                  //className={styles.name} 
                   sx={{
-                     fontSize: "14px"
+                     fontSize: "12px"
                   }}
                   variant="body1">
                   Name
@@ -91,18 +98,18 @@ const Recommendations = () => {
                sx={{
                   objectFit: "contain",
                   borderRadius: "50%",
-                  width: "42px",
-                  height: "42px",
+                  width: width > 992 ? "42px" : "37px",
+                  height: width > 992 ? "42px" : "37px",
                   display: "inline"
                }}
                component="img"
                image="https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
                alt="green iguana"/>
                <Typography 
-                  className={styles.name} 
+                  //className={styles.name} 
                   variant="body1"
                   sx={{
-                     fontSize: "14px"
+                     fontSize: "12px"
                   }}>
                   Name
                </Typography>
@@ -133,9 +140,9 @@ const Recommendations = () => {
                   image="https://images.theconversation.com/files/500899/original/file-20221214-461-22jr1l.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
                   alt="green iguana"/>
                <Typography 
-                  className={styles.name} 
+                  //className={styles.name} 
                   sx={{
-                     fontSize: "14px"
+                     fontSize: "12px"
                   }}
                   variant="body1">
                   Name

@@ -14,6 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 
 import { useRef, useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { updateInfo } from '@/http/userApi';
 
@@ -27,6 +28,8 @@ const UpdateInfo = ({open, handleClose, id, userName, userExperience, userAboutM
    const [aboutMe, setAboutMe] = useState(userAboutMe)
    const [location, setLocation] = useState(userLocation)
    const [age, setAge] = useState(userAge)
+
+   const {width} = useSelector(state => state.width)
 
    const submitUserBackground = () => {
       updateInfo(id, name, experience, aboutMe, location, age)
@@ -51,7 +54,7 @@ const UpdateInfo = ({open, handleClose, id, userName, userExperience, userAboutM
                top: "50%",
                left: "50%",
                transform: "translate(-50%, -50%)",
-               minWidth: "510px",
+               minWidth: width > 576 ? "510px" : "90%",
                background: "#143685",
                border: "2px solid #000",
                boxShadow: "24px",

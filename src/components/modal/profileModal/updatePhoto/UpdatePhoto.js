@@ -15,11 +15,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import EditAvatarModal from '../editAvatar/EditAvatarModal';
 
 import { useRef, useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { updatePhoto } from '@/http/userApi';
 import { upload } from '@/http/imageApi';
-
-import { useSelector } from 'react-redux'
 
 import styles from "./updatePhoto.module.scss"
 
@@ -29,8 +28,7 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
    const [avatar, setAvatar] = useState(avatarImage)
    const file = useRef(null)
 
-   console.log(avatarImage, userImage);
-   console.log(src, avatar);
+   const {width} = useSelector(state => state.width)
 
    useEffect(() => {
       setSrc(userImage)
@@ -79,7 +77,7 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
                top: "50%",
                left: "50%",
                transform: "translate(-50%, -50%)",
-               minWidth: "510px",
+               minWidth: width > 576 ? "510px" : "90%",
                background: "#143685",
                border: "2px solid #000",
                boxShadow: "24px",
@@ -130,15 +128,16 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
                className={styles.buttonCenter}
                sx={{
                   textAlign: "center",
-                  marginTop: "20px"
+                  marginTop: "20px",
+                  fontSize: "10px"
                }}>
-               {src && src !== "/upload/avatarUser.jpg" && src.length !== 0 ? <Button onClick={() => setOpenEdit(true)} sx={{marginRight: "10px"}} className={styles.buttonSubmit}  color='secondary' variant="contained" endIcon={<EditIcon />}>
+               {src && src !== "/upload/avatarUser.jpg" && src.length !== 0 ? <Button onClick={() => setOpenEdit(true)} sx={{marginRight: "10px"}} size="small"  className={styles.buttonSubmit}  color='secondary' variant="contained" endIcon={<EditIcon />}>
                   edit
                </Button> : null}
-               <Button onClick={() => submitUserPhoto()} sx={{marginRight: "10px"}} className={styles.buttonSubmit}  color='success' variant="contained" endIcon={<SendIcon />}>
+               <Button onClick={() => submitUserPhoto()} sx={{marginRight: "10px"}} size="small" className={styles.buttonSubmit}  color='success' variant="contained" endIcon={<SendIcon />}>
                   upload
                </Button>
-               {src && src !== "/upload/avatarUser.jpg" && src.length !== 0 ? <Button onClick={deleteSrc} color='error' variant="contained" endIcon={<DeleteIcon />}>
+               {src && src !== "/upload/avatarUser.jpg" && src.length !== 0 ? <Button onClick={deleteSrc} size="small"  color='error' variant="contained" endIcon={<DeleteIcon />}>
                   Delete
                </Button> : null}
                <EditAvatarModal changeSrc={changeSrc} avatar={avatar} src={src} open={openEdit} handleClose={() => setOpenEdit(false)}/>

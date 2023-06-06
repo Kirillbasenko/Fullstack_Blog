@@ -5,20 +5,19 @@ import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
 
 import { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 
 import CloseIcon from '@mui/icons-material/Close';
 import SaveAsIcon from '@mui/icons-material/SaveAs';
 
 import styles from "./editAvatarModal.module.scss"
 
-//import Avatar from 'react-avatar-edit';
-
 const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
    const [srcEdit, setSrcEdit] = useState(src)
    const [preview, setPreview] = useState(null)
    const [AvatarEdit, setAvatarEdit] = useState(null);
 
-   console.log(avatar);
+   const {width} = useSelector(state => state.width)
 
    const loadAvatarComponent = async () => {
       const { default: Avatar } = await import('react-avatar-edit');
@@ -76,7 +75,7 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
                top: "50%",
                left: "50%",
                transform: "translate(-50%, -50%)",
-               minWidth: "510px",
+               width: width > 576 ? "510px" : "95%",
                background: "#051f5c",
                border: "2px solid #000",
                boxShadow: "24px",
@@ -104,12 +103,12 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
                   margin: "0 auto"
                }}>
                {AvatarEdit && <AvatarEdit
-                  width={400}
-                  height={300}
+                  width={width > 576 ? 350 : 200}
+                  height={width > 576 ? 300 : 200}
                   onClose={onClose}
                   onCrop={onCrop}
                   exportSize={200}
-                  src={`http://localhost:5000${avatar}`}/>}
+                  src={`http://localhost:5000${src}`}/>}
             </Box>
             <Box 
                //className={styles.buttonCenter}

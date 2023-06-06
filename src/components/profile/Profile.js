@@ -28,6 +28,7 @@ const Profile = () => {
    const [openBackgroundModal, setOpenBackgroundModal] = useState(false);
 
    const {user} = useSelector(state => state.user)
+   const {width} = useSelector(state => state.width)
 
    useEffect(() => {
       checkUser(JSON.parse(localStorage.getItem("user"))).then(data => {
@@ -40,8 +41,6 @@ const Profile = () => {
          dispatch(setUser(data))
       })
    }, [])
-
-   console.log(user);
 
    return(
       <Box 
@@ -116,15 +115,17 @@ const Profile = () => {
                   flexDirection: "column"
                }}
                item 
-               xs={9}>
+               xs={width > 768 ? 9 : 12}>
+               {width < 768 ? <Info user={user}/> : null}
                <AboutMe title={"Experience"} description={user.experience}/>
                <AboutMe title={"About me"} description={user.aboutMe}/>
                <Analytics viewsCount={user.viewsCount}/>
                <MyPosts/>
             </Grid>
+            {width > 768 ? 
             <Grid item xs={3}>
                <Info user={user}/>
-            </Grid>
+            </Grid> : null}
          </Grid>
          <UpdatePhoto id={user._id} avatarImage={user.avatarImage ? user.avatarImage : ""} userImage={user.userImage ? user.userImage : ""} open={openPhotoModal} handleClose={() => setOpenPhotoModal(false)}/>
          <UpdateBackground id={user._id} background={user.backgroundImage ? user.backgroundImage : ""} open={openBackgroundModal} handleClose={() => setOpenBackgroundModal(false)}/>
