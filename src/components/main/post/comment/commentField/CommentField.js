@@ -12,14 +12,12 @@ import Picker from '@emoji-mart/react';
 
 import { upload } from '@/http/imageApi';
 
-import { useRef } from 'react';
-
 import { createComment } from '@/http/commentApi';
 
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
 
 import styles from "./commentField.module.scss"
-import { useState } from 'react';
 
 const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
    const [comment, setComment] = useState("")
@@ -30,6 +28,8 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
    const [clientY, setСlientY] = useState(false)
    const [src, setSrc] = useState("")
    const [cursorPosition, setCursorPosition] = useState(null)
+
+   const {width} = useSelector(state => state.width)
 
    useEffect(() => {
       function handleClickOutside(event) {
@@ -133,6 +133,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                               ref={file} hidden accept="image/*" type="file" />
                               <ImageIcon />
                            </IconButton> : null}
+                           {width > 768 ?
                            <IconButton onClick={(e) => {
                               setShowEmoji(!showEmoji)
                               let windowHeight = window.innerHeight;
@@ -145,7 +146,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                               }
                            }}>
                               <SentimentSatisfiedAltIcon/>
-                           </IconButton>
+                           </IconButton> : null}
                         </InputAdornment>}
                      />
                      
@@ -153,7 +154,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                   
                {src && src.length !== 0 ? 
                   <Box 
-                     className={styles.imageContainer}
+                     //className={styles.imageContainer}
                      sx={{
                         display: "flex",
                         position: "relative",
@@ -161,7 +162,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                         marginTop: "-20px",
                         zIndex: 1,
                         borderRadius: " 0px 0px 20px 20px",
-                        backgroundColor: "rgba(207, 208, 209, 0.7)"
+                        backgroundColor: "rgba(207, 208, 209, 0.4)"
                      }}>
                      <CardMedia
                         className={styles.image}

@@ -175,12 +175,14 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                   <FormControl 
                      //className={styles.selectedInput} 
                      fullWidth 
-                     sx={{width: 150}} 
+                     sx={{
+                        width: 150,
+                     }} 
                      size="small">
                      <Select
                         sx={{
-                           color: "rgba(209, 206, 206, 0.7)",
-                           backgroundColor: "rgba(209, 206, 206, 0.7)",
+                           //color: "rgba(209, 206, 206, 0.7)",
+                           //backgroundColor: "rgba(209, 206, 206, 0.7)",
                            height: "25px",
                            borderRadius: "10px",
                            marginTop: "2px",
@@ -201,8 +203,9 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                   sx={{
                      color: "white",
                      width: "100%",
+                     padding: 0
                      //paddingBottom: "-0px",
-                     marginBottom: "20px"
+                     //marginBottom: "20px"
                      }}>
                   <TextField
                      className={styles.textField}
@@ -214,24 +217,37 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                      sx={{
                         color: "rgba(0, 0, 0, 0.87)",
                         width: "100%",
-                        marginBottom: "20px"
+                        marginBottom: "20px",
+                        padding: 0
                      }}
                      onChange={(e) => setText(e.target.value)} 
                      value={text} 
                      name="title"
                      InputProps={{
                         endAdornment: 
-                        <IconButton onClick={(e) => {
-                           setShowEmoji(!showEmoji)
-                           setСlientY(e.clientY)
-                        } }>
+                        <IconButton 
+                           onClick={(e) => {
+                              setShowEmoji(!showEmoji)
+                              let windowHeight = window.innerHeight;
+                              let clickPosition = e.clientY;
+                              let distanceToBottom = windowHeight - clickPosition;
+                              if(distanceToBottom > 400){
+                                 setСlientY(e.clientY)
+                              }else{
+                                 setСlientY(e.clientY - 400)
+                              }
+                           }}
+                           sx={{
+                              padding: width < 768 ? 2 : "3px",
+                           }}>
+                           {width > 768 ?
                            <SentimentSatisfiedAltIcon 
                               sx={{
                                  padding: 0,
                                  cursor: "pointer"
                               }} 
                               className={styles.smile} 
-                              color='info'/>
+                              color='info'/> : null}
                         </IconButton>
                      }}
                   />
@@ -239,12 +255,14 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                   <Box 
                      ref={modalRef} 
                      sx={{
-                        top: `${clientY}px`,
+                        //top: `${clientY}px`,
+                        top: `60px`,
                         position: "absolute",
-                        right: "-210px",
+                        right: "-120px",
                         zIndex: 2
                      }} 
-                     className={styles.picker}>
+                     //className={styles.picker}
+                     >
                      <Picker 
                         data={data} 
                         previewPosition="none" 
