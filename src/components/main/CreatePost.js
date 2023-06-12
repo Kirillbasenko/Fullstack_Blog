@@ -12,7 +12,7 @@ import styles from "../../styles/main/search.module.scss"
 import { useState, useRef } from 'react';
 import CreatePostModal from '../modal/mainModal/CreatePostModal';
 
-const CreatePost = ({user}) => {
+const CreatePost = ({fetchPostsStart, user}) => {
    const [open, setOpen] = useState(false);
    const file = useRef(null)
    const [src, setSrc] = useState("")
@@ -83,7 +83,7 @@ const CreatePost = ({user}) => {
                   }} 
                   ref={file} hidden accept="image/*" type="file" />
             </Button>
-            <CreatePostModal removeImage={() => setSrc("")} srcImage={src} open={open} handleClose={() => setOpen(false)}/>
+            <CreatePostModal fetchPostsStart={fetchPostsStart} removeImage={() => setSrc("")} srcImage={src} open={open} handleClose={() => setOpen(false)}/>
          </Box>
       </Card>
    )

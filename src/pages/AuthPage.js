@@ -7,26 +7,46 @@ import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 
 import AuthForm from "../components/auth/AuthForm"
+import AuthFormMobile from '@/components/auth/AuthFormMobile';
 
 import styles from "../styles/authPage.module.scss"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
 
 const AuthPage = () => {
    const [position, setPosition] = useState(false)
+   const [width, setWidth] = useState(null)
+
+   useEffect(() => {
+      setWidth(window.innerWidth);
+   }, []);
+
+   useEffect(() => {
+      const handleResize = () => {
+         setWidth(window.innerWidth);
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+         window.removeEventListener('resize', handleResize);
+      };
+   }, []);
 
    return(
+      
       <Card 
          //className={styles.parent} 
          sx={{
             position: "relative",
             marginTop: "2%",
-            minWidth: "500px",
-            minHeight: "700px",
+            minWidth: width > 768 ? "500px" : "90%",
+            minHeight: width > 620 ? "700px" : width > 450 ? "600px" : "520px",
             backgroundColor: "#14204bad",
             borderRadius: "12px"
             }}>
-         <Grid container className={styles.wrapper}>
+         {width > 768 ?<Grid container className={styles.wrapper}>
             <Grid item xs={6}>
                <CardMedia
                   sx={{
@@ -86,8 +106,8 @@ const AuthPage = () => {
             <Grid item xs={6}>
                <AuthForm position={position}/>
             </Grid>
-         </Grid>
-      </Card>
+         </Grid>: <AuthFormMobile/>}
+      </Card> 
    )
 }
 

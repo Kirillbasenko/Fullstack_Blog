@@ -6,9 +6,12 @@ import { useRouter } from 'next/router'
 const Layout = ({children}) => {
    const router = useRouter()
 
+
+   console.log(router.asPath);
+
    return(
       <Container>
-         {router.asPath !== "/AuthPage" ? <Header/> : null}
+         {router.asPath !== "/AuthPage" && router.asPath !== "/" ? <Header/> : null}
          {children}
       </Container>
    )

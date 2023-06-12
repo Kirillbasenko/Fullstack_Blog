@@ -20,7 +20,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import EmailIcon from '@mui/icons-material/Email';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
-const Header = () => {
+const Header = ({fetchPostsStart}) => {
    const router = useRouter()
    const dispatch = useDispatch()
 
@@ -59,9 +59,16 @@ const Header = () => {
          className={styles.parent}
          sx={{
             display: "flex",
+            position: "sticky",
+            paddingTop: "10px",
+            paddingBottom: "5px",
+            top: 0,
+            left: 0,
+            zIndex: 5,
             alignItems: "center",
-            marginBottom: "15px",
-            justifyContent: "space-between"
+            marginBottom: "5px",
+            justifyContent: "space-between",
+            backgroundColor: "rgba(2, 8, 30, 0.9)"
          }}>
             <Box>
                <Link href="/">
@@ -99,7 +106,8 @@ const Header = () => {
                <Box>
             <Button 
                variant="outlined" 
-               className={styles.homeButton} 
+               className={styles.homeButton}
+               onClick={fetchPostsStart} 
                sx={{
                   paddingX: width > 530 ? 4 : 1,
                   }} 

@@ -19,14 +19,14 @@ import { useState, useRef, useEffect } from 'react';
 import data from "@emoji-mart/data"
 import Picker from '@emoji-mart/react';
 
-import { setAllPostsAndUpdatePost } from '@/store/slices/postSlice';
+import { setAllPostsAndUpdatePost, addNewPost } from '@/store/slices/postSlice';
 import { updatePost } from '@/http/postApi';
 import { createPost } from '@/http/postApi';
 import { upload } from '@/http/imageApi';
 
 import styles from "./createPostModal.module.scss"
 
-const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, typePost, id}) => {
+const CreatePostModal = ({fetchPostsStart, open, handleClose, srcImage, titlePost, removeImage, typePost, id}) => {
    const dispatch = useDispatch()
    const [type, setType] = useState(typePost ? typePost : "Public");
    const file = useRef(null)
@@ -94,7 +94,9 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
             "img": src,
          }
          if(!titlePost && !srcImage){
-            createPost(data)
+            createPost(data).then(() => {
+               fetchPostsStart()
+            })
          }else{
             updatePost(id, data).then(data => dispatch(setAllPostsAndUpdatePost(data)))
          }
@@ -103,6 +105,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
       }finally{
          clear()
          handleClose()
+         
       }
    }
 
@@ -181,7 +184,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                      size="small">
                      <Select
                         sx={{
-                           //color: "rgba(209, 206, 206, 0.7)",
+                           color: "rgba(209, 206, 206, 0.7)",
                            //backgroundColor: "rgba(209, 206, 206, 0.7)",
                            height: "25px",
                            borderRadius: "10px",

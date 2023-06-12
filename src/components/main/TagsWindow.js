@@ -100,7 +100,7 @@ const Tags = ({fetchPostsStart}) => {
                textTransform: "capitalize",
                fontSize: '12px'
             }}>
-               Show more
+               Show all posts
          </Button>
       </Card>
    )

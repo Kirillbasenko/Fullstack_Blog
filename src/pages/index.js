@@ -1,8 +1,35 @@
+import Header from '@/components/header/Header'
 import Head from 'next/head'
 
 import Main from "../components/home/Main"
 
+import { setAllPosts, setActiveDop, setPosts } from "@/store/slices/postSlice"
+
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { fetchPosts } from '@/http/postApi'
+
 export default function Home() {
+  const dispatch = useDispatch()
+  const [arr, setArr] = useState([])
+  const [fetching, setFetching] = useState(false)
+  const [current, setCurrent] = useState(0)
+
+  const fetchPostsStart = () => {
+    setFetching(true)
+      fetchPosts(6, 1).then(data => {
+        setArr([...data.posts])
+        dispatch(setAllPosts(data.current))
+        dispatch(setPosts([...data.posts]))
+        dispatch(setActiveDop(null))
+        setFetching(false)
+      })
+      .finally(() => {
+        setCurrent(2)
+      })
+  }
+
   return (
     <>
       <Head>
@@ -11,7 +38,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Main/>
+      <Header fetchPostsStart={fetchPostsStart} arrStart={arr} currentStart={current} fetchingStart={fetching}/>
+      <Main fetchPostsStart={fetchPostsStart} arrStart={arr} currentStart={current} fetchingStart={fetching}/>
     </>
   )
 }

@@ -7,7 +7,6 @@ import { checkUser } from '@/http/userApi'
 
 import { fetchPosts } from "@/http/postApi"
 
-
 import { setAllPosts, setActiveDop, setPosts } from "@/store/slices/postSlice"
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -16,32 +15,16 @@ import { setUser } from "@/store/slices/userSlice"
 
 import Grid from '@mui/material/Grid';
 
-const Main = ({posts}) => {
+const Main = ({fetchPostsStart, arrStart, currentStart, fetchingStart}) => {
    const dispatch = useDispatch()
 
    const [width, setWidth] = useState(null)
-   const [arr, setArr] = useState([])
-   const [current, setCurrent] = useState(0)
-   const [fetching, setFetching] = useState(true)
 
    const {user} = useSelector(state => state.user)
 
    useEffect(() => {
       checkUser(JSON.parse(localStorage.getItem("user"))).then(data => dispatch(setUser(data)))
    }, [])
-
-   const fetchPostsStart = () => {
-      fetchPosts(6, 1).then(data => {
-         setArr([...data.posts])
-         dispatch(setAllPosts(data.current))
-         dispatch(setPosts([...data.posts]))
-         dispatch(setActiveDop(null))
-         setFetching(false)
-      })
-      .finally(() => {
-         setCurrent(2)
-      })
-   }
 
    useEffect(() => {
       setWidth(window.innerWidth);
@@ -62,7 +45,7 @@ const Main = ({posts}) => {
    let ui = () => {
       if(width > 992){
          return(
-            <Grid container spacing={2}>
+            <Grid container spacing={2} >
                <Grid item xs={3}>
                   <Grid>
                      <Profile user={user}/>
@@ -73,10 +56,10 @@ const Main = ({posts}) => {
                </Grid>
                <Grid item xs={7}>
                   <Grid>
-                     <CreatePost user={user}/>
+                     <CreatePost fetchPostsStart={fetchPostsStart} user={user}/>
                   </Grid>
                   <Grid>
-                     <Posts arrStart={arr} currentStart={current} fetchingStart={fetching}/>
+                     <Posts arrStart={arrStart} currentStart={currentStart} fetchingStart={fetchingStart}/>
                   </Grid>
                </Grid>
                <Grid item xs={2}>
@@ -100,7 +83,7 @@ const Main = ({posts}) => {
                      <CreatePost user={user}/>
                   </Grid>
                   <Grid>
-                     <Posts arrStart={arr} currentStart={current} fetchingStart={fetching}/>
+                     <Posts arrStart={arrStart} currentStart={currentStart} fetchingStart={fetchingStart}/>
                   </Grid>
                </Grid>
             </Grid>
@@ -116,7 +99,7 @@ const Main = ({posts}) => {
                      <CreatePost user={user}/>
                   </Grid>
                   <Grid>
-                     <Posts arrStart={arr} currentStart={current} fetchingStart={fetching}/>
+                     <Posts arrStart={arrStart} currentStart={currentStart} fetchingStart={fetchingStart}/>
                   </Grid>
                </Grid>
             </Grid>

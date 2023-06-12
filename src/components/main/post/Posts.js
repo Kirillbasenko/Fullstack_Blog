@@ -24,12 +24,14 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
 
    const [a, setA] = useState(false)
    const [fetching, setFetching] = useState(true)
+   const [fetchingStartPosts, setFetchingStartPosts] = useState(true)
    const [arr, setArr] = useState([])
    const [checkAllPosts, setCheckAllPosts] = useState(null)
    const [current, setCurrent] = useState(0)
 
    const {post, tags} = useSelector(state => state.post)
    const {user} = useSelector(state => state.user)
+   const {width} = useSelector(state => state.width)
 
    const removePost = (id) => {
       deletePost(id)
@@ -50,12 +52,14 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
       })
    }, [fetching])
 
-
    useEffect(() => {
       setArr(arrStart)
       setCurrent(currentStart)
-      setFetching(fetchingStart)
-   }, [arrStart])
+      //setFetching(fetchingStart)
+      setFetchingStartPosts(fetchingStart)
+   }, [arrStart, fetchingStart])
+
+   console.log(fetchingStart);
 
    useEffect(() => {
       dispatch(setActiveTag(null))
@@ -66,9 +70,6 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
       fetchPosts().then(data => {
          setCheckAllPosts(data.posts.length)
       })
-      /*if(arr.length < 5 ){
-         setFetching(true)
-      }*/
    }, [arr])
 
    useEffect(() => {
@@ -79,10 +80,8 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
             dispatch(setAllPosts(data.current))
          })
          .finally(() => {
-            
             setFetching(false)
             setCurrent(current => current + 1)
-            console.log(fetching);
          })
       }else if(fetching && tags.activeTag){
          fetchPosts(6, current || 1, tags.activeTag || tags.dopActive).then(data => {
@@ -94,11 +93,9 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
             setCurrent(current => current + 1)
          })
       }
-      console.log(1);
    }, [fetching])
 
    useEffect(() => {
-      console.log(current);
       dispatch(setPosts([...arr]))
       if(tags.activeTag ){
          fetchPosts(6, 1, tags.activeTag).then(data => {
@@ -155,7 +152,7 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
                }} />} className={styles.button} 
                sx={{
                   position: "absolute",
-                  left: "37%",
+                  left: width > 450 ? "37%": "30%",
                   top: "10px",
                   fontSize: "10px",
                   opacity: 0,
@@ -176,11 +173,19 @@ const Posts = ({arrStart, currentStart, fetchingStart}) => {
             }} 
             size='small' 
             variant="contained">Show new posts</Button>
-         <Box className={styles.content} component="div">
-            {post.items.length !== 0 && post.items.map((post, index) => 
-               <Post deletePost={removePost} key={post._id} post={post}/>) }
-         </Box>
-         {fetching && post.items.length !== checkAllPosts ? <Box sx={{display: "flex", justifyContent: "center", alignItems: "center"}} className={styles.spinner}><CircularProgress/></Box> : null}
+         {fetchingStartPosts && post.items.length !== post.currentAll ? 
+            <Box sx={{display: "flex", justifyContent: "center", alignItems: "center"}} className={styles.spinner}>
+               <CircularProgress/>
+            </Box> : 
+            <Box className={styles.content} component="div">
+               {post.items.length !== 0 && post.items.map((post, index) => 
+                  <Post deletePost={removePost} key={post._id} post={post}/>) }
+            </Box>}
+            {fetching && post.items.length !== post.currentAll && !fetchingStartPosts ? 
+               <Box sx={{display: "flex", justifyContent: "center", alignItems: "center"}} className={styles.spinner}>
+                  <CircularProgress/>
+               </Box> : 
+               null}
       </Box>
    )
 }

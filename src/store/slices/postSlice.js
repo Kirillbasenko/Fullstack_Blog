@@ -21,6 +21,9 @@ const postSlice = createSlice({
       setPosts: (state, action) => { 
          state.post.items = action.payload 
       },
+      addNewPost: (state, action) => { 
+         state.post.items = [action.payload, ...state.post.items]
+      },
       setAllPosts: (state, action) => { 
          state.post.currentAll = action.payload 
       },
@@ -53,6 +56,7 @@ export const {
    setActiveTag, 
    setAllPosts, 
    setActiveDop,
-   setUserLikes} = postSlice.actions 
+   setUserLikes,
+   addNewPost} = postSlice.actions 
 
 export default postSlice.reducer

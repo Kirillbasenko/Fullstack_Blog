@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux"
-import { useRef } from 'react';
+import { useDispatch, useSelector } from "react-redux"
+import { useRef, useState } from 'react';
 
 import { registration, login } from '../../http/userApi';
 import { setIsAuth, setUser, setUserId } from "../../store/slices/userSlice";
@@ -15,10 +15,14 @@ import TextField from '@mui/material/TextField';
 
 import styles from "../../styles/auth.module.scss"
 
-const AuthForm = ({position}) => {
+const AuthFormMobile = () => {
    const dispatch = useDispatch();
+   const [position, setPosition] = useState(false)
    const error = useRef("")
    const router = useRouter()
+
+   const {width} = useSelector(state => state.width)
+   console.log(position);
 
    const click = async () => {
       try{
@@ -62,11 +66,9 @@ const AuthForm = ({position}) => {
       <Box 
          sx={{
             position: "absolute", 
-            width: "50%", 
+            width: "100%", 
             top: 0, 
             right: 0, 
-            transition: "transform 1s", 
-            transform: position ? "translateX(-100%)" : "translateX(0)"
             }}>
          <form onSubmit={formik.handleSubmit}>
             <CardMedia
@@ -75,8 +77,9 @@ const AuthForm = ({position}) => {
                   width: "100%",
                   position: "absolute",
                   objectFit: "contain",
+                  height: "99%",
                   left: 0,
-                  top: "-20px"
+                  //top: "-40px"
                }}
                component="img"
                image="/logo-no-background.jpg"
@@ -86,7 +89,7 @@ const AuthForm = ({position}) => {
                sx={{
                   display: "flex",
                   flexDirection: "column",
-                  paddingTop: "68%",
+                  paddingTop: width > 630 ? "42%" : "50%",
                   alignItems: "center",
                   justifyContent: "space-between",
                   //maxHeight: "50px"
@@ -161,10 +164,10 @@ const AuthForm = ({position}) => {
                </Box>
                <Button 
                   type='submit' 
-                  className={styles.button} 
+                  //className={styles.button} 
                   sx={{
                      marginTop: "10px",
-                     width: "50%",
+                     width: "30%",
                      borderRadius: "20px",
                      color: "aliceblue",
                      fontWeight: 300
@@ -172,6 +175,15 @@ const AuthForm = ({position}) => {
                   variant="contained">
                      {position ? "sing up" : "sing in"}
                </Button>
+               <Typography 
+                    sx={{
+                        color: "aliceblue",
+                        opacity: "0.5"
+                    }}>{position ? "Need an account?" : "Already a user?"}
+                    <Button onClick={() => setPosition(!position)}>
+                        {position ? "Sing Up" : "Sing In"}
+                    </Button>
+                </Typography>
                <Box 
                   sx={{display: "none", color: "red"}} 
                   ref={error} 
@@ -184,4 +196,4 @@ const AuthForm = ({position}) => {
    )
 }
 
-export default AuthForm
+export default AuthFormMobile
