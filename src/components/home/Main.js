@@ -12,7 +12,7 @@ import { setAllPosts, setActiveDop, setPosts } from "@/store/slices/postSlice"
 
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from "react"
-import { setUser, setAnotherUser } from "@/store/slices/userSlice"
+import { setUser } from "@/store/slices/userSlice"
 
 import Grid from '@mui/material/Grid';
 

@@ -7,17 +7,46 @@ import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 
 import AuthForm from "../components/auth/AuthForm"
+import AuthFormMobile from '@/components/auth/AuthFormMobile';
 
 import styles from "../styles/authPage.module.scss"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
 
 const AuthPage = () => {
    const [position, setPosition] = useState(false)
+   const [width, setWidth] = useState(null)
+
+   useEffect(() => {
+      setWidth(window.innerWidth);
+   }, []);
+
+   useEffect(() => {
+      const handleResize = () => {
+         setWidth(window.innerWidth);
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+         window.removeEventListener('resize', handleResize);
+      };
+   }, []);
 
    return(
-      <Card className={styles.parent} sx={{position: "relative"}}>
-         <Grid container className={styles.wrapper}>
+      
+      <Card 
+         //className={styles.parent} 
+         sx={{
+            position: "relative",
+            marginTop: "2%",
+            minWidth: width > 768 ? "500px" : "90%",
+            minHeight: width > 620 ? "700px" : width > 450 ? "600px" : "520px",
+            backgroundColor: "#14204bad",
+            borderRadius: "12px"
+            }}>
+         {width > 768 ?<Grid container className={styles.wrapper}>
             <Grid item xs={6}>
                <CardMedia
                   sx={{
@@ -34,18 +63,51 @@ const AuthPage = () => {
                   alt="green iguana"/>
                   <Box sx={{
                            transition: "transform 1s",
-                           transform: position ? "translateX(100%)" : "translateX(0)"}}
+                           transform: position ? "translateX(100%)" : "translateX(0)",
+                           position: "relative",
+                           zIndex: 3,
+                           textAlign: "center",
+                           display: "flex",
+                           top: "550px",
+                           flexDirection: "column",
+                           justifyContent: "center"
+                        }}
                         className={styles.content}>
-                     <Typography variant='h4' className={styles.title}>Welcome to Pandora</Typography>
-                     <Typography className={styles.text}>{position ? "Already a user?" : "Need an account?"}</Typography>
-                     <Button onClick={() => setPosition(!position)} className={styles.button} variant="outlined">{position ? "sing in" : "sing up"}</Button>
+                     <Typography 
+                        variant='h4' 
+                        className={styles.title}
+                        sx={{
+                           color: "#386BE2",
+                           marginBottom: "15px"
+                        }}>
+                        Welcome to Pandora
+                     </Typography>
+                     <Typography 
+                        className={styles.text}
+                        sx={{
+                           color: "#386BE2"
+                        }}>
+                        {position ? "Already a user?" : "Need an account?"}
+                     </Typography>
+                     <Button 
+                        onClick={() => setPosition(!position)} 
+                        className={styles.button} 
+                        variant="outlined"
+                        sx={{
+                           margin: "0 auto",
+                           width: "170px",
+                           padding: "5px",
+                           fontSize: "12px"
+                        }}>
+                        {position ? "sing in" : "sing up"}
+                     </Button>
                   </Box>
             </Grid>
             <Grid item xs={6}>
                <AuthForm position={position}/>
             </Grid>
-         </Grid>
-      </Card>
+         </Grid>: <AuthFormMobile/>}
+      </Card> 
    )
 }
 
