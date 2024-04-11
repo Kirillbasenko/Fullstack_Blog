@@ -15,6 +15,7 @@ const Profile = ({user}) => {
 
    const navigateProfile = () => {
       router.push(`ProfilePage/${user._id}`)
+      localStorage.setItem("anotherUser", JSON.stringify(user._id))
    }
 
    const {userLikes} = useSelector(state => state.post)

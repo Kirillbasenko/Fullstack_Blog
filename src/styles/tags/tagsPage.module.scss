@@ -1,0 +1,26 @@
+.titleTweet{
+   font-size: 14px;
+}
+
+.title{
+   font-size: 20px;
+   margin-bottom: 20px;
+}
+
+.currentTweet{
+   font-size: 10px;
+   margin-bottom: 5px;
+   color: rgba($color: #ffffff, $alpha: 0.3);
+}
+
+.content{
+   cursor: pointer;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   align-items: flex-start;
+   text-transform: capitalize;
+   background-color: #14204bad;
+   margin-bottom: 5px;
+   padding: 5px;
+}

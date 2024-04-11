@@ -33,3 +33,19 @@ export const updateBackground = async (id, backgroundImage) => {
    return data
 }
 
+export const getAllUsers = async (limit, user) => {
+   const {data} = await $host.get("api/user", {params: {limit, user}})
+   return data
+}
+
+export const updateFriends = async (id, friends, friendId) => {
+   const {data} = await $host.patch("api/user/updateFriends", {id, friends, friendId})
+   return data
+}
+
+export const updateView = async (id) => {
+   const {data} = await $host.patch("api/user/updateView", {id})
+   return data
+}
+
+

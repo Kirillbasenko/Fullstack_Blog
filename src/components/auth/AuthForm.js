@@ -19,6 +19,7 @@ const AuthForm = ({position}) => {
    const dispatch = useDispatch();
    const error = useRef("")
    const router = useRouter()
+   console.log(position);
 
    const click = async () => {
       try{
@@ -35,7 +36,6 @@ const AuthForm = ({position}) => {
          localStorage.setItem("token", JSON.stringify(data.token))
          dispatch(setIsAuth(data.token))
          dispatch(setUser(data))
-         dispatch(setUserId(data._id))
          router.push("/")
       }catch(e){
          error.current.style.display = "block"
@@ -106,7 +106,7 @@ const AuthForm = ({position}) => {
                   style={{display: "none", color: "red"}} 
                   ref={error} 
                   className="not-user">
-                  {position ? "Користувач не знайдений" : "Користувач із таким Email вже зареєстрований"}
+                  {position ? "Користувач із таким Email вже зареєстрований" : "Користувач не знайдений"}
                </div>
             </Box>
          </form>

@@ -5,8 +5,13 @@ export const createPost = async (post) => {
    return data
 }
 
-export const fetchPosts = async (limit, page, tag) => {
-   const {data} = await $host.get("api/post", {params: {limit, page, tag}})
+export const fetchPosts = async (limit, page, tag, userId) => {
+   const {data} = await $host.get("api/post", {params: {limit, page, tag, userId}})
+   return data
+}
+
+export const fetchPostsOnlyUser = async (userId) => {
+   const {data} = await $authHost.get("api/post/onlyUser", {params: {userId}})
    return data
 }
 

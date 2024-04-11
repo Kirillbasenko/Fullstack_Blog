@@ -6,6 +6,7 @@ import { Box, CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from "next/router"
 
 import { fetchPosts } from '@/http/postApi';
 
@@ -14,6 +15,7 @@ import { setTags, setActiveTag, setActiveDop } from '@/store/slices/postSlice';
 import styles from "../../styles/main/tags.module.scss"
 
 const Tags = ({fetchPostsStart}) => {
+   const router = useRouter()
    const dispatch = useDispatch()
 
    const {post, tags} = useSelector(state => state.post)
@@ -62,7 +64,7 @@ const Tags = ({fetchPostsStart}) => {
             }}>
             Trend for you
          </Typography>
-         {tags.items.length !== 0 && tags.items.slice(0, 10).map((item) => 
+         {tags.items.length !== 0 && tags.items.slice(0,6).map((item) => 
             <Button onClick={() => changeActiveTag(item.tag)} 
                key={item.tag} 
                className={styles.content}
@@ -93,7 +95,7 @@ const Tags = ({fetchPostsStart}) => {
             </Button>
          )}
          <Button 
-            onClick={() => fetchPostsStart()} 
+            onClick={() => router.push(`Tags`)} 
             className={styles.showButton} 
             variant="text"
             sx={{
@@ -101,6 +103,16 @@ const Tags = ({fetchPostsStart}) => {
                fontSize: '12px'
             }}>
                Show more
+         </Button>
+         <Button 
+            onClick={() => fetchPostsStart()} 
+            className={styles.showButton} 
+            variant="text"
+            sx={{
+               textTransform: "capitalize",
+               fontSize: '12px'
+            }}>
+               All posts
          </Button>
       </Card>
    )

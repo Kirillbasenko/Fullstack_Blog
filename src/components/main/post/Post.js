@@ -144,7 +144,8 @@ const Post = ({post, deletePost}) => {
             borderRadius: "15px",
             color: "aliceblue",
             backgroundColor: "rgba(20, 32, 75, 0.6784313725)",
-            padding: "13px",
+            padding: "10px",
+            paddingBottom: "14px",
             marginBottom: "15px",
          }}
       >
@@ -195,7 +196,7 @@ const Post = ({post, deletePost}) => {
             </Box>
             <Typography
             sx={{
-               fontSize: "12px",
+               fontSize: "13px",
                color: "rgba($color: #ffffff, $alpha: 0.3)",
                marginBottom: "10px",
             }}

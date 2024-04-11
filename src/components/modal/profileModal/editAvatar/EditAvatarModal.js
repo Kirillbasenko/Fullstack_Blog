@@ -87,7 +87,7 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
                   onClose={onClose}
                   onCrop={onCrop}
                   exportSize={200}
-                  src={`http://localhost:5000${avatar}`}/>}
+                  src={`http://localhost:5000${srcEdit}`}/>}
             </Box>
             <Box className={styles.buttonCenter}>
             </Box>

@@ -41,11 +41,14 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
          formData.append("image", file)
          upload(formData).then(data => setSrc(data.url))
          setAvatar('')
+         console.log(avatar);
+         console.log(src);
       }catch(e){
          console.log(e);
       }
    }
 
+   console.log(src);
    console.log(avatar);
 
    const deleteSrc = () => {
@@ -60,7 +63,7 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
    }
 
    const submitUserPhoto = () => {
-      updatePhoto(id, src.length !== 0 ? src : "/upload/avatarUser.jpg", avatar !== 0 ? avatar : "/upload/avatarUser.jpg")
+      updatePhoto(id, src.length !== 0 ? src : "/upload/avatarUser.jpg", avatar.length !== 0 || src.length !== 0 ? avatar : "/upload/avatarUser.jpg")
       handleClose()
    }
 
