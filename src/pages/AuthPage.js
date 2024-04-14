@@ -41,8 +41,8 @@ const AuthPage = () => {
          sx={{
             position: "relative",
             marginTop: "20%",
-            minWidth: width > 768 ? "500px" : "90%",
-            minHeight: width > 620 ? "700px" : width > 450 ? "600px" : "520px",
+            minWidth: width > 768 ? "800px" : "90%",
+            minHeight: width > 620 ? "750px" : width > 450 ? "600px" : "520px",
             backgroundColor: "#14204bad",
             borderRadius: "12px"
             }}>
