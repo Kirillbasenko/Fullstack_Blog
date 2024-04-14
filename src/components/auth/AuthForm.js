@@ -70,10 +70,11 @@ const AuthForm = ({position}) => {
                image="/logo-no-background.jpg"
                alt="green iguana"/>
             <Box className={styles.content}>
-               <Typography className={styles.title} variant='h4'>{position ? "Register" :  "Login"}</Typography>
+               <Typography className={styles.title} sx={{marginBottom: "30px"}} variant='h4'>{position ? "Register" :  "Login"}</Typography>
                {position ? 
                   <TextField 
                      className={styles.input} 
+                     sx={{marginBottom: "20px"}}
                      error={formik.errors.name && formik.touched.name}
                      value={formik.values.name} 
                      name="name"
@@ -84,6 +85,7 @@ const AuthForm = ({position}) => {
                      variant="filled" /> : null}
                <TextField 
                   className={styles.input} 
+                  sx={{marginBottom: "20px"}}
                   error={formik.errors.email && formik.touched.email}
                   value={formik.values.email} 
                   name="email"
@@ -94,6 +96,7 @@ const AuthForm = ({position}) => {
                   variant="filled" />
                <TextField 
                   className={styles.input} 
+                  sx={{marginBottom: "20px"}}
                   error={formik.errors.password && formik.touched.password}
                   label="Password" 
                   onChange={formik.handleChange} 

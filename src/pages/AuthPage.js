@@ -40,7 +40,7 @@ const AuthPage = () => {
          //className={styles.parent} 
          sx={{
             position: "relative",
-            marginTop: "2%",
+            marginTop: "20%",
             minWidth: width > 768 ? "500px" : "90%",
             minHeight: width > 620 ? "700px" : width > 450 ? "600px" : "520px",
             backgroundColor: "#14204bad",
