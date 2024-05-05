@@ -165,7 +165,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                }}
                component="img"
                className={styles.userPhoto}
-               image={comment.user.avatarImage ? `http://localhost:5000${comment.user.avatarImage}` : "/avatarUser.jpg"}
+               image={comment.user.avatarImage ? `process.env.API_URL${comment.user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
             <Box 
                className={styles.content}
@@ -303,7 +303,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                         zIndex: 1
                      }}
                      component="img"
-                     image={`http://localhost:5000${comment.img}`}
+                     image={`process.env.API_URL${comment.img}`}
                      alt="green iguana"/> : null}
                   {image.length !== 0 && edit ?
                   <Box 
@@ -329,7 +329,7 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
                            zIndex: 1
                         }}
                         component="img"
-                        image={`http://localhost:5000${image}`}
+                        image={`process.env.API_URL${image}`}
                         alt="green iguana"/>
                      <IconButton 
                         className={styles.removeImageButton} 

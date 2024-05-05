@@ -47,7 +47,7 @@ const CreatePost = ({fetchPostsStart, user}) => {
          <CardMedia
             sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
             component="img"
-            image={user.avatarImage ? `http://localhost:5000${user.avatarImage}` : "/avatarUser.jpg"}
+            image={user.avatarImage ? `process.env.API_URL${user.avatarImage}` : "/avatarUser.jpg"}
             alt="green iguana"/>
          <Box 
             className={styles.content}

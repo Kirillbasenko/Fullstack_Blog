@@ -141,7 +141,7 @@ const Profile = () => {
                   zIndex: -1
                }}
                component="img"
-               image={view.backgroundImage ? `http://localhost:5000${view.backgroundImage}` : "/backGround.jpg"}
+               image={view.backgroundImage ? `process.env.API_URL${view.backgroundImage}` : "/backGround.jpg"}
                alt="green iguana"/>
             <CardMedia
                onClick={() => {
@@ -165,7 +165,7 @@ const Profile = () => {
                   cursor: myProfile || view.avatarImage ? "pointer" : "default",
                   marginTop: "-30px"
                }}
-               image={view.avatarImage ? `http://localhost:5000${view.avatarImage}` : "/avatarUser.jpg"}
+               image={view.avatarImage ? `process.env.API_URL${view.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
             <Typography 
                //className={styles.userName}

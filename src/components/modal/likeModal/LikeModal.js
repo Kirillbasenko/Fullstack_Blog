@@ -47,7 +47,7 @@ const LikeModal = ({likeList, open, handleClose}) => {
                               component="img"
                               className={styles.userImage}
                               sx={{width: "40px", height: "40px"}}
-                              image={item.avatarImage ? `http://localhost:5000${item.avatarImage}` : "/avatarUser.jpg"}
+                              image={item.avatarImage ? `process.env.API_URL${item.avatarImage}` : "/avatarUser.jpg"}
                               alt="green iguana"/>
                            <Typography>{item.name}</Typography>
                         </ListItemButton>

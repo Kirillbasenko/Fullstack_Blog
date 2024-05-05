@@ -67,7 +67,7 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
       const file = base64toFile(preview, `${randomNum.toFixed(0)}example.jpg`);
    }
 
-   console.log(`http://localhost:5000${avatar}`);
+   console.log(`process.env.API_URL${avatar}`);
 
    return(
       <Modal
@@ -91,7 +91,7 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
                   onClose={onClose}
                   onCrop={onCrop}
                   exportSize={200}
-                  src={`http://localhost:5000${srcEdit}`}/>}
+                  src={`process.env.API_URL${srcEdit}`}/>}
             </Box>
             <Box className={styles.buttonCenter}>
             </Box>
