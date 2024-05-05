@@ -29,6 +29,8 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
    const [avatar, setAvatar] = useState(avatarImage)
    const file = useRef(null)
 
+   const {width} = useSelector(state => state.width)
+
    useEffect(() => {
       setSrc(userImage)
       setAvatar(avatarImage)
@@ -71,7 +73,7 @@ const UpdatePhoto = ({open, handleClose, userImage, id, avatarImage}) => {
       <Modal
          open={open}
          onClose={handleClose}>
-         <Box className={styles.modal}>
+         <Box sx={{width: width > 768 ? 500 : "85%"}} className={styles.modal}>
             <Box className={styles.flex}>
                <Typography id="modal-modal-title" variant="h6" component="h2">
                   Update photo

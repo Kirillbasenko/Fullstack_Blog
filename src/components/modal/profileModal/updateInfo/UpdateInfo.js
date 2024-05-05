@@ -13,6 +13,8 @@ import Select from '@mui/material/Select';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 
+import { useSelector } from 'react-redux';
+
 import { useRef, useState, useEffect } from 'react';
 
 import { updateInfo } from '@/http/userApi';
@@ -27,6 +29,8 @@ const UpdateInfo = ({open, handleClose, id, userName, userExperience, userAboutM
    const [aboutMe, setAboutMe] = useState(userAboutMe)
    const [location, setLocation] = useState(userLocation)
    const [age, setAge] = useState(userAge)
+
+   const {width} = useSelector(state => state.width)
 
    const submitUserBackground = () => {
       updateInfo(id, name, experience, aboutMe, location, age)
@@ -45,7 +49,7 @@ const UpdateInfo = ({open, handleClose, id, userName, userExperience, userAboutM
       <Modal
          open={open}
          onClose={handleClose}>
-         <Box className={styles.modal}>
+         <Box sx={{width: width > 768 ? 500 : "85%"}} className={styles.modal}>
             <Box className={styles.flex}>
                <Typography id="modal-modal-title" variant="h6" component="h2">
                   Update info

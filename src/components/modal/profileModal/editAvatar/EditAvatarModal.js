@@ -6,6 +6,8 @@ import IconButton from '@mui/material/IconButton';
 
 import { useState, useEffect, useRef } from 'react';
 
+import { useSelector } from 'react-redux';
+
 import CloseIcon from '@mui/icons-material/Close';
 import SaveAsIcon from '@mui/icons-material/SaveAs';
 
@@ -17,6 +19,8 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
    const [srcEdit, setSrcEdit] = useState(src)
    const [preview, setPreview] = useState(null)
    const [AvatarEdit, setAvatarEdit] = useState(null);
+
+   const {width} = useSelector(state => state.width)
 
    console.log(avatar);
 
@@ -71,7 +75,7 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
          onClose={handleClose}
          aria-labelledby="modal-modal-title"
          aria-describedby="modal-modal-description">
-         <Box className={styles.modal}>
+         <Box sx={{width: width > 768 ? 500 : "90%"}} className={styles.modal}>
             <Box className={styles.flex}>
                <Typography id="modal-modal-title" variant="h6" component="h2">
                   Edit photo
@@ -82,8 +86,8 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
             </Box>
             <Box className={styles.avatar}>
                {AvatarEdit && <AvatarEdit
-                  width={"100%"}
-                  height={300}
+                  width={300}
+                  height={400}
                   onClose={onClose}
                   onCrop={onCrop}
                   exportSize={200}

@@ -11,6 +11,8 @@ import FlipCameraIosIcon from '@mui/icons-material/FlipCameraIos';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 
+import { useSelector } from 'react-redux';
+
 import { useRef, useState, useEffect } from 'react';
 
 import { updateBackground } from '@/http/userApi';
@@ -21,6 +23,8 @@ import styles from "./updateBackground.module.scss"
 const UpdateBackground = ({open, handleClose, background, id}) => {
    const [src, setSrc] = useState("")
    const file = useRef(null)
+
+   const {width} = useSelector(state => state.width)
 
    useEffect(() => {
       setSrc(background)
@@ -46,7 +50,7 @@ const UpdateBackground = ({open, handleClose, background, id}) => {
       <Modal
          open={open}
          onClose={handleClose}>
-         <Box className={styles.modal}>
+         <Box sx={{width: width > 768 ? 500 : "85%"}} className={styles.modal}>
             <Box className={styles.flex}>
                <Typography id="modal-modal-title" variant="h6" component="h2">
                   Update background
