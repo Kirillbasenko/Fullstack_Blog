@@ -90,7 +90,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                }}
                component="img"
                className={styles.userPhoto}
-               image={userPhoto ? `process.env.API_URL${userPhoto}` : "/avatarUser.jpg"}
+               image={userPhoto ? `${process.env.API_URL}${userPhoto}` : "/avatarUser.jpg"}
                alt="green iguana"/>
             <Box 
                sx={{
@@ -176,7 +176,7 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
                            zIndex: 1
                         }}
                         component="img"
-                        image={`process.env.API_URL${src}`}
+                        image={`${process.env.API_URL}${src}`}
                         alt="green iguana"/>
                      <IconButton 
                         className={styles.removeImageButton} 

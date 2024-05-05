@@ -37,7 +37,7 @@ const Profile = ({user}) => {
             <CardMedia
                   sx={{ height: 75 }}
                   component="img"
-                  image={user.backgroundImage ? `process.env.API_URL${user.backgroundImage}` : "/backGround.jpg"}
+                  image={user.backgroundImage ? `${process.env.API_URL}${user.backgroundImage}` : "/backGround.jpg"}
                   alt="green iguana"/>
             <CardMedia
                sx={{
@@ -50,7 +50,7 @@ const Profile = ({user}) => {
                }}
                component="img"
                className={styles.userImage}
-               image={user.avatarImage ? `process.env.API_URL${user.avatarImage}` : "/avatarUser.jpg"}
+               image={user.avatarImage ? `${process.env.API_URL}${user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
             <CardContent sx={{padding: 1}}>
                <Typography gutterBottom variant="h6" component="div">

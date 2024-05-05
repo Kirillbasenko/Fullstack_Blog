@@ -161,7 +161,7 @@ const Post = ({post, deletePost}) => {
             component="img"
             image={
             post.user.avatarImage
-               ? `${process.env.API_URL}${post.user.avatarImage}`
+               ? `${${process.env.API_URL}}${post.user.avatarImage}`
                : "/avatarUser.jpg"
             }
             alt="green iguana"
@@ -228,13 +228,13 @@ const Post = ({post, deletePost}) => {
                }}
                className={styles.image}
                component="img"
-               image={`${process.env.API_URL}${post.img}`}
+               image={`${${process.env.API_URL}}${post.img}`}
                alt="green iguana"
             />
             ) : null}
             {post.video ? (
             <Box className={styles.videoContainer}>
-               <video muted={true} height={300} width={"250px"} className={styles.video} src={`${process.env.API_URL}${post.video}`} controls>
+               <video muted={true} height={300} width={"250px"} className={styles.video} src={`${${process.env.API_URL}}${post.video}`} controls>
                </video>
             </Box>
             ) : null}

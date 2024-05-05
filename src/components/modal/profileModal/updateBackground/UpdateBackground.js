@@ -62,7 +62,7 @@ const UpdateBackground = ({open, handleClose, background, id}) => {
             <CardMedia
                className={styles.image}
                component="img"
-               image={src.length !== 0 ? `process.env.API_URL${src}` : "/backGround.jpg"}
+               image={src.length !== 0 ? `${process.env.API_URL}${src}` : "/backGround.jpg"}
                alt="green iguana"/>
             <Box className={styles.buttonCenter}>
                <Button component="label"  variant="text" endIcon={src && src.length === 0 ? <CameraAltIcon /> : <FlipCameraIosIcon/>}>

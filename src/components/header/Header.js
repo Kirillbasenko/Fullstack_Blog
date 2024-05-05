@@ -147,7 +147,7 @@ const Header = () => {
                width={22}
                sx={{objectFit: "contain", borderRadius: "50%", marginRight: 1, width: 25, height: 25,  }}
                component="img"
-               image={user.avatarImage ? `process.env.API_URL${user.avatarImage}` : "/avatarUser.jpg"}
+               image={user.avatarImage ? `${process.env.API_URL}${user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
                <Typography sx={{fontSize: "14px"}}>{user.name && user.name.length > 15 ? `${user.name.slice(0, 15)}...` : user.name}</Typography>
             </InputLabel>
@@ -285,7 +285,7 @@ const Header = () => {
                width={22}
                sx={{objectFit: "contain", borderRadius: "50%", marginRight: 1, width: 25, height: 25,  }}
                component="img"
-               image={user.avatarImage ? `process.env.API_URL${user.avatarImage}` : "/avatarUser.jpg"}
+               image={user.avatarImage ? `${process.env.API_URL}${user.avatarImage}` : "/avatarUser.jpg"}
                alt="green iguana"/>
                {width > 530 ? 
                   <Typography sx={{fontSize: "14px"}}>

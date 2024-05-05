@@ -25,7 +25,7 @@ const ImageModal = ({image, open, handleClose}) => {
             <CardMedia
                className={styles.image}
                component="img"
-               image={`process.env.API_URL${image}`}
+               image={`${process.env.API_URL}${image}`}
                alt="green iguana"/>
          </Box>
       </Modal>
