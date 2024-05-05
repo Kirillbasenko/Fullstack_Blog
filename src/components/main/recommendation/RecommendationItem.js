@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { useRouter } from 'next/router';
 
-import styles from "../../../../styles/main/recommendations.module.scss"
+import styles from "@/styles/main/recommendations.module.scss"
 import { checkComment } from '@/http/commentApi';
 
 const RecommendationItem = ({submitLike, userItem, navigateProfile}) => {

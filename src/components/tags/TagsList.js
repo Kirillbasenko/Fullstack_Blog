@@ -13,11 +13,11 @@ import { setUser } from "@/store/slices/userSlice"
 import { setTags, setActiveTag, setActiveDop } from '@/store/slices/postSlice';
 
 import Profile from '../main/ProfileWindow';
-import RecommendationList from '../main/post/recommendation/RecommendationList';
+import RecommendationList from '../main/recommendation/RecommendationList';
 
 import styles from "../../styles/tags/tagsPage.module.scss"
 
-const TagsPage = () => {
+const TagsList = () => {
    const dispatch = useDispatch()
    const router = useRouter()
 
@@ -118,4 +118,4 @@ const TagsPage = () => {
    )
 }
 
-export default TagsPage
+export default TagsList

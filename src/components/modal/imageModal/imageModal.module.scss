@@ -1,9 +1,10 @@
 .modal{
-   position: absolute;
-   top: 15%;
-   left: 31%;
+   //position: absolute;
+   //top: 15%;
+   //left: 31%;
+   margin: 100px auto;
    transform: 'translate(-50%, -50%)';
-   max-width: 450px;
+   width: 85%;
    border: '2px solid #000';
    box-shadow: 24px;
    max-height: 450px;

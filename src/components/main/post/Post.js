@@ -191,6 +191,7 @@ const Post = ({post, deletePost}) => {
                   image={post.img}
                   title={post.title}
                   deletePost={deletePost}
+                  video={post.video}
                />
             ) : null}
             </Box>
@@ -230,6 +231,12 @@ const Post = ({post, deletePost}) => {
                image={`http://localhost:5000${post.img}`}
                alt="green iguana"
             />
+            ) : null}
+            {post.video ? (
+            <Box className={styles.videoContainer}>
+               <video muted={true} height={300} width={"250px"} className={styles.video} src={`http://localhost:5000${post.video}`} controls>
+               </video>
+            </Box>
             ) : null}
             <Box
                sx={{

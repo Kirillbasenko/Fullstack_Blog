@@ -17,7 +17,7 @@ import { setAllUsers, setUser } from '@/store/slices/userSlice';
 
 import { useEffect } from 'react';
 
-import styles from "../../../../styles/main/recommendations.module.scss"
+import styles from "@/styles/main/recommendations.module.scss"
 
 const RecommendationList = () => {
    const dispatch = useDispatch()
@@ -81,6 +81,7 @@ const RecommendationList = () => {
             )}
          </CardContent>
          <Button 
+            onClick={() => router.push("Profiles")}
             className={styles.showButton} 
             variant="text"
             sx={{

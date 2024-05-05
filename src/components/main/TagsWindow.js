@@ -19,6 +19,7 @@ const Tags = ({fetchPostsStart}) => {
    const dispatch = useDispatch()
 
    const {post, tags} = useSelector(state => state.post)
+   console.log(tags);
 
    useEffect(() =>  {
       const tagCounts = {};

@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 
 import CloseIcon from '@mui/icons-material/Close';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import VideocamIcon from '@mui/icons-material/Videocam';
 import SendIcon from '@mui/icons-material/Send';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 
@@ -20,14 +21,14 @@ import { useSelector } from 'react-redux';
 import data from "@emoji-mart/data"
 import Picker from '@emoji-mart/react';
 
-import { setAllPostsAndUpdatePost } from '@/store/slices/postSlice';
+import { setAllPostsAndUpdatePost, setAddNewPost } from '@/store/slices/postSlice';
 import { updatePost } from '@/http/postApi';
 import { createPost } from '@/http/postApi';
-import { upload } from '@/http/imageApi';
+import { upload, uploadVideo } from '@/http/imageApi';
 
 import styles from "./createPostModal.module.scss"
 
-const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, typePost, id}) => {
+const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, typePost, id, video, fetchPostsStart}) => {
    const dispatch = useDispatch()
    const [type, setType] = useState(typePost ? typePost : "Public");
    const file = useRef(null)
@@ -36,12 +37,23 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
    const [clientY, setСlientY] = useState(false)
    const [text, setText] = useState(titlePost ? titlePost : "")
    const [src, setSrc] = useState("")
+   const [srcVideo, setSrcVideo] = useState("")
 
    const {user} = useSelector(state => state.user)
+   const {post} = useSelector(state => state.post)
+   const {width} = useSelector(state => state.width)
 
    useEffect(() => {
       setSrc(srcImage)
    }, [srcImage])
+
+   useEffect(() => {
+      if(video){
+         setSrcVideo(video)
+      }
+   }, [video])
+
+   //console.log(srcImage);
 
    useEffect(() => {
       function handleClickOutside(event) {
@@ -59,9 +71,10 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
       setText("")
       setType("Public")
       setSrc("")
-      if(!titlePost && !srcImage){
+      setSrcVideo("")
+      /*if(!titlePost && !srcImage && !srcVideo){
          removeImage()
-      }
+      }*/
    }
 
    const addEmoji = (e) => {
@@ -72,12 +85,23 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
       setText(text + emoji)
    }
 
-   const douwload = async (e) => {
+   const douwloadImage = async (e) => {
       try{
          const formData = new FormData()
          const file =  e.target.files[0]
          formData.append("image", file)
          upload(formData).then(data => setSrc(data.url))
+      }catch(e){
+         console.log(e);
+      }
+   }
+
+   const douwloadVideo = async (e) => {
+      try{
+         const formData = new FormData()
+         const file =  e.target.files[0]
+         formData.append("video", file)
+         uploadVideo(formData).then(data => setSrcVideo(data.url))
       }catch(e){
          console.log(e);
       }
@@ -92,9 +116,12 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
             "tags": tags.length === 0 ? [] : tags,
             "type": type,
             "img": src,
+            "video": srcVideo
          }
          if(!titlePost && !srcImage){
-            createPost(data)
+            createPost(data).then(fetchPostsStart())
+            //dispatch(setAddNewPost(data))
+            
          }else{
             updatePost(id, data).then(data => dispatch(setAllPostsAndUpdatePost(data)))
          }
@@ -103,6 +130,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
       }finally{
          clear()
          handleClose()
+         fetchPostsStart()
       }
    }
 
@@ -164,7 +192,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                            setShowEmoji(!showEmoji)
                            setСlientY(e.clientY)
                         } }>
-                           <SentimentSatisfiedAltIcon sx={{padding: 0}} className={styles.smile} color='info'/>
+                           {width > 778 ?<SentimentSatisfiedAltIcon sx={{padding: 0}} className={styles.smile} color='info'/> : null}
                         </IconButton>
                      }}
                   />
@@ -189,13 +217,28 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                         <CloseIcon />
                      </IconButton>
                   </Box> : null}
+               {srcVideo && srcVideo.length !== 0 ? 
+                  <Box className={styles.imageContainer}>
+                     <video muted={true} height={width < 778 ? 200 : 500} width={"100%"} className={styles.video} src={`http://localhost:5000${srcVideo}`} controls>
+                     </video>
+                     <IconButton className={styles.removeImageButton} onClick={() => setSrcVideo("")} color="primary" aria-label="upload picture" component="label">
+                        <CloseIcon />
+                     </IconButton>
+                  </Box> : null}
                <Box className={styles.flexBetween}>
-                  <IconButton color="primary" aria-label="upload picture" component="label">
-                     <input onChange={douwload} 
-                     ref={file} hidden accept="image/*" type="file" />
-                     <PhotoCamera />
-                  </IconButton>
-                  <Button onClick={(e) => addPost(e)} disabled={text.length === 0 && src.length === 0} type='submit' variant="contained" endIcon={<SendIcon />}>
+                  <Box>
+                     <IconButton color="primary" aria-label="upload picture" component="label">
+                        <input onChange={douwloadImage} 
+                        ref={file} hidden accept="image/*" type="file" />
+                        <PhotoCamera />
+                     </IconButton>
+                     <IconButton color="primary" aria-label="upload picture" component="label">
+                        <input onChange={douwloadVideo} 
+                        ref={file} hidden accept="video/mp4" type="file" />
+                        <VideocamIcon />
+                     </IconButton>
+                  </Box>
+                  <Button onClick={(e) => addPost(e)} disabled={text.length === 0 && src.length === 0 && srcVideo.length === 0} type='submit' variant="contained" endIcon={<SendIcon />}>
                      publication
                   </Button>
                </Box>

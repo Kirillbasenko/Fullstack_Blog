@@ -1,9 +1,11 @@
 .modal{
-   position: absolute;
-   top: 15%;
-   left: 28%;
+   //position: absolute;
+   //top: 15%;
+   //left: 28%;
+   width: 60%;
+   margin: 100px auto;
    transform: 'translate(-50%, -50%)';
-   min-width: 510px;
+   //min-width: 510px;
    background: #143685;
    border: '2px solid #000';
    box-shadow: 24px;
@@ -55,7 +57,7 @@
    position: relative;
    max-width: 480px; 
    object-fit: fill;
-   height: 400px;
+   //height: 60%;
    border-radius: 5px;
    border: 1px solid rgb(141, 140, 140);
    margin-bottom: 15px;
@@ -75,6 +77,8 @@
 
 .imageContainer{
    position: relative;
+   //height: 10%;
+   //width: 480px; 
    z-index: 1;
 }
 
@@ -88,3 +92,10 @@
    right: -210px;
    z-index: 2;
 }
+
+.video {
+      //width: 90%;
+      //height: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+   }

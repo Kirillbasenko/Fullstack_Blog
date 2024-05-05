@@ -82,7 +82,7 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
             </Box>
             <Box className={styles.avatar}>
                {AvatarEdit && <AvatarEdit
-                  width={400}
+                  width={"100%"}
                   height={300}
                   onClose={onClose}
                   onCrop={onCrop}

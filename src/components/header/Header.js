@@ -16,6 +16,8 @@ import { setWidth } from '@/store/slices/widthSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
+import { styled } from '@mui/material/styles';
+
 import TwitterIcon from '@mui/icons-material/Twitter';
 import HomeIcon from '@mui/icons-material/Home';
 import EmailIcon from '@mui/icons-material/Email';
@@ -32,6 +34,12 @@ const Header = () => {
       localStorage.removeItem("user")
       localStorage.removeItem("token")
       router.push("/AuthPage")
+   }
+
+   console.log(router);
+
+   const routProfiles = () => {
+      router.push("/Profiles")
    }
 
    useEffect(() => {
@@ -245,19 +253,23 @@ const Header = () => {
                color="info">
                <EmailIcon/>
             </Badge>
-            <Badge 
-               //className={styles.icon} 
-               sx={{
-                  marginLeft: "25px",
-                  width: "25px",
-                  height: "25px",
-                  cursor: "pointer"
-               }}
-               badgeContent={1} 
-               color="info">
-               <PeopleIcon/>
-            </Badge>
-         
+            <IconButton 
+               style={{backgroundColor: "inherit", width: "25px"}} 
+               onClick={() => routProfiles()}>
+               <Badge  
+                  //className={styles.icon} 
+                  sx={{
+                     marginLeft: "25px",
+                     width: "25px",
+                     height: "25px",
+                     cursor: "pointer",
+                     color: "white"
+                  }}
+                  badgeContent={1} 
+                  color="info">
+                  <PeopleIcon/>
+               </Badge>
+            </IconButton>
          <FormControl sx={{marginLeft: 4}} size="small">
             <InputLabel 
                shrink={false} 
@@ -290,7 +302,13 @@ const Header = () => {
                }}>
                <MenuItem onClick={() => {
                   if(router.query.id !== user._id){
-                     router.push(`ProfilePage/${user._id}`)
+                     if(router.pathname === "/"){
+                        console.log(user._id);
+                        router.push(`ProfilePage/${user._id}`)
+                     }else{
+                        localStorage.setItem("anotherUser", localStorage.getItem("user"))
+                        router.push(`${user._id}`)
+                     }
                   }
                } } sx={{fontSize: 12}}>Подив. профіль</MenuItem>
                <MenuItem onClick={() => logout()} sx={{fontSize: 12}}>Вийти</MenuItem>

@@ -5,23 +5,32 @@ import Typography from '@mui/material/Typography';
 import { Box, CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import VideocamIcon from '@mui/icons-material/Videocam';
 
-import { upload } from '@/http/imageApi';
+import { upload, uploadVideo } from '@/http/imageApi';
 
 import styles from "../../styles/main/search.module.scss"
 import { useState, useRef } from 'react';
 import CreatePostModal from '../modal/mainModal/CreatePostModal';
 
-const CreatePost = ({user}) => {
+const CreatePost = ({fetchPostsStart, user}) => {
    const [open, setOpen] = useState(false);
    const file = useRef(null)
    const [src, setSrc] = useState("")
+   const [srcVideo, setSrcVideo] = useState("")
 
    const douwload = async (e) => {
       const formData = new FormData()
          const file =  e.target.files[0]
          formData.append("image", file)
          upload(formData).then(data => setSrc(data.url))
+   }
+
+   const douwloadVideo = async (e) => {
+      const formData = new FormData()
+         const file =  e.target.files[0]
+         formData.append("video", file)
+         uploadVideo(formData).then(data => setSrcVideo(data.url))
    }
 
    return(
@@ -63,27 +72,50 @@ const CreatePost = ({user}) => {
                   height: "40px"
                }}
                variant="outlined">What's happening? </Button>
-            <Button 
-               component="label" 
-               className={styles.icon} 
-               variant="outlined" 
-               sx={{
-                  paddingX: 3,
-                  textTransform: "none",
-                  cursor: "pointer",
-                  width: "100px",
-                  borderRadius: "15px",
-                  transition: ".3s",
-                  fontSize: "12px"
-                  }} startIcon={<InsertPhotoIcon sx={{width: 22, height: 22}} color='info' />}>
-               Photo
-               <input onChange={(e) => {
-                     douwload(e)
-                     setOpen(true)
-                  }} 
-                  ref={file} hidden accept="image/*" type="file" />
-            </Button>
-            <CreatePostModal removeImage={() => setSrc("")} srcImage={src} open={open} handleClose={() => setOpen(false)}/>
+            <Box>
+               <Button 
+                  component="label" 
+                  className={styles.icon} 
+                  variant="outlined" 
+                  sx={{
+                     paddingX: 3,
+                     textTransform: "none",
+                     cursor: "pointer",
+                     width: "100px",
+                     borderRadius: "15px",
+                     transition: ".3s",
+                     fontSize: "12px",
+                     marginRight: "5px"
+                     }} startIcon={<InsertPhotoIcon sx={{width: 22, height: 22}} color='info' />}>
+                  Photo
+                  <input onChange={(e) => {
+                        douwload(e)
+                        setOpen(true)
+                     }} 
+                     ref={file} hidden accept="image/*" type="file" />
+               </Button>
+               <Button 
+                  component="label" 
+                  className={styles.icon} 
+                  variant="outlined" 
+                  sx={{
+                     paddingX: 3,
+                     textTransform: "none",
+                     cursor: "pointer",
+                     width: "100px",
+                     borderRadius: "15px",
+                     transition: ".3s",
+                     fontSize: "12px"
+                     }} startIcon={<VideocamIcon sx={{width: 22, height: 22}} color='info' />}>
+                  Video
+                  <input onChange={(e) => {
+                        douwloadVideo(e)
+                        setOpen(true)
+                     }} 
+                     ref={file} hidden accept="video/mp4" type="file" />
+               </Button>
+            </Box>
+            <CreatePostModal fetchPostsStart={fetchPostsStart} removeImage={() => setSrc("")} video={srcVideo} srcImage={src} open={open} handleClose={() => setOpen(false)}/>
          </Box>
       </Card>
    )

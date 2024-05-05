@@ -10,10 +10,21 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import CardMedia from '@mui/material/CardMedia';
 
+import { useRouter } from 'next/router';
+
+import { updateView } from '@/http/userApi';
 
 import styles from "./likeModal.module.scss"
 
 const LikeModal = ({likeList, open, handleClose}) => {
+   const router = useRouter()
+
+   const navigateProfile = (id) => {
+      router.push(`ProfilePage/${id}`)
+      localStorage.setItem("anotherUser", JSON.stringify(id))
+      updateView(id)
+   }
+
    return(
       <Modal
          open={open}
@@ -30,7 +41,8 @@ const LikeModal = ({likeList, open, handleClose}) => {
                {likeList.length !== 0 && likeList.map(item => 
                   <Box key={item._id} className={styles.listItem}>
                      <ListItem disablePadding>
-                        <ListItemButton>
+                        <ListItemButton 
+                           onClick={() => navigateProfile(item._id)}>
                            <CardMedia
                               component="img"
                               className={styles.userImage}

@@ -1,12 +1,13 @@
 import Posts from "../main/post/Posts"
 import Profile from "../main/ProfileWindow"
-import RecommendationList from "../main/post/recommendation/RecommendationList"
+import RecommendationList from "../main/recommendation/RecommendationList"
 import CreatePost from "../main/CreatePost"
 import Tags from "../main/TagsWindow"
 import { checkUser } from '@/http/userApi'
 
 import { fetchPosts } from "@/http/postApi"
 
+import { useRouter } from "next/router"
 
 import { setAllPosts, setActiveDop, setPosts } from "@/store/slices/postSlice"
 
@@ -18,6 +19,7 @@ import Grid from '@mui/material/Grid';
 
 const Main = ({posts}) => {
    const dispatch = useDispatch()
+   const router = useRouter()
 
    const [arr, setArr] = useState([])
    const [current, setCurrent] = useState(0)
@@ -28,7 +30,13 @@ const Main = ({posts}) => {
 
    useEffect(() => {
       checkUser(JSON.parse(localStorage.getItem("user"))).then(data => dispatch(setUser(data)))
+      if(!JSON.parse(localStorage.getItem("user"))){
+         router.push("/AuthPage")
+      }
    }, [])
+
+   
+   //console.log(user._id);
 
    const fetchPostsStart = () => {
       fetchPosts(6, 1).then(data => {

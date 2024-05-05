@@ -30,6 +30,7 @@ import ImageModal from '../modal/imageModal/ImageModal';
 const Profile = () => {
    const dispatch = useDispatch()
    const router = useRouter()
+   
    const [view, setView] = useState({})
    const [myProfile, setMyProfile] = useState(null)
    const [checkFriend, setCheckFriend] = useState([])
@@ -48,10 +49,32 @@ const Profile = () => {
       })
    }, [openPhotoModal, openInfoModal, openBackgroundModal])
 
-   console.log(router.query.id);
-   
+   console.log(myProfile);
 
    useEffect(() => {
+      if(localStorage.getItem("user") === localStorage.getItem("anotherUser") /*&& localStorage.getItem("anotherUser") === null*/){
+         checkUser(JSON.parse(localStorage.getItem("user")))
+         .then(data => {
+
+            dispatch(setUser(data))
+            dispatch(setAnotherUser(null))
+            setView(data)
+            console.log(6);
+            setMyProfile(true)
+            //fetchPostsOnlyUser(data._id).then(data => console.log(data))
+         })
+      }else{
+         checkUser(JSON.parse(localStorage.getItem("anotherUser"))).then(data => {
+            dispatch(setAnotherUser(data))
+            console.log(5);
+            setView(data)
+            setMyProfile(false)
+            //fetchPostsOnlyUser(data._id).then(data => console.log(data))
+         })
+      }
+   }, [openInfoModal, openPhotoModal, openBackgroundModal, router.asPath])
+
+   /*useEffect(() => {
       if(localStorage.getItem("user") === localStorage.getItem("anotherUser") || localStorage.getItem("anotherUser") === null){
          checkUser(JSON.parse(localStorage.getItem("user")))
          .then(data => {
@@ -72,7 +95,7 @@ const Profile = () => {
             //fetchPostsOnlyUser(data._id).then(data => console.log(data))
          })
       }
-   }, [])
+   }, [router.asPath])*/
 
    useEffect(() => {
       const checkUserLike = user.friends && anotherUser ? user.friends.filter(item => item._id === anotherUser._id) : []

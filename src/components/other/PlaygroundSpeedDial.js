@@ -29,10 +29,10 @@ const actions = [
    { icon: <EditIcon />, name: 'Editor' },
 ];
 
-const BasicSpeedDial = ({id, deletePost, title, image, type}) => {
+const BasicSpeedDial = ({id, deletePost, title, image, type, video}) => {
    const [open, setOpen] = useState(false);
    return (
-      <Box  sx={{ height: 30, transform: 'translateZ(0px)'}}>
+      <Box  sx={{ height: 30, position: "relative", transform: 'translateZ(0px)', zIndex: 2}}>
          <SpeedDial
          ariaLabel="SpeedDial basic example"
          icon={<MoreHorizIcon />}
@@ -50,7 +50,7 @@ const BasicSpeedDial = ({id, deletePost, title, image, type}) => {
             />
          ))}
          </SpeedDial>
-         <CreatePostModal id={id} typePost={type} srcImage={image} titlePost={title} open={open} handleClose={() => setOpen(false)}/>
+         <CreatePostModal id={id} video={video} typePost={type} srcImage={image} titlePost={title} open={open} handleClose={() => setOpen(false)}/>
       </Box>
    );
 }
