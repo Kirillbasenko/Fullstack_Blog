@@ -85,18 +85,19 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
       setText(text + emoji)
    }
 
-   /*const douwloadImage = async (e) => {
+   const douwloadImage = async (e) => {
       try{
          const formData = new FormData()
          const file =  e.target.files[0]
          formData.append("image", file)
-         upload(formData).then(data => setSrc(data.url))
+         console.log(formData);
+         //upload(formData).then(data => setSrc(data.url))
       }catch(e){
          console.log(e);
       }
-   }*/
+   }
 
-   const douwloadImage = async () => {
+   /*const douwloadImage = async () => {
       let reader = new FileReader()
       //reader.readAsDataURL(file.current.files[0])
       console.log(reader);
@@ -104,7 +105,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
          //setSrc(reader.result)
          //console.log(reader.result);
       }
-   }
+   }*/
 
    const douwloadVideo = async (e) => {
       try{
