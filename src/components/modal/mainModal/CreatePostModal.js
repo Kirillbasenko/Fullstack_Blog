@@ -85,28 +85,27 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
       setText(text + emoji)
    }
 
-   const douwloadImage = async (e) => {
+   /*const douwloadImage = async (e) => {
       try{
+         console.log(e.target.value);
+         setSrc(e.target.value)
          const formData = new FormData()
          const file =  e.target.files[0]
          formData.append("image", file)
-         console.log(formData);
-         console.log(e);
+         //console.log(upload);
          //upload(formData).then(data => setSrc(data.url))
       }catch(e){
          console.log(e);
       }
-   }
-
-   /*const douwloadImage = async () => {
-      let reader = new FileReader()
-      //reader.readAsDataURL(file.current.files[0])
-      console.log(reader);
-      reader.onload = function (){
-         //setSrc(reader.result)
-         //console.log(reader.result);
-      }
    }*/
+
+   const douwloadImage = async (e) => {
+      const file = e.target.files[0];
+      if (file) {
+         setSrc(URL.createObjectURL(file));
+         console.log(URL);
+      }
+   }
 
    const douwloadVideo = async (e) => {
       try{
