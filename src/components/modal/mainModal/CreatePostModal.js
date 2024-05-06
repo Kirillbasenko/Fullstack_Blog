@@ -91,6 +91,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
          const file =  e.target.files[0]
          formData.append("image", file)
          console.log(formData);
+         console.log(e);
          //upload(formData).then(data => setSrc(data.url))
       }catch(e){
          console.log(e);
