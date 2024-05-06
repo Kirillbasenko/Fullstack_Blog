@@ -14,10 +14,14 @@ import { useRouter } from 'next/router';
 
 import { updateView } from '@/http/userApi';
 
+import { useSelector } from 'react-redux';
+
 import styles from "./likeModal.module.scss"
 
 const LikeModal = ({likeList, open, handleClose}) => {
    const router = useRouter()
+
+   const {width} = useSelector(state => state.width)
 
    const navigateProfile = (id) => {
       router.push(`ProfilePage/${id}`)
@@ -32,7 +36,7 @@ const LikeModal = ({likeList, open, handleClose}) => {
          aria-labelledby="modal-modal-title"
          aria-describedby="modal-modal-description"
          >
-         <Box className={styles.modal}>
+         <Box sx={{width: width > 768 ? 500 : "90%"}} className={styles.modal}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
                Likes
             </Typography>

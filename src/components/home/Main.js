@@ -3,8 +3,8 @@ import Profile from "../main/ProfileWindow"
 import RecommendationList from "../main/recommendation/RecommendationList"
 import CreatePost from "../main/CreatePost"
 import Tags from "../main/TagsWindow"
-import { checkUser } from '@/http/userApi'
 
+import { checkUser } from '@/http/userApi'
 import { fetchPosts } from "@/http/postApi"
 
 import { useRouter } from "next/router"
@@ -17,7 +17,7 @@ import { setUser } from "@/store/slices/userSlice"
 
 import Grid from '@mui/material/Grid';
 
-const Main = ({posts}) => {
+const Main = () => {
    const dispatch = useDispatch()
    const router = useRouter()
 
@@ -34,9 +34,6 @@ const Main = ({posts}) => {
          router.push("/AuthPage")
       }
    }, [])
-
-   
-   //console.log(user._id);
 
    const fetchPostsStart = () => {
       fetchPosts(6, 1).then(data => {
@@ -137,32 +134,6 @@ const Main = ({posts}) => {
          {ui()}
       </>
    )
-
-   /*return (
-      <>
-         <Grid container spacing={2}>
-            <Grid item xs={3}>
-               <Grid>
-                  <Profile user={user}/>
-               </Grid>
-               <Grid>
-                  <RecommendationList/>
-               </Grid>
-            </Grid>
-            <Grid item xs={7}>
-               <Grid>
-                  <CreatePost user={user}/>
-               </Grid>
-               <Grid>
-                  <Posts arrStart={arr} currentStart={current} fetchingStart={fetching}/>
-               </Grid>
-            </Grid>
-            <Grid item xs={2}>
-               <Tags fetchPostsStart={fetchPostsStart}/>
-            </Grid>
-         </Grid>
-      </>
-   )*/
 }
 
 export default Main

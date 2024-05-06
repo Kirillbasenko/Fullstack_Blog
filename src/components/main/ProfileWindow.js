@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
-
 import styles from "../../styles/main/profile.module.scss"
 
 const Profile = ({user}) => {

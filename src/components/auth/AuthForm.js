@@ -22,7 +22,6 @@ const AuthForm = ({position}) => {
    console.log(position);
 
    const click = async () => {
-      console.log(3);
       try{
          let data
          if(!position){
@@ -34,7 +33,6 @@ const AuthForm = ({position}) => {
                formik.values.password, 
                formik.values.name.length !== 0 ? formik.values.name : formik.values.email.substring(0, formik.values.email.indexOf("@")))
          }
-         console.log(2);
          localStorage.setItem("user", JSON.stringify(data._id))
          localStorage.setItem("token", JSON.stringify(data.token))
          dispatch(setIsAuth(data.token))

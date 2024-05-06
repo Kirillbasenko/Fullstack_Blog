@@ -91,8 +91,6 @@ const Post = ({post, deletePost}) => {
          return word;
       }
    });
-   //console.log(fetching);
-   //console.log(current);
 
    useEffect(() => {
       if(fetching){
@@ -110,7 +108,6 @@ const Post = ({post, deletePost}) => {
       setComments(comments => [com, ...comments])
       setCommentsLength(commentsLength => commentsLength + 1)
       setCurrent(2)
-      
    }
 
    const submitLike = () => {
@@ -132,9 +129,7 @@ const Post = ({post, deletePost}) => {
    useEffect(() => {
       checkPost(post._id).then(data => {
          setUserComments(data.likesUsers)
-         //console.log(data.likesUsers);
       } )
-      console.log(1);
    }, [userLike])
 
    return (

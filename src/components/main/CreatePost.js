@@ -1,7 +1,5 @@
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
 import { Box, CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';

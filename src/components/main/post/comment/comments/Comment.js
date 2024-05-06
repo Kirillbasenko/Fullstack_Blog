@@ -141,17 +141,12 @@ const Comments = ({editComment, checkParent, deleteCommentFirst, comment}) => {
       setCurrent(2)
    }
 
-   console.log(text, image);
-
    return(
       <Box 
-         //className={styles.container}
          sx={{
             display: "flex",
             marginTop: "20px",
-            //marginBottom: "20px",
             flex: "1 1 auto",
-            //maxWidth: "90%",
             marginLeft: "35px"
             }}>
             <CardMedia

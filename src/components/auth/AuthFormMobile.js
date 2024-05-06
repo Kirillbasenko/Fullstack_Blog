@@ -22,16 +22,13 @@ const AuthFormMobile = () => {
    const router = useRouter()
 
    const {width} = useSelector(state => state.width)
-   
 
    const click = async () => {
       try{
          let data
          if(position){
             data = await login(formik.values.email, formik.values.password)
-            console.log(1);
          }else{
-            console.log(2);
             data = await registration(
                formik.values.email, 
                formik.values.password, 
@@ -63,8 +60,6 @@ const AuthFormMobile = () => {
       }),
       onSubmit: click
    })
-
-   console.log(formik.values.email, formik.values.password);
 
    return(
       <Box 

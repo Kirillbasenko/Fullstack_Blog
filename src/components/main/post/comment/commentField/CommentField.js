@@ -43,7 +43,6 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
       };
    }, [modalRef]);
 
-
    const pickEmoji = (e) => {
       const ref = inputRef.current;
       ref.focus()
@@ -53,7 +52,6 @@ const CommentField = ({setArr, focus, id, userPhoto, commentParent}) => {
       setComment(msg);
       setCursorPosition(start.length + e.native.length);
    };
-
 
    const addComment = () => {
       createComment(id, comment, src).then(data => setArr(data))

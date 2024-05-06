@@ -31,9 +31,6 @@ const Posts = ({profile, arrStart, currentStart, fetchingStart}) => {
    const {post, tags} = useSelector(state => state.post)
    const {user, anotherUser} = useSelector(state => state.user)
 
-   console.log(profile);
-   
-
    const removePost = (id) => {
       deletePost(id)
       let arrWithoutOnePost = arr.filter(item => item._id !== id)
@@ -97,7 +94,6 @@ const Posts = ({profile, arrStart, currentStart, fetchingStart}) => {
    }, [fetching])
 
    useEffect(() => {
-      console.log(current);
       dispatch(setPosts([...arr]))
       if(tags.activeTag ){
          fetchPosts(6, 1, tags.activeTag, profile).then(data => {

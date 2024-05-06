@@ -130,7 +130,9 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
       }finally{
          clear()
          handleClose()
-         fetchPostsStart()
+         if(fetchPostsStart){
+            fetchPostsStart()
+         }
       }
    }
 
@@ -142,7 +144,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
             setShowEmoji(false)
             clear()
          }}>
-         <Box className={styles.modal}>
+         <Box sx={{width: width > 768 ? 500 : "90%"}} className={styles.modal}>
             <Box className={styles.flexBetween}>
                <Typography id="modal-modal-title" variant="h6" component="h2">
                   {!titlePost ? "Create Post" : "Update Post"}

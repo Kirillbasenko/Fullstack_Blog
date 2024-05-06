@@ -16,12 +16,9 @@ import { setWidth } from '@/store/slices/widthSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { styled } from '@mui/material/styles';
-
 import TwitterIcon from '@mui/icons-material/Twitter';
 import HomeIcon from '@mui/icons-material/Home';
 import EmailIcon from '@mui/icons-material/Email';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const Header = () => {
    const router = useRouter()
@@ -35,8 +32,6 @@ const Header = () => {
       localStorage.removeItem("token")
       router.push("/AuthPage")
    }
-
-   console.log(router);
 
    const routProfiles = () => {
       router.push("/Profiles")
@@ -58,124 +53,8 @@ const Header = () => {
       };
    }, []);
 
-   /*return(
-      <Box 
-         component="header" 
-         className={styles.parent}
-         sx={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "15px",
-            justifyContent: "space-between"
-         }}>
-            <Link href="/">
-               <TwitterIcon 
-                  className={styles.logo}
-                  sx={{
-                     width: "30px",
-                     height: "30px",
-                     marginRight: "12px"
-                  }}/>
-            </Link>
-            <FormControl fullWidth>
-               <OutlinedInput
-               //className={styles.input}
-               sx={{
-                  color: "white",
-                  borderRadius: "10px",
-                  width: "170px",
-                  backgroundColor: "rgba(20, 32, 75, 0.6784313725)",
-                  height: "30px"
-               }}
-               placeholder='Explore'
-               id="outlined-adornment-amount"
-               startAdornment={
-                  <InputAdornment sx={{color: "#9F9FA1"}} position="start">
-                     <Box sx={{fontSize: 16}}>
-                        #
-                     </Box>
-                  </InputAdornment>}
-               />
-            </FormControl>
-            <Button 
-               variant="outlined" 
-               onClick={() => {
-                  dispatch(setActiveTag(null))
-                  dispatch(setActiveDop(null))
-               }}
-               className={styles.homeButton} 
-               sx={{paddingX: 4}} startIcon={<HomeIcon sx={{width: 25, height: 25}} color='info' />}>
-               Home
-               </Button>
-            <Badge 
-               className={styles.icon} 
-               sx={{
-                  marginLeft: "25px",
-                  width: "25px",
-                  height: "25px",
-                  cursor: "pointer"
-               }}
-               badgeContent={1} 
-               color="info">
-               <EmailIcon/>
-            </Badge>
-            <Badge 
-               className={styles.icon} 
-               sx={{
-                  marginLeft: "25px",
-                  width: "25px",
-                  height: "25px",
-                  cursor: "pointer"
-               }}
-               badgeContent={1} 
-               color="info">
-               <PeopleIcon/>
-            </Badge>
-         
-         <FormControl fullWidth sx={{marginLeft: 4, width: 300}} size="small">
-            <InputLabel 
-               shrink={false} 
-               className={styles.selectedInput}
-               sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "12px",
-                  color: "aliceblue"
-               }}>
-               <CardMedia
-               height={22}
-               width={22}
-               sx={{objectFit: "contain", borderRadius: "50%", marginRight: 1, width: 25, height: 25,  }}
-               component="img"
-               image={user.avatarImage ? `${process.env.API_URL}${user.avatarImage}` : "/avatarUser.jpg"}
-               alt="green iguana"/>
-               <Typography sx={{fontSize: "14px"}}>{user.name && user.name.length > 15 ? `${user.name.slice(0, 15)}...` : user.name}</Typography>
-            </InputLabel>
-            <Select
-            className={styles.selected}
-            sx={{
-               borderRadius: "16px",
-               color: "aliceblue",
-               backgroundColor: "rgba(20, 32, 75, 0.6784313725)",
-            }}
-            >
-            <MenuItem onClick={() => {
-               if(router.query.id !== user._id){
-                  if(router.pathname === "/" ){
-                     router.push(`ProfilePage/${user._id}`)
-                  }else{
-                     router.push(`${user._id}`)
-                  }
-                  
-                  localStorage.setItem("anotherUser", JSON.stringify(user._id))
-               }
-            } } sx={{fontSize: 12}}>Подив. профіль</MenuItem>
-            <MenuItem onClick={() => logout()} sx={{fontSize: 12}}>Вийти</MenuItem>
-            </Select>
-         </FormControl>
-      </Box>
-   )*/
-    return(
+
+   return(
       <Box 
          component="header" 
          className={styles.parent}
