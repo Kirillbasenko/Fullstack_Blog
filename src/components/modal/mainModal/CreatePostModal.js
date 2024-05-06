@@ -98,11 +98,11 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
 
    const douwloadImage = async () => {
       let reader = new FileReader()
-      reader.readAsDataURL(file.current.files[0])
+      //reader.readAsDataURL(file.current.files[0])
       console.log(reader);
       reader.onload = function (){
          //setSrc(reader.result)
-         console.log(reader.result);
+         //console.log(reader.result);
       }
    }
 
