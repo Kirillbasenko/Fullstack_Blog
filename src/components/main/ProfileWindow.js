@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
+import { useEffect } from "react"
+
 import styles from "../../styles/main/profile.module.scss"
 
 const Profile = ({user}) => {
@@ -38,7 +40,7 @@ const Profile = ({user}) => {
                   component="img"
                   image={user.backgroundImage ? `${process.env.API_URL}${user.backgroundImage}` : "/backGround.jpg"}
                   alt="green iguana"/>
-            <CardMedia
+            {<CardMedia
                sx={{
                   objectFit: "contain", 
                   borderRadius: "50%", 
@@ -49,8 +51,8 @@ const Profile = ({user}) => {
                }}
                component="img"
                className={styles.userImage}
-               image={user.avatarImage ? `${process.env.API_URL}${user.avatarImage}` : "/avatarUser.jpg"}
-               alt="green iguana"/>
+               image={user.avatarImage ? user.avatarImage : "/avatarUser.jpg"}
+               alt="green iguana"/>}
             <CardContent sx={{padding: 1}}>
                <Typography gutterBottom variant="h6" component="div">
                   {user.name}

@@ -49,8 +49,6 @@ const Profile = () => {
       })
    }, [openPhotoModal, openInfoModal, openBackgroundModal])
 
-   console.log(myProfile);
-
    useEffect(() => {
       if(localStorage.getItem("user") === localStorage.getItem("anotherUser") /*&& localStorage.getItem("anotherUser") === null*/){
          checkUser(JSON.parse(localStorage.getItem("user")))
@@ -156,7 +154,7 @@ const Profile = () => {
                component="img"
                //className={styles.userImage}
                sx={{
-                  objectFit: "contain",
+                  //objectFit: "cover",
                   borderRadius: "50%",
                   display: "inline",
                   width: "130px",
@@ -165,7 +163,7 @@ const Profile = () => {
                   cursor: myProfile || view.avatarImage ? "pointer" : "default",
                   marginTop: "-30px"
                }}
-               image={view.avatarImage ? `${process.env.API_URL}${view.avatarImage}` : "/avatarUser.jpg"}
+               image={view.avatarImage ? view.avatarImage : "/avatarUser.jpg"}
                alt="green iguana"/>
             <Typography 
                //className={styles.userName}

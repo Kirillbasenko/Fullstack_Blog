@@ -17,6 +17,7 @@
     "@mui/material": "^5.11.13",
     "@reduxjs/toolkit": "^1.9.2",
     "axios": "^1.2.6",
+    "compressorjs": "^1.2.1",
     "date-fns": "^2.29.3",
     "emoji-mart": "^5.5.2",
     "formik": "^2.2.9",

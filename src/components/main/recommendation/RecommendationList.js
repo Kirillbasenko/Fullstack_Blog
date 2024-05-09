@@ -27,7 +27,8 @@ const RecommendationList = () => {
    const {allUsers, user} = useSelector(state => state.user)
 
    useEffect(() => {
-      getAllUsers(null, user).then(res => {
+      console.log(user);
+      getAllUsers(null).then(res => {
          const allUsersFilter = res.filter(item => item.name !== user.name)
          let filteredArray = allUsersFilter.slice(0, 3);
          dispatch(setAllUsers(filteredArray))
@@ -76,7 +77,7 @@ const RecommendationList = () => {
                padding: 0
             }}>
             {allUsers.length !== 0 && allUsers.map(user => {
-               return (<RecommendationItem submitLike={submitLike} userItem={user} navigateProfile={navigateProfile}/>)
+               return (<RecommendationItem key={user._id} submitLike={submitLike} userItem={user} navigateProfile={navigateProfile}/>)
             }
             )}
          </CardContent>

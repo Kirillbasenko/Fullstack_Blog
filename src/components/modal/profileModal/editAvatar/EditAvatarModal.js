@@ -15,14 +15,14 @@ import styles from "./editAvatarModal.module.scss"
 
 //import Avatar from 'react-avatar-edit';
 
-const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
+const EditAvatarModal = ({open, handleClose, src, avatar, changeQuality, changeSrc}) => {
    const [srcEdit, setSrcEdit] = useState(src)
    const [preview, setPreview] = useState(null)
    const [AvatarEdit, setAvatarEdit] = useState(null);
 
    const {width} = useSelector(state => state.width)
 
-   console.log(avatar);
+   //console.log(srcEdit);
 
    const loadAvatarComponent = async () => {
       const { default: Avatar } = await import('react-avatar-edit');
@@ -43,9 +43,10 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
 
    const onCrop = (view) => {
       setPreview(view);
+      //changeQuality(preview)
+      changeQuality(view)
+      //console.log(view);
    }
-
-   console.log(avatar);
 
    function base64toFile(base64Data, fileName) {
       const [contentType, content] = base64Data.split(';base64,');
@@ -61,13 +62,13 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
       return new File([blob], fileName, { type: contentType });
    }
 
+   console.log(preview);
+
 
    if(preview){
       let randomNum = Math.random() * 1000000
       const file = base64toFile(preview, `${randomNum.toFixed(0)}example.jpg`);
    }
-
-   console.log(`${process.env.API_URL}${avatar}`);
 
    return(
       <Modal
@@ -90,18 +91,22 @@ const EditAvatarModal = ({open, handleClose, src, avatar, changeSrc}) => {
                   height={400}
                   onClose={onClose}
                   onCrop={onCrop}
-                  exportSize={200}
-                  src={`${process.env.API_URL}${srcEdit}`}/>}
+                  src={srcEdit}/>}
             </Box>
             <Box className={styles.buttonCenter}>
             </Box>
             <Box className={styles.buttonCenter}>
                <Button onClick={() => {
-                  if(preview){
+                  /*if(preview){
                      let randomNum = Math.random() * 1000000
                      const file = base64toFile(preview, `${randomNum.toFixed(0)}example.jpg`);
-                     changeSrc(file)
-                  }
+                     //changeSrc(file)
+                     //console.log(preview);
+                     changeSrc(preview)
+                  }*/
+                  //console.log(preview);
+                  changeSrc(preview)
+                  //changeQuality(preview)
                   handleClose()
                }}  className={styles.buttonSubmit}  color='success' variant="contained"  endIcon={<SaveAsIcon />}>
                   save

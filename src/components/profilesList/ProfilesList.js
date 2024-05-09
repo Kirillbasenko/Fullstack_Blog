@@ -29,7 +29,7 @@ const ProfilesList = () => {
 
 
    useEffect(() => {
-      getAllUsers(null, user).then(res => {
+      getAllUsers(null).then(res => {
          const allUsersFilter = res.filter(item => item._id !== user._id)
          //let filteredArray = allUsersFilter.slice(0, 3);
          dispatch(setAllUsers(allUsersFilter))

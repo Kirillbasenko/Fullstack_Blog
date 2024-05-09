@@ -7,6 +7,8 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 
 import { upload, uploadVideo } from '@/http/imageApi';
 
+import Compressor from 'compressorjs';
+
 import styles from "../../styles/main/search.module.scss"
 import { useState, useRef } from 'react';
 import CreatePostModal from '../modal/mainModal/CreatePostModal';
@@ -18,10 +20,25 @@ const CreatePost = ({fetchPostsStart, user}) => {
    const [srcVideo, setSrcVideo] = useState("")
 
    const douwload = async (e) => {
-      const formData = new FormData()
-         const file =  e.target.files[0]
-         formData.append("image", file)
-         upload(formData).then(data => setSrc(data.url))
+      const file = e.target.files[0];
+         if (file) {
+            new Compressor(file, {
+               quality: 0.4, // качество сжатия, от 0 до 1
+               maxWidth: 800, // максимальная ширина изображения
+               maxHeight: 800, // максимальная высота изображения
+               success(result) {
+               // result - сжатое изображение в формате Blob
+               const reader = new FileReader();
+               reader.onload = () => {
+                  setSrc(reader.result);
+               };
+               reader.readAsDataURL(result);
+               },
+               error(err) {
+               console.error('Compression error:', err);
+               },
+            });
+         }
    }
 
    const douwloadVideo = async (e) => {
@@ -45,7 +62,7 @@ const CreatePost = ({fetchPostsStart, user}) => {
          <CardMedia
             sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
             component="img"
-            image={user.avatarImage ? `${process.env.API_URL}${user.avatarImage}` : "/avatarUser.jpg"}
+            image={user.avatarImage ? user.avatarImage : "/avatarUser.jpg"}
             alt="green iguana"/>
          <Box 
             className={styles.content}

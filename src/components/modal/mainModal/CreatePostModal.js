@@ -20,6 +20,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import data from "@emoji-mart/data"
 import Picker from '@emoji-mart/react';
+import Compressor from 'compressorjs';
 
 import { setAllPostsAndUpdatePost, setAddNewPost } from '@/store/slices/postSlice';
 import { updatePost } from '@/http/postApi';
@@ -85,15 +86,39 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
       setText(text + emoji)
    }
 
-   const douwloadImage = async (e) => {
+   /*const douwloadImage = async (e) => {
       try{
          const formData = new FormData()
          const file =  e.target.files[0]
          formData.append("image", file)
-         upload(formData).then(data => setSrc(data.url))
+         //upload(formData).then(data => setSrc(data.url))
       }catch(e){
          console.log(e);
       }
+   }*/
+
+   //console.log(src);
+
+   const douwloadImage = async (e) => {
+      const file = e.target.files[0];
+         if (file) {
+            new Compressor(file, {
+               quality: 0.4, // качество сжатия, от 0 до 1
+               maxWidth: 800, // максимальная ширина изображения
+               maxHeight: 800, // максимальная высота изображения
+               success(result) {
+               // result - сжатое изображение в формате Blob
+               const reader = new FileReader();
+               reader.onload = () => {
+                  setSrc(reader.result);
+               };
+               reader.readAsDataURL(result);
+               },
+               error(err) {
+               console.error('Compression error:', err);
+               },
+            });
+         }
    }
 
    const douwloadVideo = async (e) => {
@@ -106,6 +131,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
          console.log(e);
       }
    }
+   console.log(text, srcImage);
 
    const addPost = (e) => {
       e.preventDefault()
@@ -160,7 +186,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                <CardMedia
                   sx={{objectFit: "contain", borderRadius: "50%", width: 40, height: 40, display: "inline"}}
                   component="img"
-                  image={user.avatarImage ? `${process.env.API_URL}${user.avatarImage}` : "/avatarUser.jpg"}
+                  image={user.avatarImage ? user.avatarImage : "/avatarUser.jpg"}
                   alt="green iguana"/>
                <Box className={styles.flex}>
                   <Typography variant='body4'>{user.name}</Typography>
@@ -213,7 +239,7 @@ const CreatePostModal = ({open, handleClose, srcImage, titlePost, removeImage, t
                      <CardMedia
                      className={styles.image}
                      component="img"
-                     image={`${process.env.API_URL}${src}`}
+                     image={src}
                      alt="green iguana"/>
                      <IconButton className={styles.removeImageButton} onClick={() => setSrc("")} color="primary" aria-label="upload picture" component="label">
                         <CloseIcon />

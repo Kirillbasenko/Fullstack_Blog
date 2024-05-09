@@ -55,7 +55,7 @@ const ProfilesItem = ({submitLike, userItem, navigateProfile}) => {
                alignItems: "start"
                }}
                component="img"
-               image={userItem.avatarImage ? `${process.env.API_URL}${userItem.avatarImage}` : "/avatarUser.jpg"}
+               image={userItem.avatarImage ? userItem.avatarImage : "/avatarUser.jpg"}
                alt="green iguana"/>
          <Box
             sx={{

@@ -54,7 +54,7 @@ const RecommendationItem = ({submitLike, userItem, navigateProfile}) => {
                display: "inline"
                }}
                component="img"
-               image={userItem.avatarImage ? `${process.env.API_URL}${userItem.avatarImage}` : "/avatarUser.jpg"}
+               image={userItem.avatarImage ? userItem.avatarImage : "/avatarUser.jpg"}
                alt="green iguana"/>
          <Typography 
                //className={styles.name} 

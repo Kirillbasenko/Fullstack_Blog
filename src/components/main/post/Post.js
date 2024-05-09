@@ -156,7 +156,7 @@ const Post = ({post, deletePost}) => {
             component="img"
             image={
             post.user.avatarImage
-               ? `${process.env.API_URL}${post.user.avatarImage}`
+               ? post.user.avatarImage
                : "/avatarUser.jpg"
             }
             alt="green iguana"
@@ -223,7 +223,7 @@ const Post = ({post, deletePost}) => {
                }}
                className={styles.image}
                component="img"
-               image={`${process.env.API_URL}${post.img}`}
+               image={post.img}
                alt="green iguana"
             />
             ) : null}
